@@ -1,0 +1,6 @@
+{
+  "name": "LinkDit - Official Website",
+  "description": "The official website for LinkDit and LinkDit Pad. Write Better. Create Faster.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
