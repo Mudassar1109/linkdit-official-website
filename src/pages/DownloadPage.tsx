@@ -33,13 +33,13 @@ export const DownloadPage: React.FC<DownloadPageProps> = ({ navigate }) => {
       <section className="bg-slate-900 text-white py-16 border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
           <span className="text-xs font-mono px-3 py-1 rounded-full bg-amber-950 text-amber-400 border border-amber-800 font-semibold inline-block">
-            Upcoming Release Center
+            Official Download Center
           </span>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">
             Download {PRODUCT_NAME}
           </h1>
           <p className="text-slate-300 text-base max-w-2xl mx-auto">
-            Official production installers for Windows desktop, enterprise networks, and portable drives will be released soon. Clean, digitally signed, and 100% free of telemetry.
+            Official production installers for LinkDit Pad are now available. Download the latest verified release for Windows 10 and Windows 11.
           </p>
         </div>
       </section>
@@ -57,9 +57,15 @@ export const DownloadPage: React.FC<DownloadPageProps> = ({ navigate }) => {
                   <span className="text-xs font-mono font-bold px-2.5 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
                     {option.type}
                   </span>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 font-semibold flex items-center gap-1 border border-amber-200 dark:border-amber-800">
-                    <Clock className="w-3 h-3" /> Coming Soon
-                  </span>
+                  {option.isAvailable ? (
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-semibold flex items-center gap-1 border border-emerald-200 dark:border-emerald-800">
+                      <CheckCircle className="w-3 h-3" /> Available Now
+                    </span>
+                  ) : (
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 font-semibold flex items-center gap-1 border border-amber-200 dark:border-amber-800">
+                      <Clock className="w-3 h-3" /> Coming Soon
+                    </span>
+                  )}
                 </div>
 
                 <div>
@@ -104,16 +110,28 @@ export const DownloadPage: React.FC<DownloadPageProps> = ({ navigate }) => {
                 </div>
 
                 {/* Download CTA Action */}
-                <button
-                  disabled
-                  className="w-full py-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 font-semibold text-xs cursor-not-allowed flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700"
-                >
-                  <Clock className="w-4 h-4" />
-                  <span>Coming Soon</span>
-                </button>
+                {option.isAvailable ? (
+                  <a
+                    href={`/downloads/${option.filename}`}
+                    className="block w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs flex items-center justify-center gap-2 border border-blue-700 transition-colors"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Download {option.format.slice(1).toUpperCase()}</span>
+                  </a>
+                ) : (
+                  <button
+                    disabled
+                    className="w-full py-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 font-semibold text-xs cursor-not-allowed flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700"
+                  >
+                    <Clock className="w-4 h-4" />
+                    <span>Coming Soon</span>
+                  </button>
+                )}
 
                 <p className="text-[11px] text-slate-500 dark:text-slate-400 text-center font-medium leading-snug">
-                  The official LinkDit Pad installer will be available soon.
+                  {option.isAvailable
+                    ? 'Digitally signed and verified by LinkDit.'
+                    : 'The official LinkDit Pad installer will be available soon.'}
                 </p>
               </div>
             </div>
@@ -131,7 +149,7 @@ export const DownloadPage: React.FC<DownloadPageProps> = ({ navigate }) => {
             </h3>
           </div>
           <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-            All installer binaries for LinkDit Pad will be built directly from clean, audited sources, digitally signed, and hosted securely. Cryptographic SHA-256 checksums will be published on this page upon official release.
+            Official release packages are digitally signed, verified, and published by LinkDit. SHA-256 checksums are provided so users can verify download integrity.
           </p>
         </div>
       </section>
