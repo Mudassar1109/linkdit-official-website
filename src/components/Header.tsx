@@ -49,7 +49,7 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'home', label: 'Home' },
     { id: 'products', label: 'Products' },
     { id: 'features', label: 'Features' },
-    { id: 'download', label: 'Download', badge: 'v1.0' },
+    { id: 'download', label: 'Download', badge: 'v0.1' },
     { id: 'screenshots', label: 'Gallery', badge: '21' },
     { id: 'docs', label: 'Docs' },
     { id: 'changelog', label: 'Changelog' },
@@ -225,7 +225,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="w-full flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold rounded-full bg-slate-950 dark:bg-white text-white dark:text-slate-950 shadow-md hover:shadow-lg transition-all"
             >
               <Download className="w-4 h-4" />
-              <span>Download LinkDit Pad v1.0.0</span>
+              <span>Download LinkDit Pad v0.1.1</span>
             </button>
           </div>
         </div>

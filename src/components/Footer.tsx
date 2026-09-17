@@ -84,7 +84,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate, onOpenExportZip }) => 
                 <button onClick={() => navigate('download')} className="hover:text-white transition-colors flex items-center gap-1.5">
                   <span>Download Installers</span>
                   <span className="text-[10px] font-mono px-1.5 py-0.2 rounded-full bg-slate-900 text-emerald-400 border border-slate-800 font-bold">
-                    v1.0.0
+                    v0.1.1
                   </span>
                 </button>
               </li>
@@ -175,7 +175,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate, onOpenExportZip }) => 
             </span>
             <span className="text-slate-700">•</span>
             <span className="font-mono text-slate-400 bg-slate-900 px-2 py-0.5 rounded border border-slate-800">
-              v1.0.0
+              v0.1.1
             </span>
             <span className="text-slate-700">•</span>
             <span className="text-slate-400">

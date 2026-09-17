@@ -22,7 +22,7 @@ export const SEOHead: React.FC<SEOProps> = ({ pageId, title, description }) => {
     docs: `Documentation & User Guides - ${PRODUCT_NAME}`,
     roadmap: `Public Roadmap & Feature Voting - ${PRODUCT_NAME}`,
     changelog: `Changelog & Version History - ${PRODUCT_NAME}`,
-    'release-notes': `Release Notes - ${PRODUCT_NAME} v1.0.0`,
+    'release-notes': `Release Notes - ${PRODUCT_NAME} v0.1.1`,
     support: `Support, Help Center & FAQ - ${PRODUCT_NAME}`,
     contact: `Contact Us - LinkDit Company`,
     privacy: `Privacy Policy - 100% Local Files, No Telemetry - LinkDit`,

@@ -108,7 +108,7 @@ saveFile('notes.md', 'Written in LinkDit Pad');
             className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/80 dark:border-slate-800 rounded-full text-xs font-semibold text-slate-700 dark:text-slate-300 shadow-sm hover:border-blue-400/80 hover:shadow-md transition-all cursor-pointer group"
           >
             <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)]"></span>
-            <span>LinkDit Pad v1.0.0 Commercial Release</span>
+            <span>LinkDit Pad v0.1.1 Commercial Release</span>
             <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:translate-x-1 transition-transform" />
           </motion.div>
 
@@ -133,7 +133,7 @@ saveFile('notes.md', 'Written in LinkDit Pad');
               className="w-full sm:w-auto bg-slate-950 text-white dark:bg-white dark:text-slate-950 px-7 py-3.5 rounded-full text-sm font-semibold shadow-xl hover:shadow-2xl transition-all flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <Download className="w-4 h-4" />
-              <span>Download LinkDit Pad v1.0.0</span>
+              <span>Download LinkDit Pad v0.1.1</span>
             </motion.button>
 
             <motion.button

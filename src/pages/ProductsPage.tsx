@@ -57,7 +57,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ navigate }) => {
               className="px-6 py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center gap-2"
             >
               <Download className="w-4 h-4" />
-              <span>Get LinkDit Pad v1.0</span>
+              <span>Get LinkDit Pad v0.1</span>
             </button>
             <button
               onClick={() => navigate('screenshots')}
