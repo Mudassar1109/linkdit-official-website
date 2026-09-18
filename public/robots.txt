@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://linkdit.online/sitemap.xml
+Sitemap: https://www.linkdit.online/sitemap.xml

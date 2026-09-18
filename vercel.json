@@ -1,8 +1,19 @@
 {
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/products/:path*", "destination": "/products/index.html" },
+    { "source": "/features/:path*", "destination": "/features/index.html" },
+    { "source": "/download/:path*", "destination": "/download/index.html" },
+    { "source": "/screenshots/:path*", "destination": "/screenshots/index.html" },
+    { "source": "/docs/:path*", "destination": "/docs/index.html" },
+    { "source": "/roadmap/:path*", "destination": "/roadmap/index.html" },
+    { "source": "/changelog/:path*", "destination": "/changelog/index.html" },
+    { "source": "/release-notes/:path*", "destination": "/release-notes/index.html" },
+    { "source": "/support/:path*", "destination": "/support/index.html" },
+    { "source": "/contact/:path*", "destination": "/contact/index.html" },
+    { "source": "/privacy/:path*", "destination": "/privacy/index.html" },
+    { "source": "/terms/:path*", "destination": "/terms/index.html" },
+    { "source": "/license/:path*", "destination": "/license/index.html" },
+    { "source": "/eula/:path*", "destination": "/eula/index.html" },
+    { "source": "/copyright/:path*", "destination": "/copyright/index.html" }
   ]
 }

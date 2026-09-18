@@ -7,13 +7,20 @@ import {
   RoadmapItem,
   FAQItem,
 } from '../types';
+import { CURRENT_VERSION, CURRENT_VERSION_LABEL, DOWNLOAD_FILENAME } from '../config';
 
-export const DOMAIN_NAME = 'linkdit.online';
-export const APP_NAME = 'LinkDit';
-export const PRODUCT_NAME = 'LinkDit Pad';
-export const TAGLINE = 'Write clearly. Write locally.';
-export const BRAND_DESCRIPTION =
-  'LinkDit Pad is a fast, offline-first Markdown and rich-text editor for Windows. Multi-tab editing, live word counts, local files only — no account, no telemetry.';
+export {
+  DOMAIN_NAME,
+  SITE_URL,
+  APP_NAME,
+  PRODUCT_NAME,
+  TAGLINE,
+  BRAND_DESCRIPTION,
+  CURRENT_VERSION,
+  CURRENT_VERSION_LABEL,
+  DOWNLOAD_FILENAME,
+  DOWNLOAD_FILE_SIZE,
+} from '../config';
 
 // Interface scenes rendered as in-app previews (the app ships no bundled
 // screenshots, so each card shows a code-drawn replica of the real workspace).
@@ -194,9 +201,9 @@ export const DOWNLOAD_OPTIONS: DownloadOption[] = [
   {
     id: 'exe',
     title: 'Windows Setup (.exe)',
-    filename: 'LinkDit-Pad-0.1.1-x64-setup.exe',
+    filename: DOWNLOAD_FILENAME,
     format: '.exe',
-    version: 'v0.1.1',
+    version: CURRENT_VERSION_LABEL,
     releaseDate: 'September 2026',
     fileSize: '2.01 MB',
     sha256: '7b08b84a0550a95081b45317449aa284fdd45b1fd5f65dd21fcfb819e03dfd59',
@@ -219,7 +226,7 @@ export const DOWNLOAD_OPTIONS: DownloadOption[] = [
     isAvailable: true,
     type: 'Enterprise MSI',
     tagline: 'A previous build of LinkDit Pad for IT administrators who already deploy MSI packages.',
-    note: 'Legacy release — it predates the current v0.1.1 build. New installs should use the v0.1.1 setup (.exe).',
+    note: `Legacy release — it predates the current v${CURRENT_VERSION_LABEL} build. New installs should use the v${CURRENT_VERSION_LABEL} setup (.exe).`,
   },
   {
     id: 'legacy-setup',
@@ -234,7 +241,7 @@ export const DOWNLOAD_OPTIONS: DownloadOption[] = [
     isAvailable: true,
     type: 'Installer',
     tagline: 'The earlier LinkDit Pad setup wizard, kept for anyone who needs to reinstall the previous build.',
-    note: 'Legacy release — it predates the current v0.1.1 build. New installs should use the v0.1.1 setup (.exe).',
+    note: `Legacy release — it predates the current v${CURRENT_VERSION_LABEL} build. New installs should use the v${CURRENT_VERSION_LABEL} setup (.exe).`,
   },
   {
     id: 'msix',
@@ -389,10 +396,10 @@ anywhere from **Settings** in the sidebar.
 
 export const CHANGELOG_ITEMS: ChangelogItem[] = [
   {
-    version: '0.1.1',
+    version: CURRENT_VERSION,
     date: 'September 2026',
     title: 'Current release',
-    summary: 'The current release of LinkDit Pad: a rebuilt, offline-first Markdown and rich-text editor for Windows 10 and 11. Version numbering restarted from 0.1 when the product line was rebuilt on a new codebase.',
+    summary: `The current release of LinkDit Pad: a rebuilt, offline-first Markdown and rich-text editor for Windows 10 and 11. Version numbering restarted from 0.1 when the product line was rebuilt on a new codebase.`,
     badge: 'Current',
     status: 'current',
     highlights: [
@@ -429,30 +436,30 @@ export const CHANGELOG_ITEMS: ChangelogItem[] = [
     version: '1.0.0',
     date: 'July 22, 2026',
     title: 'Legacy release',
-    summary: 'An earlier release of LinkDit Pad built on the previous codebase. It is superseded by the rebuilt v0.1.1.',
+    summary: 'An earlier release of LinkDit Pad built on the previous codebase. It is superseded by the rebuilt v' + CURRENT_VERSION_LABEL + '.',
     badge: 'Legacy',
     status: 'legacy',
     highlights: [
       'Belongs to the previous LinkDit Pad codebase',
-      'Superseded by the current v0.1.1 release',
+      'Superseded by the current v' + CURRENT_VERSION_LABEL + ' release',
     ],
     featuresAdded: [],
-    improvements: ['Replaced by the rebuilt v0.1.1 product line'],
+    improvements: ['Replaced by the rebuilt v' + CURRENT_VERSION_LABEL + ' product line'],
     bugFixes: [],
   },
   {
     version: '0.9.5',
     date: 'June 15, 2026',
     title: 'Legacy beta',
-    summary: 'A beta of the original LinkDit Pad concept. Superseded by the current v0.1.1 release.',
+    summary: 'A beta of the original LinkDit Pad concept. Superseded by the current v' + CURRENT_VERSION_LABEL + ' release.',
     badge: 'Legacy',
     status: 'legacy',
     highlights: [
       'Early beta of the original product concept',
-      'Superseded by the current v0.1.1 release',
+      'Superseded by the current v' + CURRENT_VERSION_LABEL + ' release',
     ],
     featuresAdded: [],
-    improvements: ['Replaced by the rebuilt v0.1.1 product line'],
+    improvements: ['Replaced by the rebuilt v' + CURRENT_VERSION_LABEL + ' product line'],
     bugFixes: [],
   },
 ];
@@ -544,7 +551,7 @@ export const FAQS: FAQItem[] = [
   {
     category: 'Installation',
     question: 'Which installer should I choose?',
-    answer: 'Use the current Windows Setup (.exe), v0.1.1, for everyone. The legacy links — the MSI (v1.0.0) and the older Setup.exe (v1.0.0) — are kept for IT administrators who already deploy those files; both predate the current v0.1.1 build, and new installs should use the v0.1.1 setup. A Microsoft Store-style MSIX package is not published yet.',
+    answer: `Use the current Windows Setup (.exe), v${CURRENT_VERSION_LABEL}, for everyone. The legacy links — the MSI (v1.0.0) and the older Setup.exe (v1.0.0) — are kept for IT administrators who already deploy those files; both predate the current v${CURRENT_VERSION_LABEL} build, and new installs should use the v${CURRENT_VERSION_LABEL} setup. A Microsoft Store-style MSIX package is not published yet.`,
   },
   {
     category: 'Features',
