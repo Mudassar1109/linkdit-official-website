@@ -3,33 +3,59 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* Light-first neutral palette (warm paper + ink) */
-  --color-paper: #faf9f6;
-  --color-paper-2: #f3f1ea;
-  --color-surface: #ffffff;
-  --color-ink: #1c1a16;
-  --color-ink-soft: #56524b;
-  --color-ink-mute: #8a857b;
-  --color-line: #e7e3d9;
-  --color-line-strong: #d8d3c6;
+  /* ---- Warm paper palette (Notion / Bear-inspired, light-first) ----
+     paper      = page background (soft off-white, never stark white)
+     surface    = raised cards (warm near-white, one step lighter than page)
+     paper-2    = section bands / inset areas (one tonal step deeper)
+     ink        = primary text (warm near-black)
+     ink-soft   = secondary text
+     ink-mute   = tertiary text / eyebrows
+     line       = hairline borders — the primary card affordance */
+  --color-paper: #f7f5f0;
+  --color-paper-2: #efede6;
+  --color-surface: #fdfdfa;
+  --color-ink: #211d16;
+  --color-ink-soft: #5c554a;
+  --color-ink-mute: #948c80;
+  --color-line: #e6e2d8;
+  --color-line-strong: #d5d0c4;
 
-  /* Single restrained accent — matches LinkDit Pad blue (#2563EB) */
+  /* Single restrained accent — matches LinkDit Pad blue (#2563EB).
+     Used sparingly: links, primary CTA, active states only. */
   --color-accent: #2563eb;
-  --color-accent-deep: #1d4ed8;
-  --color-accent-soft: #e9eefc;
+  --color-accent-deep: #1e58d0;
+  --color-accent-soft: #e8eef9;
 
   /* Dark surfaces (warm near-black), layered for hierarchy:
      ink-950 = page background, ink-900 = section band,
      ink-850 = raised card/surface, ink-800 = elevated hover state. */
-  --color-ink-950: #0b0b0a;
-  --color-ink-900: #111210;
-  --color-ink-850: #151614;
-  --color-ink-800: #1a1b19;
-  --color-line-dark: #26241e;
+  --color-ink-950: #0e0d0c;
+  --color-ink-900: #151412;
+  --color-ink-850: #1b1a17;
+  --color-ink-800: #211f1c;
+  --color-line-dark: #2b2923;
 
+  /* Typography — one clear pairing:
+     Inter (headings + body, clean sans like Notion),
+     Instrument Serif (editorial italic accent only),
+     JetBrains Mono (eyebrows / metadata / code). */
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
   --font-serif: "Instrument Serif", Georgia, serif;
+
+  /* Radii — one consistent language:
+     card = boxes/panels, control = buttons/inputs/segments, pills stay full. */
+  --radius-card: 0.5rem;
+  --radius-control: 0.375rem;
+
+  /* Shadows — border-first design. Ultra-subtle shadows only;
+     hover lifts one step, never a heavy drop-shadow or glow. */
+  --shadow-card: 0 1px 2px rgb(33 29 22 / 0.05);
+  --shadow-card-hover: 0 1px 2px rgb(33 29 22 / 0.06), 0 12px 32px -16px rgb(33 29 22 / 0.12);
+  --shadow-control: 0 1px 2px rgb(33 29 22 / 0.06);
+
+  /* Reading measure — max content width keeps lines comfortable. */
+  --container-site: 68rem;
 }
 
 @layer base {
@@ -39,9 +65,27 @@
 
   body {
     font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-ink);
+    background-color: var(--color-paper);
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    letter-spacing: -0.011em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 
   ::selection {
@@ -68,6 +112,29 @@
 
 .font-serif {
   font-family: var(--font-serif);
+}
+
+/* Site container — comfortable reading measure with consistent gutters */
+@utility container-site {
+  margin-inline: auto;
+  max-width: var(--container-site);
+  padding-inline: 1.25rem;
+
+  @media (width >= 40rem) {
+    padding-inline: 1.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Eyebrow label — small-caps mono tag consistent across every page */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 /* Muted scrolling for the browser chrome, tuned to the palette */
