@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import { PageId, RoadmapItem } from '../types';
 import { ROADMAP_ITEMS, PRODUCT_NAME } from '../data/websiteData';
-import { ThumbsUp, Plus, CheckCircle, Clock, Sparkles, AlertCircle } from 'lucide-react';
+import { ThumbsUp, Plus, Clock } from 'lucide-react';
 
 interface RoadmapProps {
   navigate: (page: PageId) => void;
 }
+
+const statusStyles: Record<RoadmapItem['status'], string> = {
+  Planned: 'bg-ink dark:text-paper dark:bg-paper dark:text-ink',
+  'In Progress': 'bg-accent text-blue-50',
+  'Under Review': 'bg-accent-soft text-accent-deep dark:bg-accent/15 dark:text-blue-300',
+  Completed: 'bg-ink-soft/20 text-ink-soft dark:bg-paper/10 dark:text-paper/70',
+};
 
 export const RoadmapPage: React.FC<RoadmapProps> = ({ navigate }) => {
   const [items, setItems] = useState<RoadmapItem[]>(ROADMAP_ITEMS);
@@ -19,10 +26,7 @@ export const RoadmapPage: React.FC<RoadmapProps> = ({ navigate }) => {
       prev.map((item) => {
         if (item.id === id) {
           const hasVoted = votedIds[id];
-          return {
-            ...item,
-            votes: hasVoted ? item.votes - 1 : item.votes + 1,
-          };
+          return { ...item, votes: hasVoted ? item.votes - 1 : item.votes + 1 };
         }
         return item;
       })
@@ -36,7 +40,7 @@ export const RoadmapPage: React.FC<RoadmapProps> = ({ navigate }) => {
     const newItem: RoadmapItem = {
       id: `road-${Date.now()}`,
       title: newTitle,
-      description: newDesc || 'User proposed feature under review by engineering team.',
+      description: newDesc || 'User proposal — under review.',
       category: 'Community Proposal',
       status: 'Under Review',
       targetRelease: 'Target: TBD',
@@ -50,128 +54,122 @@ export const RoadmapPage: React.FC<RoadmapProps> = ({ navigate }) => {
   };
 
   return (
-    <div className="space-y-12 pb-16 font-sans">
-      <section className="bg-slate-100 dark:bg-slate-900 py-12 border-b border-slate-200 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
-            Public Product Roadmap
+    <div className="border-t border-line dark:border-line-dark">
+      {/* Header */}
+      <header className="border-b border-line dark:border-line-dark">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-12 text-center space-y-5">
+          <span className="text-xs font-mono font-semibold uppercase tracking-[0.2em] text-ink-mute dark:text-paper/55">
+            Roadmap
           </span>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white">
-            Future Development
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-ink dark:text-paper">
+            What happens next
           </h1>
-          <p className="text-slate-600 dark:text-slate-400 text-sm max-w-xl mx-auto">
-            Vote on upcoming features, track active development milestones, and propose your ideas for future versions of {PRODUCT_NAME}.
+          <p className="mx-auto max-w-xl text-sm sm:text-base text-ink-soft dark:text-paper/65 leading-relaxed">
+            A short list of the improvements we are planning for {PRODUCT_NAME}. We publish this so
+            expectations are clear — and so you can tell us what to build first.
           </p>
-
           <button
             onClick={() => setShowProposeModal(true)}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md transition-all"
+            className="inline-flex items-center gap-2 rounded-md bg-ink px-4 py-2 text-xs font-semibold text-paper hover:bg-ink/90 transition-colors dark:bg-paper dark:text-ink dark:hover:bg-paper/90"
           >
             <Plus className="w-4 h-4" />
-            <span>Propose Feature Idea</span>
+            Propose a feature
           </button>
         </div>
-      </section>
+      </header>
 
-      {/* ROADMAP ITEMS LIST */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        {items.map((item) => (
-          <div
-            key={item.id}
-            className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
-          >
-            <div className="space-y-2 flex-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
-                  {item.category}
-                </span>
-                <span
-                  className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded ${
-                    item.status === 'In Progress'
-                      ? 'bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300'
-                      : item.status === 'Completed'
-                      ? 'bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300'
-                      : 'bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300'
-                  }`}
-                >
-                  {item.status}
-                </span>
-                <span className="text-[10px] text-slate-400 font-mono">
+      {/* Items */}
+      <section className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12">
+        {items.length === 0 && (
+          <p className="text-center text-sm text-ink-mute dark:text-paper/45 py-10">
+            Nothing here yet — check back soon.
+          </p>
+        )}
+        <div className="space-y-px bg-line dark:bg-line-dark border border-line dark:border-line-dark">
+          {items.map((item) => (
+            <div
+              key={item.id}
+              className="bg-surface dark:bg-ink-850 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5"
+            >
+              <div className="space-y-2.5 flex-1 min-w-0">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-paper-2 dark:bg-ink-850 text-ink-soft dark:text-paper/60">
+                    {item.category}
+                  </span>
+                  <span className={`text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded ${statusStyles[item.status]}`}>
+                    {item.status}
+                  </span>
+                </div>
+                <h3 className="font-semibold text-lg text-ink dark:text-paper">{item.title}</h3>
+                <p className="text-sm text-ink-soft dark:text-paper/60 leading-relaxed">{item.description}</p>
+                <p className="flex items-center gap-1.5 text-xs font-mono text-ink-mute dark:text-paper/40">
+                  <Clock className="w-3.5 h-3.5" />
                   {item.targetRelease}
-                </span>
+                </p>
               </div>
 
-              <h3 className="font-extrabold text-lg text-slate-900 dark:text-white">
-                {item.title}
-              </h3>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                {item.description}
-              </p>
+              <button
+                onClick={() => handleVote(item.id)}
+                aria-pressed={!!votedIds[item.id]}
+                className={`shrink-0 inline-flex items-center gap-2 rounded-md px-3.5 py-2 text-xs font-semibold border transition-colors ${
+                  votedIds[item.id]
+                    ? 'bg-accent text-blue-50 border-accent'
+                    : 'border-line-strong dark:border-line-dark text-ink-soft dark:text-paper/65 hover:border-accent'
+                }`}
+              >
+                <ThumbsUp className="w-3.5 h-3.5" />
+                {item.votes}
+              </button>
             </div>
-
-            {/* Vote Button */}
-            <button
-              onClick={() => handleVote(item.id)}
-              className={`shrink-0 px-4 py-2.5 rounded-xl border text-xs font-bold transition-all flex items-center gap-2 ${
-                votedIds[item.id]
-                  ? 'bg-blue-600 text-white border-blue-600 shadow-md'
-                  : 'bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800'
-              }`}
-            >
-              <ThumbsUp className="w-4 h-4" />
-              <span>{item.votes} Votes</span>
-            </button>
-          </div>
-        ))}
+          ))}
+        </div>
+        <p className="text-center text-xs text-ink-mute dark:text-paper/40 pt-8">
+          Votes and proposals live only on this page — they are not connected to the app.
+        </p>
       </section>
 
-      {/* Propose Modal */}
+      {/* Propose modal */}
       {showProposeModal && (
-        <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 bg-ink-950/70 dark:bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
           <form
             onSubmit={handlePropose}
-            className="w-full max-w-md bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 space-y-4"
+            className="w-full max-w-md bg-surface dark:bg-ink-850 border border-line dark:border-line-dark p-6 space-y-4"
           >
-            <h3 className="font-extrabold text-lg text-slate-900 dark:text-white">
-              Propose a Feature Idea
-            </h3>
-
+            <h3 className="text-lg font-semibold text-ink dark:text-paper">Propose a feature</h3>
             <div className="space-y-1">
-              <label className="text-xs font-medium text-slate-700 dark:text-slate-300">Feature Title</label>
+              <label className="block text-xs font-medium text-ink-soft dark:text-paper/60">Feature title</label>
               <input
                 type="text"
                 value={newTitle}
                 onChange={(e) => setNewTitle(e.target.value)}
-                placeholder="e.g. Split dual window mode..."
+                placeholder="e.g. Split-pane mode"
                 required
-                className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white"
+                className="w-full px-3 py-2 rounded-md bg-paper-2 dark:bg-ink-850 border border-line dark:border-line-dark text-sm text-ink dark:text-paper focus:outline-none focus:border-accent"
               />
             </div>
-
             <div className="space-y-1">
-              <label className="text-xs font-medium text-slate-700 dark:text-slate-300">Description</label>
+              <label className="block text-xs font-medium text-ink-soft dark:text-paper/60">Why it would help</label>
               <textarea
                 value={newDesc}
                 onChange={(e) => setNewDesc(e.target.value)}
-                placeholder="Explain why this feature would improve writing workflows..."
+                placeholder="A sentence or two about the writing workflow it supports..."
                 rows={3}
-                className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs text-slate-900 dark:text-white"
+                className="w-full px-3 py-2 rounded-md bg-paper-2 dark:bg-ink-850 border border-line dark:border-line-dark text-sm text-ink dark:text-paper focus:outline-none focus:border-accent"
               />
             </div>
-
             <div className="flex justify-end gap-2 pt-2">
               <button
                 type="button"
                 onClick={() => setShowProposeModal(false)}
-                className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 dark:text-slate-400"
+                className="px-4 py-2 rounded-md text-xs font-semibold text-ink-soft dark:text-paper/60"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-4 py-2 rounded-xl text-xs font-bold bg-blue-600 text-white hover:bg-blue-700"
+                className="px-4 py-2 rounded-md text-xs font-semibold bg-ink text-paper hover:bg-ink/90 dark:bg-paper dark:text-ink dark:hover:bg-paper/90"
               >
-                Submit Idea
+                Submit proposal
               </button>
             </div>
           </form>

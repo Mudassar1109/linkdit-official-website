@@ -1,7 +1,6 @@
 import React from 'react';
 import { PageId } from '../types';
-import { DOMAIN_NAME } from '../data/websiteData';
-import { FileQuestion, ArrowLeft, Home, Search } from 'lucide-react';
+import { FileQuestion, Home, Search } from 'lucide-react';
 
 interface NotFoundProps {
   navigate: (page: PageId) => void;
@@ -10,38 +9,37 @@ interface NotFoundProps {
 
 export const NotFoundPage: React.FC<NotFoundProps> = ({ navigate, onOpenSearch }) => {
   return (
-    <div className="max-w-2xl mx-auto px-4 py-24 text-center space-y-6 font-sans">
-      <div className="w-16 h-16 rounded-2xl bg-slate-100 dark:bg-slate-900 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto border border-slate-200 dark:border-slate-800 shadow-md">
-        <FileQuestion className="w-8 h-8" />
+    <div className="max-w-2xl mx-auto px-4 py-24 sm:py-32 text-center space-y-6 font-sans">
+      <div className="w-14 h-14 rounded-lg border border-line dark:border-line-dark bg-surface dark:bg-ink-850 text-accent-deep dark:text-blue-300 flex items-center justify-center mx-auto">
+        <FileQuestion className="w-6 h-6" />
       </div>
 
       <div className="space-y-2">
-        <span className="text-xs font-mono font-bold text-rose-500 uppercase tracking-wider">
-          Error 404 • Page Not Found
+        <span className="text-xs font-mono font-semibold uppercase tracking-[0.2em] text-ink-mute dark:text-paper/45 block">
+          404 · Page not found
         </span>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          Requested URL Does Not Exist
+        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink dark:text-paper">
+          This page doesn't exist
         </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto">
-          The route you navigated to on <strong>https://{DOMAIN_NAME}</strong> could not be located.
+        <p className="text-sm text-ink-soft dark:text-paper/60 max-w-md mx-auto">
+          The address you opened is not part of this site. Try the homepage or search instead.
         </p>
       </div>
 
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-4">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
         <button
           onClick={() => navigate('home')}
-          className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-bold text-xs shadow-md flex items-center justify-center gap-2"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md bg-ink px-5 py-2.5 text-xs font-semibold text-paper hover:bg-ink/90 transition-colors dark:bg-paper dark:text-ink dark:hover:bg-paper/90"
         >
           <Home className="w-4 h-4" />
-          <span>Return Home</span>
+          Return home
         </button>
-
         <button
           onClick={onOpenSearch}
-          className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-medium text-xs border border-slate-200 dark:border-slate-700 flex items-center justify-center gap-2"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-md border border-line-strong dark:border-line-dark px-5 py-2.5 text-xs font-semibold text-ink-soft dark:text-paper/65 hover:border-accent transition-colors"
         >
-          <Search className="w-4 h-4 text-blue-500" />
-          <span>Search Site Index</span>
+          <Search className="w-4 h-4" />
+          Search the site
         </button>
       </div>
     </div>

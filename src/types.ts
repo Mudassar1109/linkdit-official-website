@@ -58,6 +58,8 @@ export interface DownloadOption {
   isAvailable: boolean;
   type: 'Installer' | 'Enterprise MSI' | 'Windows App Store' | 'Portable';
   tagline: string;
+  isCurrent?: boolean;
+  note?: string;
 }
 
 export interface DocArticle {
@@ -78,7 +80,8 @@ export interface ChangelogItem {
   date: string;
   title: string;
   summary: string;
-  badge?: 'Major' | 'Feature' | 'Patch' | 'LTS';
+  badge?: 'Current' | 'Legacy' | 'Major' | 'Feature' | 'Patch';
+  status?: 'current' | 'legacy';
   highlights: string[];
   featuresAdded: string[];
   improvements: string[];

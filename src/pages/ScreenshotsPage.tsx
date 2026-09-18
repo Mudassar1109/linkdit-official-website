@@ -3,12 +3,14 @@ import { PageId, ScreenshotItem } from '../types';
 import { SCREENSHOTS, PRODUCT_NAME } from '../data/websiteData';
 import { ScreenshotCard } from '../components/ScreenshotCard';
 import { LightboxModal } from '../components/LightboxModal';
-import { Search, Filter, Layers, Maximize2, Image as ImageIcon } from 'lucide-react';
+import { Search, ImageIcon } from 'lucide-react';
 
 interface ScreenshotsPageProps {
   navigate: (page: PageId) => void;
   selectedIdFromQuery?: string | null;
 }
+
+const VIEWS = ['All', 'Interface', 'Editor', 'Themes'];
 
 export const ScreenshotsPage: React.FC<ScreenshotsPageProps> = ({
   navigate,
@@ -23,8 +25,6 @@ export const ScreenshotsPage: React.FC<ScreenshotsPageProps> = ({
     return null;
   });
 
-  const categories = ['All', 'Editor', 'Themes', 'Customization', 'Tools', 'Interface'];
-
   const filteredScreenshots = SCREENSHOTS.filter((s) => {
     if (activeCategory !== 'All' && s.category !== activeCategory) return false;
     if (!searchQuery) return true;
@@ -32,93 +32,88 @@ export const ScreenshotsPage: React.FC<ScreenshotsPageProps> = ({
     return (
       s.title.toLowerCase().includes(q) ||
       s.description.toLowerCase().includes(q) ||
-      s.filename.toLowerCase().includes(q)
+      s.id.toLowerCase().includes(q)
     );
   });
 
+  const reset = () => {
+    setSearchQuery('');
+    setActiveCategory('All');
+  };
+
   return (
-    <div className="space-y-12 pb-16 font-sans">
-      {/* Header Banner */}
-      <section className="bg-slate-100 dark:bg-slate-900 py-12 border-b border-slate-200 dark:border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <span className="text-xs font-mono font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">
-            Visual Experience & Workspace Gallery
+    <div className="font-sans">
+      {/* Header */}
+      <header className="border-b border-line dark:border-line-dark">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-12 text-center space-y-5">
+          <span className="text-xs font-mono font-semibold uppercase tracking-[0.2em] text-ink-mute dark:text-paper/55">
+            Interface
           </span>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 dark:text-white">
-            21 High-Resolution Screenshots
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-ink dark:text-paper">
+            The {PRODUCT_NAME} workspace, rendered
           </h1>
-          <p className="text-slate-600 dark:text-slate-400 text-sm max-w-xl mx-auto">
-            Explore every view of {PRODUCT_NAME} — from the core editor and OLED midnight dark theme to search palettes and markdown split preview.
+          <p className="mx-auto max-w-xl text-sm sm:text-base text-ink-soft dark:text-paper/65 leading-relaxed">
+            Six views of the current build — tabs, Markdown, rich text, dark theme, sidebar, and the
+            status bar. Previews are drawn on this page; the real thing is one download away.
           </p>
 
-          {/* Search Bar */}
-          <div className="pt-2 max-w-md mx-auto relative">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
+          <div className="mx-auto max-w-md relative">
+            <Search className="w-4 h-4 text-ink-mute absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search 21 screenshots by name or shortcut..."
-              className="w-full pl-10 pr-4 py-2 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-sm focus:outline-none focus:border-blue-500"
+              placeholder="Search views..."
+              className="w-full rounded-lg border border-line dark:border-line-dark bg-surface dark:bg-ink-900 pl-10 pr-3 py-2.5 text-sm text-ink dark:text-paper placeholder:text-ink-mute focus:outline-none focus:border-accent"
             />
           </div>
         </div>
-      </section>
+      </header>
 
-      {/* Category Tabs */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-          {categories.map((cat) => (
+      {/* Category tabs */}
+      <section className="border-b border-line dark:border-line-dark">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-6 flex items-center gap-1.5 overflow-x-auto scrollbar-none">
+          {VIEWS.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors ${
+              className={`shrink-0 rounded-md px-3.5 py-1.5 text-xs font-semibold transition-colors ${
                 activeCategory === cat
-                  ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-950 shadow-xs'
-                  : 'bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800'
+                  ? 'bg-ink text-paper dark:bg-paper dark:text-ink'
+                  : 'border border-line dark:border-line-dark text-ink-soft dark:text-paper/60 hover:border-line-strong'
               }`}
             >
-              {cat} {cat === 'All' ? `(${SCREENSHOTS.length})` : ''}
+              {cat}
+              {cat === 'All' ? ` (${SCREENSHOTS.length})` : ''}
             </button>
           ))}
         </div>
       </section>
 
-      {/* Screenshots Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {filteredScreenshots.length === 0 ? (
-          <div className="text-center py-16 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
-            <ImageIcon className="w-10 h-10 text-slate-400 mx-auto" />
-            <h3 className="text-lg font-bold text-slate-800 dark:text-slate-200">
-              No Screenshots Match Search
-            </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400">
-              Try clearing filters or searching for another keyword.
-            </p>
-            <button
-              onClick={() => {
-                setSearchQuery('');
-                setActiveCategory('All');
-              }}
-              className="px-4 py-2 rounded-lg bg-blue-600 text-white text-xs font-semibold"
-            >
-              Reset Filters
-            </button>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredScreenshots.map((item) => (
-              <ScreenshotCard
-                key={item.id}
-                screenshot={item}
-                onClick={(s) => setActiveLightbox(s)}
-              />
-            ))}
-          </div>
-        )}
+      {/* Grid */}
+      <section className="border-b border-line dark:border-line-dark">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12">
+          {filteredScreenshots.length === 0 ? (
+            <div className="text-center py-16 border border-line dark:border-line-dark bg-surface dark:bg-ink-850 space-y-3">
+              <ImageIcon className="w-8 h-8 text-ink-mute mx-auto" />
+              <h3 className="text-base font-semibold text-ink dark:text-paper">No views match</h3>
+              <button
+                onClick={reset}
+                className="text-sm font-semibold text-accent hover:text-accent-deep"
+              >
+                Reset filters
+              </button>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px border border-line dark:border-line-dark bg-line dark:bg-line-dark">
+              {filteredScreenshots.map((item) => (
+                <ScreenshotCard key={item.id} screenshot={item} onClick={(s) => setActiveLightbox(s)} />
+              ))}
+            </div>
+          )}
+        </div>
       </section>
 
-      {/* Lightbox Modal */}
       <LightboxModal
         screenshot={activeLightbox}
         screenshotsList={filteredScreenshots}

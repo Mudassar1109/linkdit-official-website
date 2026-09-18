@@ -5,7 +5,6 @@ import { SEOHead } from './components/SEOHead';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { SearchModal } from './components/SearchModal';
-import { ZipExportModal } from './components/ZipExportModal';
 
 import { HomePage } from './pages/HomePage';
 import { ProductsPage } from './pages/ProductsPage';
@@ -21,33 +20,33 @@ import { ContactPage } from './pages/ContactPage';
 import { LegalPages } from './pages/LegalPages';
 import { NotFoundPage } from './pages/NotFoundPage';
 
+const VALID_PAGES: PageId[] = [
+  'home',
+  'products',
+  'features',
+  'download',
+  'screenshots',
+  'docs',
+  'roadmap',
+  'changelog',
+  'release-notes',
+  'support',
+  'contact',
+  'privacy',
+  'terms',
+  'license',
+  'eula',
+  'copyright',
+];
+
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageId>(() => {
     const path = window.location.pathname.replace(/^\//, '') || 'home';
-    const validPages: PageId[] = [
-      'home',
-      'products',
-      'features',
-      'download',
-      'screenshots',
-      'docs',
-      'roadmap',
-      'changelog',
-      'release-notes',
-      'support',
-      'contact',
-      'privacy',
-      'terms',
-      'license',
-      'eula',
-      'copyright',
-    ];
-    return validPages.includes(path as PageId) ? (path as PageId) : 'home';
+    return VALID_PAGES.includes(path as PageId) ? (path as PageId) : '404';
   });
 
   const [selectedScreenshotId, setSelectedScreenshotId] = useState<string | null>(null);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
-  const [zipModalOpen, setZipModalOpen] = useState(false);
 
   // Global keyboard shortcut listener for Ctrl + K / Cmd + K
   useEffect(() => {
@@ -65,7 +64,7 @@ export default function App() {
   useEffect(() => {
     const handlePopState = () => {
       const path = window.location.pathname.replace(/^\//, '') || 'home';
-      setCurrentPage((path as PageId) || 'home');
+      setCurrentPage(VALID_PAGES.includes(path as PageId) ? (path as PageId) : '404');
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
@@ -87,7 +86,7 @@ export default function App() {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col justify-between font-sans selection:bg-blue-500 selection:text-white transition-colors duration-200">
+      <div className="min-h-screen bg-paper dark:bg-ink-950 text-ink dark:text-paper flex flex-col justify-between font-sans transition-colors duration-200">
         <SEOHead pageId={currentPage} />
 
         {/* Sticky Global Navigation Bar */}
@@ -95,7 +94,6 @@ export default function App() {
           currentPage={currentPage}
           navigate={navigate}
           onOpenSearch={() => setSearchModalOpen(true)}
-          onOpenExportZip={() => setZipModalOpen(true)}
         />
 
         {/* Main Route Content Viewport */}
@@ -139,7 +137,7 @@ export default function App() {
         </main>
 
         {/* Global Footer */}
-        <Footer navigate={navigate} onOpenExportZip={() => navigate('download')} />
+        <Footer navigate={navigate} />
 
         {/* Search Modal */}
         <SearchModal
