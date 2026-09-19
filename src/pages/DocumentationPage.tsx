@@ -196,7 +196,7 @@ export const DocumentationPage: React.FC<DocsProps> = ({ navigate }) => {
 
             <div className="border-t border-line dark:border-line-dark p-6 sm:p-10 pt-5 flex flex-wrap items-center justify-between gap-3">
               <p className="text-xs text-ink-mute dark:text-paper/45">
-                {PRODUCT_NAME} v0.1.1 · Docs updated {activeArticle.lastUpdated}
+                {PRODUCT_NAME} v0.1.2 · Docs updated {activeArticle.lastUpdated}
               </p>
               <button
                 onClick={() => navigate('support')}

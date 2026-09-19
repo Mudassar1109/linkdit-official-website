@@ -193,7 +193,7 @@ export const LegalPages: React.FC<LegalProps> = ({ initialTab = 'privacy', navig
 
               <h3 className="text-base font-semibold text-ink dark:text-paper">1. Software installation</h3>
               <p>
-                You may install {PRODUCT_NAME} using the official Windows Setup (.exe), v0.1.1, the
+                You may install {PRODUCT_NAME} using the official Windows Setup (.exe), v0.1.2, the
                 legacy Enterprise MSI (.msi) package, or the legacy Setup.exe (v1.0.0), all downloaded
                 from https://{DOMAIN_NAME}/download.
                 Other package formats may be added when they are published.

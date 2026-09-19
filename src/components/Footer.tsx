@@ -113,7 +113,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
           <div className="flex items-center gap-3">
             <span>© 2026 LinkDit</span>
             <span className="text-line-strong dark:text-line-dark">•</span>
-            <span>v0.1.1</span>
+            <span>v0.1.2</span>
             <span className="text-line-strong dark:text-line-dark">•</span>
             <a
               href={`mailto:support@${DOMAIN_NAME}`}

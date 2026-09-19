@@ -7,10 +7,10 @@ export const APP_NAME = 'LinkDit';
 export const PRODUCT_NAME = 'LinkDit Pad';
 export const TAGLINE = 'Write clearly. Write locally.';
 
-export const CURRENT_VERSION = '0.1.1';
+export const CURRENT_VERSION = '0.1.2';
 export const CURRENT_VERSION_LABEL = `v${CURRENT_VERSION}`;
 export const DOWNLOAD_FILENAME = `LinkDit-Pad-${CURRENT_VERSION}-x64-setup.exe`;
-export const DOWNLOAD_FILE_SIZE = '2.01 MB';
+export const DOWNLOAD_FILE_SIZE = '4.05 MB';
 
 export const BRAND_DESCRIPTION =
   'LinkDit Pad is a fast, offline-first Markdown and rich-text editor for Windows 10 and 11. Multi-tab editing, live word counts, local files only — no account, no telemetry.';

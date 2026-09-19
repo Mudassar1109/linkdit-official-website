@@ -80,8 +80,8 @@ export interface ChangelogItem {
   date: string;
   title: string;
   summary: string;
-  badge?: 'Current' | 'Legacy' | 'Major' | 'Feature' | 'Patch';
-  status?: 'current' | 'legacy';
+  badge?: 'Current' | 'Previous' | 'Legacy' | 'Major' | 'Feature' | 'Patch';
+  status?: 'current' | 'previous' | 'legacy';
   highlights: string[];
   featuresAdded: string[];
   improvements: string[];

@@ -111,7 +111,7 @@ export const DownloadPage: React.FC<DownloadPageProps> = ({ navigate }) => {
                   className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-ink px-6 py-3.5 text-sm font-semibold text-paper hover:bg-ink/90 transition-colors dark:bg-paper dark:text-ink dark:hover:bg-paper/90"
                 >
                   <Download className="w-4 h-4" />
-                  <span>Download {current.filename}</span>
+                  <span>Download for Windows</span>
                 </a>
                 <p className="text-xs text-ink-mute dark:text-paper/50">
                   The installer is a standard NSIS setup for Windows 10/11 (64-bit). Downloading it directly from this domain is the only supported way to get it.

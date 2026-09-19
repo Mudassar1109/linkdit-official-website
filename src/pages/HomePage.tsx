@@ -35,19 +35,20 @@ Keep the project log in plain Markdown. Every file on this machine stays a file.
 All documents are stored as plain .md and .txt files on local disk.
 Nothing is uploaded. There is no account, no telemetry, and no cloud.`;
 
-const RELEASE_MD = `# Release Notes — v0.1.1
+const RELEASE_MD = `# Release Notes — v0.1.2
 
 LinkDit Pad is the current release of a fast, offline-first editor for Windows.
 
 ## In this release
 
-- Multi-tab editing with dirty-state indicators.
-- Markdown and plain text, with a rich text surface for tables and task lists.
-- A sidebar for recent files, pinned documents, search, and settings.
+- Improved Auto Save reliability.
+- Automatic saving writes through the real document save pipeline.
+- Clear save status feedback: Saving, Saved, Auto-save failed, and Auto Save off.
+- Preserved offline/local-first workflow with .ldp document support.
 
 ## Notes
 
-- Installer: LinkDit-Pad-0.1.1-x64-setup.exe (about 2 MB).
+- Installer: LinkDit-Pad-0.1.2-x64-setup.exe (about 4 MB).
 - Works fully offline. Documents never leave your computer.`;
 
 const NOTES_TXT = `meeting-notes.txt — Sep 16, 2026
@@ -58,7 +59,7 @@ Agenda:
 3. Confirm the dark theme palette for evening writing
 
 Action items:
-- Publish release notes for v0.1.1
+- Publish release notes for v0.1.2
 - Add version history to the roadmap page
 - Keep the installer filename unchanged`;
 
@@ -226,7 +227,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
     },
     {
       title: 'Native, not a browser tab',
-      desc: 'A lean Windows app on Tauri with a Rust core and an installer around 2 MB.',
+      desc: 'A lean Windows app on Tauri with a Rust core and an installer around 4 MB.',
     },
     {
       title: 'Quiet, by design',
@@ -247,7 +248,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
           >
             <span className="inline-flex items-center gap-2 text-xs font-mono font-semibold tracking-wide text-ink-mute dark:text-paper/60 border border-line dark:border-line-dark rounded-full px-3.5 py-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-              v0.1.1 · Free for Windows 10 &amp; 11
+              v0.1.2 · Free for Windows 10 &amp; 11
             </span>
 
             <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-ink dark:text-paper leading-[1.08]">
@@ -279,7 +280,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
             </div>
 
             <p className="text-xs text-ink-mute dark:text-paper/50">
-              2 MB installer · No sign-up · No payment · No data collection
+              4 MB installer · No sign-up · No payment · No data collection
             </p>
           </motion.div>
         </div>

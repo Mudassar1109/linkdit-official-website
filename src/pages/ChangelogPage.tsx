@@ -9,6 +9,7 @@ interface ChangelogProps {
 
 const badgeStyles: Record<string, string> = {
   Current: 'bg-accent text-blue-50',
+  Previous: 'bg-paper-2 dark:bg-ink-850 text-ink-soft dark:text-paper/60',
   Legacy: 'bg-paper-2 dark:bg-ink-850 text-ink-soft dark:text-paper/60',
   Major: 'bg-accent text-blue-50',
   Feature: 'bg-accent-soft text-accent-deep dark:bg-accent/15 dark:text-blue-300',
@@ -28,7 +29,7 @@ export const ChangelogPage: React.FC<ChangelogProps> = ({ navigate }) => {
             {PRODUCT_NAME} version history
           </h1>
           <p className="mx-auto max-w-xl text-sm sm:text-base text-ink-soft dark:text-paper/65 leading-relaxed">
-            What shipped in each release. The current version is {CHANGELOG_ITEMS[0]?.version || '0.1.1'}.
+            What shipped in each release. The current version is {CHANGELOG_ITEMS[0]?.version || '0.1.2'}.
           </p>
         </div>
       </header>

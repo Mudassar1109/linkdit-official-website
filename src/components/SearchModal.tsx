@@ -50,7 +50,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 
   const pages: { id: PageId; title: string; desc: string; icon: React.ReactNode }[] = [
     { id: 'products', title: 'The Product', desc: 'What LinkDit Pad is', icon: <FileText className="w-4 h-4" /> },
-    { id: 'download', title: 'Download LinkDit Pad', desc: 'Windows setup (.exe) — v0.1.1', icon: <Download className="w-4 h-4" /> },
+    { id: 'download', title: 'Download LinkDit Pad', desc: 'Windows setup (.exe) — v0.1.2', icon: <Download className="w-4 h-4" /> },
     { id: 'screenshots', title: 'Interface Gallery', desc: 'Rendered previews of the workspace', icon: <Image className="w-4 h-4" /> },
     { id: 'docs', title: 'Documentation & Guides', desc: 'Quick start, Markdown, rich text, themes', icon: <BookOpen className="w-4 h-4" /> },
     { id: 'features', title: 'All Features', desc: 'Editing, files, themes, privacy', icon: <Layers className="w-4 h-4" /> },

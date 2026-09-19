@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageId } from '../types';
-import { PRODUCT_NAME, CHANGELOG_ITEMS } from '../data/websiteData';
-import { Download, FileText, ArrowRight, CheckCircle, Info, Archive } from 'lucide-react';
+import { PRODUCT_NAME, CURRENT_VERSION_LABEL, CHANGELOG_ITEMS } from '../data/websiteData';
+import { Download, FileText, ArrowRight, CheckCircle, Info, Archive, Clock } from 'lucide-react';
 
 interface ReleaseProps {
   navigate: (page: PageId) => void;
@@ -9,6 +9,7 @@ interface ReleaseProps {
 
 export const ReleaseNotesPage: React.FC<ReleaseProps> = ({ navigate }) => {
   const current = CHANGELOG_ITEMS.find((item) => item.status === 'current') ?? CHANGELOG_ITEMS[0];
+  const previous = CHANGELOG_ITEMS.filter((item) => item.status === 'previous');
   const legacy = CHANGELOG_ITEMS.filter((item) => item.status === 'legacy');
 
   return (
@@ -86,15 +87,44 @@ export const ReleaseNotesPage: React.FC<ReleaseProps> = ({ navigate }) => {
           <Info className="w-5 h-5 text-accent shrink-0 mt-0.5" />
           <div className="space-y-1.5">
             <p className="text-sm font-semibold text-ink dark:text-paper">
-              Why is v0.1.1 newer than v1.0.0?
+              Why is {CURRENT_VERSION_LABEL} newer than v1.0.0?
             </p>
             <p className="text-sm text-ink-soft dark:text-paper/70 leading-relaxed">
               Version numbering was restarted when {PRODUCT_NAME} was rebuilt from scratch on a new codebase.
               The releases below with higher version numbers (v1.0.0, v0.9.5) belong to the earlier product line and
-              are kept on record for transparency. They are not newer than v0.1.1 and are not meant for new installs.
+              are kept on record for transparency. They are not newer than {CURRENT_VERSION_LABEL} and are not meant for new installs.
             </p>
           </div>
         </div>
+
+        {previous.length > 0 && (
+          <section className="space-y-6">
+            <div className="flex items-center gap-2.5">
+              <Clock className="w-4 h-4 text-ink-mute" />
+              <h2 className="text-sm font-semibold uppercase tracking-[0.2em] text-ink-mute">
+                Previous release (current product line)
+              </h2>
+            </div>
+            {previous.map((item) => (
+              <article
+                key={item.version}
+                className="border border-line bg-paper-2/50 dark:bg-ink-900 dark:border-line-dark p-6 space-y-2"
+              >
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="font-mono text-sm font-semibold text-ink dark:text-paper">v{item.version}</span>
+                  <span className="text-xs font-mono px-2 py-0.5 rounded bg-paper-2 dark:bg-ink-850 text-ink-soft dark:text-paper/60 font-semibold">
+                    Previous release
+                  </span>
+                  <span className="text-xs font-mono text-ink-mute">{item.date}</span>
+                </div>
+                <p className="text-sm text-ink-soft dark:text-paper/65 leading-relaxed">{item.summary}</p>
+              </article>
+            ))}
+            <p className="text-xs text-ink-mute leading-relaxed">
+              Superseded by the current {CURRENT_VERSION_LABEL} release. Kept on record for accurate version history.
+            </p>
+          </section>
+        )}
 
         {legacy.length > 0 && (
           <section className="space-y-6">
@@ -120,7 +150,7 @@ export const ReleaseNotesPage: React.FC<ReleaseProps> = ({ navigate }) => {
               </article>
             ))}
             <p className="text-xs text-ink-mute leading-relaxed">
-              These builds are superseded by the current v0.1.1 release. They remain listed only for accurate record-keeping,
+              These builds are superseded by the current {CURRENT_VERSION_LABEL} release. They remain listed only for accurate record-keeping,
               and the Download page marks their installers as legacy to avoid confusion.
             </p>
           </section>
