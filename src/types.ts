@@ -15,6 +15,7 @@ export type PageId =
   | 'license'
   | 'eula'
   | 'copyright'
+  | 'auth-login'
   | '404';
 
 export interface ScreenshotItem {

@@ -14,6 +14,8 @@
     { "source": "/terms/:path*", "destination": "/terms/index.html" },
     { "source": "/license/:path*", "destination": "/license/index.html" },
     { "source": "/eula/:path*", "destination": "/eula/index.html" },
-    { "source": "/copyright/:path*", "destination": "/copyright/index.html" }
+    { "source": "/copyright/:path*", "destination": "/copyright/index.html" },
+    { "source": "/auth/login", "destination": "/index.html" },
+    { "source": "/auth/callback", "destination": "/index.html" }
   ]
 }

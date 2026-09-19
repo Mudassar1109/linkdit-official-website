@@ -56,6 +56,12 @@
 
   /* Reading measure — max content width keeps lines comfortable. */
   --container-site: 68rem;
+
+  /* UI status colors + subtle hover surface (used by dialogs and the
+     auth pages). Neutral, warm-toned, consistent with the paper palette. */
+  --color-surface-strong: #f3f1ea;
+  --color-muted: #a59d91;
+  --color-danger: #d64545;
 }
 
 @layer base {
