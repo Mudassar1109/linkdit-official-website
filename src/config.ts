@@ -133,13 +133,6 @@ export const PAGE_META: Record<PageId, PageMeta> = {
     description:
       `Copyright and trademark information for ${APP_NAME} and ${PRODUCT_NAME}.`,
   },
-  'auth-login': {
-    id: 'auth-login',
-    path: '/auth/login',
-    title: `Sign in — ${PRODUCT_NAME} Desktop`,
-    description:
-      `Sign in to ${PRODUCT_NAME} for Windows with Google, securely, via Supabase Auth. Your documents always stay local.`,
-  },
   '404': {
     id: '404',
     path: '/404',

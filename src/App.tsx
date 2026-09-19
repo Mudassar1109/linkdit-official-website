@@ -18,7 +18,6 @@ import { ReleaseNotesPage } from './pages/ReleaseNotesPage';
 import { SupportPage } from './pages/SupportPage';
 import { ContactPage } from './pages/ContactPage';
 import { LegalPages } from './pages/LegalPages';
-import { AuthLoginPage } from './pages/AuthLoginPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 const VALID_PAGES: PageId[] = [
@@ -40,15 +39,7 @@ const VALID_PAGES: PageId[] = [
   'copyright',
 ];
 
-function isAuthRoutePath(path: string): boolean {
-  return /^\/auth\/(login|callback)$/.test(path.replace(/\/+$/, ''));
-}
-
 export default function App() {
-  const [isAuthRoute, setIsAuthRoute] = useState<boolean>(() =>
-    isAuthRoutePath(window.location.pathname)
-  );
-
   const [currentPage, setCurrentPage] = useState<PageId>(() => {
     const path = window.location.pathname.replace(/^\//, '') || 'home';
     return VALID_PAGES.includes(path as PageId) ? (path as PageId) : '404';
@@ -72,7 +63,6 @@ export default function App() {
   // Sync route with URL history
   useEffect(() => {
     const handlePopState = () => {
-      setIsAuthRoute(isAuthRoutePath(window.location.pathname));
       const path = window.location.pathname.replace(/^\//, '') || 'home';
       setCurrentPage(VALID_PAGES.includes(path as PageId) ? (path as PageId) : '404');
     };
@@ -96,9 +86,6 @@ export default function App() {
 
   return (
     <ThemeProvider>
-      {isAuthRoute ? (
-        <AuthLoginPage />
-      ) : (
       <div className="min-h-screen bg-paper dark:bg-ink-950 text-ink dark:text-paper flex flex-col justify-between font-sans transition-colors duration-200">
         <SEOHead pageId={currentPage} />
 
@@ -160,7 +147,6 @@ export default function App() {
           onSelectScreenshot={(id) => handleOpenScreenshot(id)}
         />
       </div>
-      )}
     </ThemeProvider>
   );
 }
