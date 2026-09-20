@@ -10,7 +10,7 @@ export const TAGLINE = 'Write clearly. Write locally.';
 export const CURRENT_VERSION = '0.1.2';
 export const CURRENT_VERSION_LABEL = `v${CURRENT_VERSION}`;
 export const DOWNLOAD_FILENAME = `LinkDit-Pad-${CURRENT_VERSION}-x64-setup.exe`;
-export const DOWNLOAD_FILE_SIZE = '4.05 MB';
+export const DOWNLOAD_FILE_SIZE = '4.06 MB';
 
 export const BRAND_DESCRIPTION =
   'LinkDit Pad is a fast, offline-first Markdown and rich-text editor for Windows 10 and 11. Multi-tab editing, live word counts, local files only — no account, no telemetry.';
@@ -26,7 +26,7 @@ export const PAGE_META: Record<PageId, PageMeta> = {
   home: {
     id: 'home',
     path: '/',
-    title: `${PRODUCT_NAME} — Professional Markdown & Text Editor for Windows`,
+    title: `${PRODUCT_NAME} ${CURRENT_VERSION_LABEL} — Professional Markdown & Text Editor for Windows`,
     description: BRAND_DESCRIPTION,
   },
   products: {
@@ -41,7 +41,7 @@ export const PAGE_META: Record<PageId, PageMeta> = {
     path: '/features',
     title: `Features — ${PRODUCT_NAME} for Windows`,
     description:
-      'All LinkDit Pad features: tabbed editing, Markdown and rich text, light and dark themes, search and replace, and a file system that stays entirely on your PC.',
+      'All LinkDit Pad features: tabbed editing, Markdown and rich text, screenshot capture, light and dark themes, search and replace, and a file system that stays entirely on your PC.',
   },
   download: {
     id: 'download',
@@ -82,7 +82,7 @@ export const PAGE_META: Record<PageId, PageMeta> = {
     path: '/release-notes',
     title: `Release Notes — ${PRODUCT_NAME} v${CURRENT_VERSION}`,
     description:
-      `Release notes for ${PRODUCT_NAME} v${CURRENT_VERSION}: multi-tab editing, Markdown and rich text, sidebar, version history, and a fully offline, no-tracker design.`,
+      `Release notes for ${PRODUCT_NAME} v${CURRENT_VERSION}: screenshot capture, improved Auto Save, multi-tab editing, Markdown and rich text, sidebar, and a fully offline, no-tracker design.`,
   },
   support: {
     id: 'support',

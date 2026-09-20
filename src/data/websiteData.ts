@@ -112,6 +112,7 @@ export const FEATURE_CATEGORIES: FeatureCategory[] = [
     description: 'A fast editor for plain text, Markdown, and rich-text documents.',
     iconName: 'FileText',
     features: [
+      { name: 'Capture & Share Your Notes', description: 'Capture the visible editor area or the entire document, preview it, save it as PNG, or copy it directly to your clipboard. Fully local — no AI, no cloud, no account.' },
       { name: 'Multiple Tabs', description: 'Keep many documents open at once and switch instantly between them. Unsaved tabs are clearly marked.' },
       { name: 'Markdown & Plain Text', description: 'Write and edit standard .md and .txt files that stay on your machine in open formats.' },
       { name: 'Rich Text Workspace', description: 'A rich-text surface for headings, bold, emphasis, tables, task lists, quotes, links, and images.' },
@@ -205,8 +206,8 @@ export const DOWNLOAD_OPTIONS: DownloadOption[] = [
     format: '.exe',
     version: CURRENT_VERSION_LABEL,
     releaseDate: 'September 2026',
-    fileSize: '4.05 MB',
-    sha256: '98717c8be227d3a593e04b19da98e7ff33563b152bdb4fef7c6ae3b14ea44def',
+    fileSize: '4.06 MB',
+    sha256: 'f4251f07cbf81d174ea7423273e2625aef21cd218c4db1fccdc2d02c02e84c93',
     requirements: 'Windows 10 / 11 (64-bit)',
     isAvailable: true,
     isCurrent: true,
@@ -403,6 +404,7 @@ export const CHANGELOG_ITEMS: ChangelogItem[] = [
     badge: 'Current',
     status: 'current',
     highlights: [
+      'Capture Screenshot — capture the visible document area or the entire document, preview it, save it as PNG, or copy it to the clipboard',
       'Improved Auto Save reliability',
       'Automatic saving now writes changes through the real document save pipeline',
       'Clear save status feedback: Saving, Saved, Auto-save failed, and Auto Save off',
@@ -410,6 +412,8 @@ export const CHANGELOG_ITEMS: ChangelogItem[] = [
       'Preserved .ldp document support and offline/local-first workflow',
     ],
     featuresAdded: [
+      'Capture Screenshot: snapshot the visible editor area or the entire document, preview the result, save it as a PNG, or copy it straight to the clipboard',
+      'Screenshot capture works entirely on your machine — no AI, no cloud upload, no account or login required',
       'Dependable Auto Save that writes to the document file on disk after a configurable idle delay',
       'Auto Save shares the exact save pipeline as File > Save for identical output (.ldp serialization included)',
       'Status bar Auto Save indicator: Saving, Saved, Auto-save failed, and Auto Save off',

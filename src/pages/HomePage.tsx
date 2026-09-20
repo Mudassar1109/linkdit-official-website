@@ -41,6 +41,7 @@ LinkDit Pad is the current release of a fast, offline-first editor for Windows.
 
 ## In this release
 
+- Capture & Share Your Notes: capture the visible editor area or the entire document, preview it, save it as PNG, or copy it to your clipboard.
 - Improved Auto Save reliability.
 - Automatic saving writes through the real document save pipeline.
 - Clear save status feedback: Saving, Saved, Auto-save failed, and Auto Save off.
