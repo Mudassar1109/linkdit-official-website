@@ -3,6 +3,8 @@ import type { PageId } from './types';
 export const DOMAIN_NAME = 'linkdit.online';
 export const SITE_URL = 'https://www.linkdit.online';
 
+export const CONTACT_EMAIL = 'elahimudassasr1@gmail.com';
+
 export const APP_NAME = 'LinkDit';
 export const PRODUCT_NAME = 'LinkDit Pad';
 export const TAGLINE = 'Write clearly. Write locally.';

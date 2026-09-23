@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageId } from '../types';
 import { Download, Mail } from 'lucide-react';
-import { DOMAIN_NAME, PRODUCT_NAME, TAGLINE } from '../data/websiteData';
+import { CONTACT_EMAIL, DOMAIN_NAME, PRODUCT_NAME, TAGLINE } from '../data/websiteData';
 
 interface FooterProps {
   navigate: (page: PageId) => void;
@@ -116,11 +116,11 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
             <span>v0.1.2</span>
             <span className="text-line-strong dark:text-line-dark">•</span>
             <a
-              href={`mailto:support@${DOMAIN_NAME}`}
+              href={`mailto:${CONTACT_EMAIL}`}
               className="inline-flex items-center gap-1.5 hover:text-ink dark:hover:text-paper transition-colors"
             >
               <Mail className="w-3.5 h-3.5" />
-              support@{DOMAIN_NAME}
+              {CONTACT_EMAIL}
             </a>
           </div>
           <span>Zero telemetry · Local files only</span>

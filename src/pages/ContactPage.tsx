@@ -1,6 +1,6 @@
 import React from 'react';
 import { PageId } from '../types';
-import { DOMAIN_NAME, PRODUCT_NAME } from '../data/websiteData';
+import { CONTACT_EMAIL, DOMAIN_NAME, PRODUCT_NAME } from '../data/websiteData';
 import { Mail, Globe, ExternalLink } from 'lucide-react';
 
 interface ContactProps {
@@ -29,7 +29,7 @@ export const ContactPage: React.FC<ContactProps> = ({ navigate }) => {
       <section className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12">
         <div className="space-y-px bg-line dark:bg-line-dark border border-line dark:border-line-dark grid sm:grid-cols-2">
           <a
-            href={`mailto:support@${DOMAIN_NAME}`}
+            href={`mailto:${CONTACT_EMAIL}`}
             className="bg-surface dark:bg-ink-850 p-6 hover:bg-paper-2 dark:hover:bg-ink-800 transition-colors group space-y-3"
           >
             <Mail className="w-5 h-5 text-accent-deep dark:text-blue-300" />
@@ -38,13 +38,13 @@ export const ContactPage: React.FC<ContactProps> = ({ navigate }) => {
               Installation issues, feature questions, bug reports.
             </p>
             <span className="inline-flex items-center gap-1 text-xs font-mono text-accent-deep dark:text-blue-300 group-hover:underline">
-              support@{DOMAIN_NAME}
+              {CONTACT_EMAIL}
               <ExternalLink className="w-3 h-3" />
             </span>
           </a>
 
           <a
-            href={`mailto:hello@${DOMAIN_NAME}`}
+            href={`mailto:${CONTACT_EMAIL}`}
             className="bg-surface dark:bg-ink-850 p-6 hover:bg-paper-2 dark:hover:bg-ink-800 transition-colors group space-y-3"
           >
             <Mail className="w-5 h-5 text-accent-deep dark:text-blue-300" />
@@ -53,7 +53,7 @@ export const ContactPage: React.FC<ContactProps> = ({ navigate }) => {
               Press, partnerships, and general inquiries.
             </p>
             <span className="inline-flex items-center gap-1 text-xs font-mono text-accent-deep dark:text-blue-300 group-hover:underline">
-              hello@{DOMAIN_NAME}
+              {CONTACT_EMAIL}
               <ExternalLink className="w-3 h-3" />
             </span>
           </a>

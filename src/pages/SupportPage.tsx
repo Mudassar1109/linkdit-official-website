@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PageId } from '../types';
-import { FAQS, PRODUCT_NAME, DOMAIN_NAME } from '../data/websiteData';
+import { CONTACT_EMAIL, FAQS, PRODUCT_NAME } from '../data/websiteData';
 import { ChevronDown, Mail, BookOpen, MessageSquare } from 'lucide-react';
 
 interface SupportProps {
@@ -105,8 +105,8 @@ export const SupportPage: React.FC<SupportProps> = ({ navigate }) => {
             </div>
             <p className="text-sm text-ink-soft dark:text-paper/60 leading-relaxed">
               This site has no backend, so reaching us is simple: write to{' '}
-              <a href={`mailto:support@${DOMAIN_NAME}`} className="font-mono text-accent-deep dark:text-blue-300 hover:underline">
-                support@{DOMAIN_NAME}
+              <a href={`mailto:${CONTACT_EMAIL}`} className="font-mono text-accent-deep dark:text-blue-300 hover:underline">
+                {CONTACT_EMAIL}
               </a>
               . Include your OS and version if it is a technical question.
             </p>

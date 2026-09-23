@@ -7,11 +7,12 @@ import {
   RoadmapItem,
   FAQItem,
 } from '../types';
-import { CURRENT_VERSION, CURRENT_VERSION_LABEL, DOWNLOAD_FILENAME, DOWNLOAD_SHA256 } from '../config';
+import { CONTACT_EMAIL, CURRENT_VERSION, CURRENT_VERSION_LABEL, DOWNLOAD_FILENAME, DOWNLOAD_SHA256 } from '../config';
 
 export {
   DOMAIN_NAME,
   SITE_URL,
+  CONTACT_EMAIL,
   APP_NAME,
   PRODUCT_NAME,
   TAGLINE,
@@ -594,6 +595,6 @@ export const FAQS: FAQItem[] = [
   {
     category: 'General',
     question: 'Where can I get support or request a feature?',
-    answer: 'Open the Support page or email support@linkdit.online. Feature requests are tracked on the roadmap, and the Support page explains how votes and requests work.',
+    answer: `Open the Support page or email ${CONTACT_EMAIL}. Feature requests are tracked on the roadmap, and the Support page explains how votes and requests work.`,
   },
 ];
