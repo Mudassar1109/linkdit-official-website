@@ -236,6 +236,44 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
     },
   ];
 
+  const productShowcase = [
+    {
+      index: '01',
+      title: 'Professional Markdown Editor',
+      image: '/images/software/01-main-editor.png',
+      alt: 'LinkDit Pad Markdown editor interface',
+      description: 'Write and organize content in a clean, focused Markdown workspace.',
+    },
+    {
+      index: '02',
+      title: 'Editor & Auto Save',
+      image: '/images/software/02-settings-editor.png',
+      alt: 'LinkDit Pad editor settings and Auto Save controls',
+      description: 'Customize your editor and keep your documents saved automatically.',
+    },
+    {
+      index: '03',
+      title: 'Dark Workspace',
+      image: '/images/software/03-workspace-dark.png',
+      alt: 'LinkDit Pad dark workspace with document editing interface',
+      description: 'A focused dark workspace designed for comfortable writing and editing.',
+    },
+    {
+      index: '04',
+      title: 'Trash & Recovery',
+      image: '/images/software/04-trash-recovery.png',
+      alt: 'LinkDit Pad Trash and deleted document management interface',
+      description: 'Manage deleted documents and keep your workspace organized.',
+    },
+    {
+      index: '05',
+      title: 'Document Lock',
+      image: '/images/software/05-document-lock.png',
+      alt: 'LinkDit Pad document lock and password protection interface',
+      description: 'Protect documents with local password-based locking and read-only access.',
+    },
+  ];
+
   return (
     <div className="font-sans">
       {/* ----------------------------- HERO ----------------------------- */}
@@ -318,6 +356,50 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
           <p className="mt-5 text-center text-xs text-ink-mute dark:text-paper/50">
             A faithful rendering of the {PRODUCT_NAME} workspace — tabs, sidebar, editor, and status bar.
           </p>
+        </div>
+      </section>
+
+      {/* ------------------------ PRODUCT SHOWCASE ---------------------- */}
+      <section className="border-b border-line dark:border-line-dark">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+          <div className="mx-auto mb-12 sm:mb-16 max-w-2xl text-center space-y-3">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink dark:text-paper leading-tight">
+              See LinkDit Pad in Action
+            </h2>
+            <p className="text-sm sm:text-base text-ink-soft dark:text-paper/65 leading-relaxed">
+              A closer look at the tools and workflows built into LinkDit Pad.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            {productShowcase.map((card) => (
+              <article
+                key={card.index}
+                className={`flex flex-col rounded-card border border-line dark:border-line-dark bg-surface dark:bg-ink-850 overflow-hidden shadow-card hover:shadow-card-hover transition-shadow ${
+                  card.index === '01' ? 'md:col-span-2' : ''
+                }`}
+              >
+                <div className="border-b border-line dark:border-line-dark overflow-hidden">
+                  <img
+                    src={card.image}
+                    alt={card.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-auto block"
+                  />
+                </div>
+                <div className="p-5 sm:p-6 flex flex-col gap-1.5">
+                  <span className="eyebrow text-ink-mute dark:text-paper/45">{card.index}</span>
+                  <h3 className="text-base sm:text-lg font-bold tracking-tight text-ink dark:text-paper">
+                    {card.title}
+                  </h3>
+                  <p className="text-sm text-ink-soft dark:text-paper/65 leading-relaxed">
+                    {card.description}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
