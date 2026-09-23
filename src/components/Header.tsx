@@ -45,7 +45,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, navigate, onOpenSea
         <div className="flex items-center gap-2">
           <button onClick={() => go('home')} className="flex items-center gap-2.5 group" aria-label="LinkDit Pad — home">
             <img
-              src="/icon-128.png"
+              src="/icon-128.png?v=20260918"
               alt=""
               className="w-8 h-8 rounded-lg object-contain ring-1 ring-line dark:ring-line-dark"
             />

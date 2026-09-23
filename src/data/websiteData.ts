@@ -7,7 +7,7 @@ import {
   RoadmapItem,
   FAQItem,
 } from '../types';
-import { CURRENT_VERSION, CURRENT_VERSION_LABEL, DOWNLOAD_FILENAME } from '../config';
+import { CURRENT_VERSION, CURRENT_VERSION_LABEL, DOWNLOAD_FILENAME, DOWNLOAD_SHA256 } from '../config';
 
 export {
   DOMAIN_NAME,
@@ -20,6 +20,7 @@ export {
   CURRENT_VERSION_LABEL,
   DOWNLOAD_FILENAME,
   DOWNLOAD_FILE_SIZE,
+  DOWNLOAD_SHA256,
 } from '../config';
 
 // Interface scenes rendered as in-app previews (the app ships no bundled
@@ -206,8 +207,8 @@ export const DOWNLOAD_OPTIONS: DownloadOption[] = [
     format: '.exe',
     version: CURRENT_VERSION_LABEL,
     releaseDate: 'September 2026',
-    fileSize: '4.06 MB',
-    sha256: 'f4251f07cbf81d174ea7423273e2625aef21cd218c4db1fccdc2d02c02e84c93',
+    fileSize: '4.10 MB',
+    sha256: DOWNLOAD_SHA256,
     requirements: 'Windows 10 / 11 (64-bit)',
     isAvailable: true,
     isCurrent: true,

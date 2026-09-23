@@ -39,7 +39,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
           {/* Brand */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
-              <img src="/icon-128.png" alt="" className="w-8 h-8 rounded-lg object-contain ring-1 ring-line dark:ring-line-dark" />
+              <img src="/icon-128.png?v=20260918" alt="" className="w-8 h-8 rounded-lg object-contain ring-1 ring-line dark:ring-line-dark" />
               <span className="flex items-baseline gap-1.5">
                 <span className="text-lg font-bold tracking-tight text-ink dark:text-paper">LinkDit</span>
                 <span className="text-xs font-mono font-semibold px-1.5 py-0.5 rounded bg-accent-soft text-accent-deep dark:bg-accent/15 dark:text-blue-300">
