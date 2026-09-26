@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PageId } from '../types';
 import { useTheme } from '../context/ThemeContext';
+import { trackCta } from '../lib/analytics';
 import { Download, Sun, Moon, Menu, X, Search } from 'lucide-react';
 
 interface HeaderProps {
@@ -95,7 +96,10 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, navigate, onOpenSea
             {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
           </button>
           <button
-            onClick={() => go('download')}
+            onClick={() => {
+              trackCta('header_download', currentPage, 'Download for Windows');
+              go('download');
+            }}
             className="inline-flex items-center gap-2 rounded-lg bg-ink px-4 py-2 text-sm font-semibold text-paper hover:bg-ink/90 transition-colors dark:bg-paper dark:text-ink dark:hover:bg-paper/90"
           >
             <Download className="w-4 h-4" />
@@ -141,7 +145,10 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, navigate, onOpenSea
           ))}
           <div className="pt-3 border-t border-line dark:border-line-dark">
             <button
-              onClick={() => go('download')}
+              onClick={() => {
+                trackCta('header_mobile_download', currentPage, 'Download LinkDit Pad');
+                go('download');
+              }}
               className="w-full flex items-center justify-center gap-2 rounded-lg bg-ink px-4 py-2.5 text-sm font-semibold text-paper dark:bg-paper dark:text-ink"
             >
               <Download className="w-4 h-4" />

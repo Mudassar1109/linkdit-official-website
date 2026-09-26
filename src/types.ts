@@ -5,7 +5,6 @@ export type PageId =
   | 'download'
   | 'screenshots'
   | 'docs'
-  | 'roadmap'
   | 'changelog'
   | 'release-notes'
   | 'support'
@@ -86,17 +85,6 @@ export interface ChangelogItem {
   featuresAdded: string[];
   improvements: string[];
   bugFixes: string[];
-}
-
-export interface RoadmapItem {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  status: 'Planned' | 'In Progress' | 'Under Review' | 'Completed';
-  targetRelease: string;
-  votes: number;
-  tags: string[];
 }
 
 export interface FAQItem {

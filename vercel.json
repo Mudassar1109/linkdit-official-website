@@ -5,7 +5,6 @@
     { "source": "/download/:path*", "destination": "/download/index.html" },
     { "source": "/screenshots/:path*", "destination": "/screenshots/index.html" },
     { "source": "/docs/:path*", "destination": "/docs/index.html" },
-    { "source": "/roadmap/:path*", "destination": "/roadmap/index.html" },
     { "source": "/changelog/:path*", "destination": "/changelog/index.html" },
     { "source": "/release-notes/:path*", "destination": "/release-notes/index.html" },
     { "source": "/support/:path*", "destination": "/support/index.html" },

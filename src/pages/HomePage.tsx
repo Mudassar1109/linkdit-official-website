@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { PageId } from '../types';
 import { PRODUCT_NAME, TAGLINE } from '../data/websiteData';
+import { trackCta } from '../lib/analytics';
 import { Download, ArrowRight, Check, FileText, CheckSquare } from 'lucide-react';
 
 interface HomePageProps {
@@ -303,14 +304,20 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
               <button
-                onClick={() => navigate('download')}
+                onClick={() => {
+                  trackCta('home_hero_download', 'home', 'Download for Windows');
+                  navigate('download');
+                }}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-ink px-6 py-3 text-sm font-semibold text-paper hover:bg-ink/90 transition-colors dark:bg-paper dark:text-ink dark:hover:bg-paper/90"
               >
                 <Download className="w-4 h-4" />
                 <span>Download for Windows</span>
               </button>
               <button
-                onClick={() => navigate('features')}
+                onClick={() => {
+                  trackCta('home_hero_features', 'home', 'Explore features');
+                  navigate('features');
+                }}
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-line-strong px-6 py-3 text-sm font-semibold text-ink hover:border-ink transition-colors dark:border-line-dark dark:text-paper dark:hover:border-paper"
               >
                 Explore features
@@ -419,7 +426,10 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                 treadmill. {PRODUCT_NAME} is a desktop app for the writing you actually do today.
               </p>
               <button
-                onClick={() => navigate('products')}
+                onClick={() => {
+                  trackCta('home_learn_products', 'home', 'Learn about LinkDit Pad');
+                  navigate('products');
+                }}
                 className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-deep"
               >
                 Learn about {PRODUCT_NAME}
@@ -468,7 +478,10 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
           Download the installer, open a document, and start writing. That is the whole setup.
         </p>
         <button
-          onClick={() => navigate('download')}
+          onClick={() => {
+            trackCta('home_final_download', 'home', 'Download LinkDit Pad');
+            navigate('download');
+          }}
           className="inline-flex items-center gap-2 rounded-lg bg-ink px-7 py-3 text-sm font-semibold text-paper hover:bg-ink/90 transition-colors dark:bg-paper dark:text-ink dark:hover:bg-paper/90"
         >
           <Download className="w-4 h-4" />

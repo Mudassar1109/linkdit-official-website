@@ -2,12 +2,14 @@ import React from 'react';
 import { PageId } from '../types';
 import { Download, Mail } from 'lucide-react';
 import { CONTACT_EMAIL, DOMAIN_NAME, PRODUCT_NAME, TAGLINE } from '../data/websiteData';
+import { trackCta } from '../lib/analytics';
 
 interface FooterProps {
   navigate: (page: PageId) => void;
+  currentPage: PageId;
 }
 
-export const Footer: React.FC<FooterProps> = ({ navigate }) => {
+export const Footer: React.FC<FooterProps> = ({ navigate, currentPage }) => {
   const productLinks: { id: PageId; label: string }[] = [
     { id: 'products', label: 'Product' },
     { id: 'features', label: 'Features' },
@@ -17,7 +19,6 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
 
   const companyLinks: { id: PageId; label: string }[] = [
     { id: 'screenshots', label: 'Interface Gallery' },
-    { id: 'roadmap', label: 'Roadmap' },
     { id: 'changelog', label: 'Changelog' },
     { id: 'docs', label: 'Documentation' },
     { id: 'support', label: 'Support' },
@@ -53,6 +54,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate }) => {
             </p>
             <a
               href={`https://${DOMAIN_NAME}/`}
+              onClick={() => trackCta('footer_download', currentPage, 'Download for Windows')}
               className="inline-flex items-center gap-2 rounded-lg bg-ink px-4 py-2 text-xs font-semibold text-paper hover:bg-ink/90 transition-colors dark:bg-paper dark:text-ink dark:hover:bg-paper/90"
             >
               <Download className="w-3.5 h-3.5" />

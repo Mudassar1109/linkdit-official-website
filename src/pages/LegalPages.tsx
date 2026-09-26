@@ -70,10 +70,11 @@ export const LegalPages: React.FC<LegalProps> = ({ initialTab = 'privacy', navig
             <div className="p-4 bg-accent-soft dark:bg-accent/10 border border-accent/30 text-accent-deep dark:text-blue-200 text-xs space-y-1">
               <span className="font-semibold block flex items-center gap-1.5">
                 <CheckCircle className="w-4 h-4" />
-                Current system architecture guarantee
+                Current system architecture guarantee — the desktop application
               </span>
               <p>
-                {PRODUCT_NAME} operates with <strong>no user logins</strong>, <strong>no cloud
+                {PRODUCT_NAME} (the desktop application for Windows) operates with{' '}
+                <strong>no user logins</strong>, <strong>no cloud
                 synchronization servers</strong>, <strong>no analytics pings</strong>, and{' '}
                 <strong>no telemetry logging</strong>. All documents and notes created with{' '}
                 {PRODUCT_NAME} remain stored on your local computer's filesystem.
@@ -83,9 +84,9 @@ export const LegalPages: React.FC<LegalProps> = ({ initialTab = 'privacy', navig
             <div className="space-y-3">
               <h3 className="text-base font-semibold text-ink dark:text-paper">1. Data collection & telemetry</h3>
               <p>
-                LinkDit does not collect, track, transmit, or monetize any personal data, usage
-                metrics, or document contents when you use {PRODUCT_NAME}. Text buffers and workspace
-                state are kept in system memory and local disk storage.
+                The {PRODUCT_NAME} desktop application does not collect, track, transmit, or monetize any
+                personal data, usage metrics, or document contents. Text buffers and workspace
+                state are kept in system memory and local disk storage only.
               </p>
 
               <h3 className="text-base font-semibold text-ink dark:text-paper">2. Network connectivity</h3>
@@ -106,24 +107,41 @@ export const LegalPages: React.FC<LegalProps> = ({ initialTab = 'privacy', navig
               </h3>
               <p>
                 linkdit.online is a static website used to present, document, and distribute{' '}
-                {PRODUCT_NAME}. Browsing it does not require an account, and it sets no cookies, shows
-                no ads, and runs no analytics or tracking scripts. To render its typefaces, the site loads
-                fonts from Google Fonts, which means your browser contacts Google's servers to fetch those
-                font files; this is a standard, passive request and does not expose the content of the pages
-                you view. When you switch between the site's light and dark themes, your choice is kept in
-                your browser's local storage (the "linkdit-theme" key) so the preference is remembered on
-                return visits; this data never leaves your browser. The site collects no personal data and
-                has no login, comment, or form features. All requests are served over HTTPS.
+                {PRODUCT_NAME}. Browsing it does not require an account, it has no login, comment, or
+                form features, and all requests are served over HTTPS. To understand how visitors use
+                the site, it uses Google Analytics 4 web analytics. In aggregate this records page
+                views, visited pages, installer downloads, browser and device type, approximate
+                country/region, and the traffic source that brought you to the site. This is
+                aggregate, privacy-conscious analytics only: the website never reads, and analytics
+                never transmit, document contents, filenames, passwords, or any data stored by the{' '}
+                {PRODUCT_NAME} application. When you switch between the site's light and dark themes,
+                your choice is kept in your browser's local storage (the "linkdit-theme" key) so the
+                preference is remembered on return visits; this data never leaves your browser. To
+                render its typefaces, the site loads fonts from Google Fonts, which means your
+                browser contacts Google's servers to fetch those font files; this is a standard,
+                passive request. The site also shows advertising served by Google AdSense, which may
+                use cookies and advertising identifiers to display and manage ads. You can review
+                how Google handles analytics and advertising data at{' '}
+                <a
+                  href="https://policies.google.com/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-accent-deep dark:text-blue-300 hover:underline"
+                >
+                  policies.google.com/privacy
+                </a>
+                .
               </p>
 
               <h3 className="text-base font-semibold text-ink dark:text-paper">
                 5. Third-party services
               </h3>
               <p>
-                The only third-party service used by this website is Google Fonts, which serves the
-                site's typefaces as described above. {PRODUCT_NAME} itself makes no network calls. No
-                advertising network, advertising cookies, or advertising identifiers are used
-                anywhere on this site.
+                The third-party services used by this website are Google Analytics 4 (aggregate web
+                analytics as described above), Google AdSense (advertising), and Google Fonts
+                (typeface delivery). {PRODUCT_NAME} itself makes no network calls. Website analytics
+                and advertising are specific to the website and are never applied to, bundled with, or
+                triggered by the desktop application, which remains analytics- and telemetry-free.
               </p>
 
               <h3 className="text-base font-semibold text-ink dark:text-paper">

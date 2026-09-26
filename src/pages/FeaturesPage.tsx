@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PageId } from '../types';
 import { FEATURE_CATEGORIES, PRODUCT_NAME } from '../data/websiteData';
+import { trackCta } from '../lib/analytics';
 import { FileText, PenTool, Sliders, Palette, Zap, Shield, Search, ArrowRight } from 'lucide-react';
 
 interface FeaturesPageProps {
@@ -182,7 +183,10 @@ export const FeaturesPage: React.FC<FeaturesPageProps> = ({ navigate }) => {
             See it on your machine.
           </h2>
           <button
-            onClick={() => navigate('download')}
+            onClick={() => {
+              trackCta('features_download', 'features', 'Download for Windows');
+              navigate('download');
+            }}
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-deep"
           >
             Download for Windows

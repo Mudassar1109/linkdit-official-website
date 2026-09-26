@@ -66,13 +66,6 @@ export const PAGE_META: Record<PageId, PageMeta> = {
     description:
       'Get started with LinkDit Pad: quick-start guide, Markdown and rich-text reference, themes, files, and privacy.',
   },
-  roadmap: {
-    id: 'roadmap',
-    path: '/roadmap',
-    title: `Roadmap — ${PRODUCT_NAME}`,
-    description:
-      'What is planned for LinkDit Pad — split editor, PDF and HTML export, portable builds, optional local AI, and more. Feature requests are tracked here.',
-  },
   changelog: {
     id: 'changelog',
     path: '/changelog',
@@ -106,7 +99,7 @@ export const PAGE_META: Record<PageId, PageMeta> = {
     path: '/privacy',
     title: `Privacy Policy — ${PRODUCT_NAME}`,
     description:
-      'LinkDit Pad privacy: no telemetry, no logins, no cloud. Documents stay as local files, and the website sets no cookies and runs no trackers.',
+      'LinkDit Pad privacy: the desktop app has no telemetry, no logins, and no cloud — documents stay as local files. This website uses aggregate Google Analytics and Google AdSense advertising.',
   },
   terms: {
     id: 'terms',
@@ -151,7 +144,6 @@ export const SITE_PAGES: PageMeta[] = [
   PAGE_META.download,
   PAGE_META.screenshots,
   PAGE_META.docs,
-  PAGE_META.roadmap,
   PAGE_META.changelog,
   PAGE_META['release-notes'],
   PAGE_META.support,

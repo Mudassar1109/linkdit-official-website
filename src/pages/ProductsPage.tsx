@@ -1,6 +1,7 @@
 import React from 'react';
 import { PageId } from '../types';
 import { PRODUCT_NAME, TAGLINE } from '../data/websiteData';
+import { trackCta } from '../lib/analytics';
 import { Download, ArrowRight, Check, X, Monitor, Shield, FileText, WifiOff } from 'lucide-react';
 
 interface ProductsPageProps {
@@ -71,7 +72,10 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ navigate }) => {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
             <button
-              onClick={() => navigate('download')}
+              onClick={() => {
+                trackCta('products_download', 'products', 'Download for Windows');
+                navigate('download');
+              }}
               className="inline-flex items-center gap-2 rounded-lg bg-ink px-6 py-2.5 text-sm font-semibold text-paper hover:bg-ink/90 transition-colors dark:bg-paper dark:text-ink dark:hover:bg-paper/90"
             >
               <Download className="w-4 h-4" />

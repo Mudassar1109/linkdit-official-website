@@ -12,13 +12,13 @@ import { FeaturesPage } from './pages/FeaturesPage';
 import { DownloadPage } from './pages/DownloadPage';
 import { ScreenshotsPage } from './pages/ScreenshotsPage';
 import { DocumentationPage } from './pages/DocumentationPage';
-import { RoadmapPage } from './pages/RoadmapPage';
 import { ChangelogPage } from './pages/ChangelogPage';
 import { ReleaseNotesPage } from './pages/ReleaseNotesPage';
 import { SupportPage } from './pages/SupportPage';
 import { ContactPage } from './pages/ContactPage';
 import { LegalPages } from './pages/LegalPages';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { trackPageView } from './lib/analytics';
 
 const VALID_PAGES: PageId[] = [
   'home',
@@ -27,7 +27,6 @@ const VALID_PAGES: PageId[] = [
   'download',
   'screenshots',
   'docs',
-  'roadmap',
   'changelog',
   'release-notes',
   'support',
@@ -59,6 +58,12 @@ export default function App() {
     window.addEventListener('keydown', handleGlobalKeyDown);
     return () => window.removeEventListener('keydown', handleGlobalKeyDown);
   }, []);
+
+  // Website analytics: send a page_view on initial load and after every
+  // client-side navigation (direct routes and SPA transitions alike).
+  useEffect(() => {
+    trackPageView();
+  }, [currentPage]);
 
   // Sync route with URL history
   useEffect(() => {
@@ -117,8 +122,6 @@ export default function App() {
 
           {currentPage === 'docs' && <DocumentationPage navigate={navigate} />}
 
-          {currentPage === 'roadmap' && <RoadmapPage navigate={navigate} />}
-
           {currentPage === 'changelog' && <ChangelogPage navigate={navigate} />}
 
           {currentPage === 'release-notes' && <ReleaseNotesPage navigate={navigate} />}
@@ -137,7 +140,7 @@ export default function App() {
         </main>
 
         {/* Global Footer */}
-        <Footer navigate={navigate} />
+        <Footer navigate={navigate} currentPage={currentPage} />
 
         {/* Search Modal */}
         <SearchModal

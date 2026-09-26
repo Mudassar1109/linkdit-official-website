@@ -4,7 +4,6 @@ import {
   DownloadOption,
   DocArticle,
   ChangelogItem,
-  RoadmapItem,
   FAQItem,
 } from '../types';
 import { CONTACT_EMAIL, CURRENT_VERSION, CURRENT_VERSION_LABEL, DOWNLOAD_FILENAME, DOWNLOAD_SHA256 } from '../config';
@@ -274,7 +273,7 @@ export const DOWNLOAD_OPTIONS: DownloadOption[] = [
     isAvailable: false,
     type: 'Portable',
     tagline: 'A no-install ZIP build for running LinkDit Pad from a USB drive.',
-    note: 'Portable builds are on the roadmap and not yet published.',
+    note: 'Portable builds are planned for a future release and not yet published.',
   },
 ];
 
@@ -498,69 +497,6 @@ export const CHANGELOG_ITEMS: ChangelogItem[] = [
   },
 ];
 
-export const ROADMAP_ITEMS: RoadmapItem[] = [
-  {
-    id: 'road-1',
-    title: 'Split Editor',
-    description: 'View two documents side by side, or a single document in split panes, with synchronized tabs.',
-    category: 'Editing',
-    status: 'Planned',
-    targetRelease: 'v0.2.0',
-    votes: 0,
-    tags: ['Editor', 'Tabs'],
-  },
-  {
-    id: 'road-2',
-    title: 'PDF & HTML Export',
-    description: 'Export documents to PDF, HTML, and other formats directly from the app.',
-    category: 'Files',
-    status: 'Under Review',
-    targetRelease: 'v0.2.0',
-    votes: 0,
-    tags: ['Export', 'Formats'],
-  },
-  {
-    id: 'road-3',
-    title: 'Portable ZIP Build',
-    description: 'A no-install ZIP build for running LinkDit Pad from a USB drive.',
-    category: 'Packaging',
-    status: 'Under Review',
-    targetRelease: 'Later',
-    votes: 0,
-    tags: ['Installer', 'Portable'],
-  },
-  {
-    id: 'road-4',
-    title: 'Optional Local AI (Opt-In)',
-    description: 'An opt-in, off-by-default integration with local AI models for grammar and summaries — no cloud accounts.',
-    category: 'Assistant',
-    status: 'Under Review',
-    targetRelease: 'Later',
-    votes: 0,
-    tags: ['AI', 'Privacy', 'Local'],
-  },
-  {
-    id: 'road-5',
-    title: 'Encrypted Vault',
-    description: 'An optional local encrypted vault for documents you want locked even further.',
-    category: 'Security',
-    status: 'Under Review',
-    targetRelease: 'Later',
-    votes: 0,
-    tags: ['Security', 'Encryption'],
-  },
-  {
-    id: 'road-6',
-    title: 'Plugin SDK',
-    description: 'A sandboxed plugin API so the community can extend LinkDit Pad without making it heavy.',
-    category: 'Extensions',
-    status: 'Under Review',
-    targetRelease: 'Later',
-    votes: 0,
-    tags: ['Extensions', 'SDK'],
-  },
-];
-
 export const FAQS: FAQItem[] = [
   {
     category: 'General',
@@ -595,6 +531,6 @@ export const FAQS: FAQItem[] = [
   {
     category: 'General',
     question: 'Where can I get support or request a feature?',
-    answer: `Open the Support page or email ${CONTACT_EMAIL}. Feature requests are tracked on the roadmap, and the Support page explains how votes and requests work.`,
+    answer: `Open the Support page or email ${CONTACT_EMAIL} to ask a question or request a feature.`,
   },
 ];

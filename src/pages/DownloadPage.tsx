@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PageId } from '../types';
 import { DOWNLOAD_OPTIONS, PRODUCT_NAME } from '../data/websiteData';
+import { trackInstallerDownload } from '../lib/analytics';
 import {
   Download,
   ShieldCheck,
@@ -108,6 +109,7 @@ export const DownloadPage: React.FC<DownloadPageProps> = ({ navigate }) => {
 
                 <a
                   href={`/downloads/${current.filename}`}
+                  onClick={() => trackInstallerDownload(current)}
                   className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-ink px-6 py-3.5 text-sm font-semibold text-paper hover:bg-ink/90 transition-colors dark:bg-paper dark:text-ink dark:hover:bg-paper/90"
                 >
                   <Download className="w-4 h-4" />
@@ -163,6 +165,7 @@ export const DownloadPage: React.FC<DownloadPageProps> = ({ navigate }) => {
                   {avail ? (
                     <a
                       href={`/downloads/${option.filename}`}
+                      onClick={() => trackInstallerDownload(option)}
                       className="inline-flex items-center gap-1.5 rounded-md border border-line-strong dark:border-line-dark px-3.5 py-2 text-xs font-semibold text-ink hover:border-ink transition-colors dark:border-line-dark dark:text-paper dark:hover:border-paper"
                     >
                       <Download className="w-3.5 h-3.5" />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { PageId } from '../types';
 import { PRODUCT_NAME, CURRENT_VERSION_LABEL, CHANGELOG_ITEMS } from '../data/websiteData';
+import { trackCta } from '../lib/analytics';
 import { Download, FileText, ArrowRight, CheckCircle, Info, Archive, Clock } from 'lucide-react';
 
 interface ReleaseProps {
@@ -26,7 +27,10 @@ export const ReleaseNotesPage: React.FC<ReleaseProps> = ({ navigate }) => {
             The current release of a rebuilt, offline-first Markdown and rich-text editor for Windows 10 and 11.
           </p>
           <button
-            onClick={() => navigate('download')}
+            onClick={() => {
+              trackCta('release_notes_download', 'release-notes', `Download v${current.version}`);
+              navigate('download');
+            }}
             className="inline-flex items-center gap-2 rounded-lg bg-ink px-5 py-2.5 text-sm font-semibold text-paper hover:bg-ink/90 transition-colors dark:bg-paper dark:text-ink dark:hover:bg-paper/90"
           >
             <Download className="w-4 h-4" />
