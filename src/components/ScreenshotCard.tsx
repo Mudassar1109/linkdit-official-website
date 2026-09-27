@@ -11,7 +11,7 @@ export const ScreenshotCard: React.FC<ScreenshotCardProps> = ({ screenshot, onCl
   return (
     <button
       onClick={() => onClick(screenshot)}
-      className="group text-left border border-line dark:border-line-dark bg-surface dark:bg-ink-850 overflow-hidden hover:border-line-strong dark:hover:border-ink-800 transition-colors focus-visible:outline-none"
+      className="group text-left border border-line dark:border-line-dark bg-surface dark:bg-ink-850 overflow-hidden hover:border-line-strong dark:hover:border-ink-800 transition-colors focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-fg-accent"
       aria-label={`View "${screenshot.title}"`}
     >
       {/* Window bar */}
@@ -20,33 +20,36 @@ export const ScreenshotCard: React.FC<ScreenshotCardProps> = ({ screenshot, onCl
           <span className="h-2.5 w-2.5 rounded-full bg-rose-400" />
           <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
           <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
-          <span className="ml-2 font-mono text-[10px] text-ink-mute dark:text-paper/45 truncate">
+          <span className="ml-2 font-mono text-[10px] text-fg-subtle truncate">
             {screenshot.filename}
           </span>
         </div>
-        <span className="font-mono text-[9px] uppercase tracking-wider text-ink-mute dark:text-paper/40">
+        <span className="font-mono text-[9px] uppercase tracking-wider text-fg-subtle">
           {screenshot.category}
         </span>
       </div>
 
       {/* Rendered scene */}
-      <div className={`${screenshot.previewColor} p-5 min-h-[190px] flex flex-col justify-between gap-4`}>
+      <div
+        data-scene-tone={screenshot.sceneTone}
+        className="bg-surface-scene p-5 min-h-[190px] flex flex-col justify-between gap-4"
+      >
         <div className="flex items-start gap-3">
-          <span className="mt-0.5 inline-flex items-center justify-center w-7 h-7 rounded bg-paper-2 dark:bg-ink-900 text-accent-deep dark:text-blue-300 shrink-0">
+          <span className="mt-0.5 inline-flex items-center justify-center w-7 h-7 rounded bg-surface-chip text-fg-accent shrink-0">
             <FileText className="w-3.5 h-3.5" />
           </span>
           <div className="space-y-1">
-            <h3 className="text-sm font-bold leading-snug text-ink dark:text-paper">{screenshot.mockContent.title}</h3>
-            <p className="text-xs text-ink-soft dark:text-paper/60 leading-relaxed">{screenshot.mockContent.subtext}</p>
+            <h3 className="text-sm font-bold leading-snug text-fg">{screenshot.mockContent.title}</h3>
+            <p className="text-xs text-fg-muted leading-relaxed">{screenshot.mockContent.subtext}</p>
           </div>
         </div>
         <ul className="space-y-1.5">
           {screenshot.mockContent.details.map((detail, idx) => (
             <li
               key={idx}
-              className="flex items-center gap-2 font-mono text-[10px] text-ink-soft dark:text-paper/55"
+              className="flex items-center gap-2 font-mono text-[10px] text-fg-muted"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-line-strong dark:bg-line-dark" />
+              <span className="h-1.5 w-1.5 rounded-full bg-line-scene" />
               {detail}
             </li>
           ))}
@@ -55,8 +58,8 @@ export const ScreenshotCard: React.FC<ScreenshotCardProps> = ({ screenshot, onCl
 
       {/* Footer */}
       <div className="flex items-center justify-between gap-3 border-t border-line dark:border-line-dark px-3.5 py-3">
-        <p className="text-xs text-ink-soft dark:text-paper/60 line-clamp-2 leading-relaxed">{screenshot.description}</p>
-        <span className="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-accent dark:text-blue-300">
+        <p className="text-xs text-fg-muted line-clamp-2 leading-relaxed">{screenshot.description}</p>
+        <span className="shrink-0 inline-flex items-center gap-1 text-xs font-semibold text-fg-accent">
           View
           <Maximize2 className="w-3.5 h-3.5" />
         </span>

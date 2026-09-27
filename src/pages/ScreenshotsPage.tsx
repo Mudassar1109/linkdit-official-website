@@ -46,25 +46,25 @@ export const ScreenshotsPage: React.FC<ScreenshotsPageProps> = ({
       {/* Header */}
       <header className="border-b border-line dark:border-line-dark">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-12 text-center space-y-5">
-          <span className="text-xs font-mono font-semibold uppercase tracking-[0.2em] text-ink-mute dark:text-paper/55">
+          <span className="text-xs font-mono font-semibold uppercase tracking-[0.2em] text-fg-subtle">
             Interface
           </span>
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-ink dark:text-paper">
+          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-fg">
             The {PRODUCT_NAME} workspace, rendered
           </h1>
-          <p className="mx-auto max-w-xl text-sm sm:text-base text-ink-soft dark:text-paper/65 leading-relaxed">
+          <p className="mx-auto max-w-xl text-sm sm:text-base text-fg-muted leading-relaxed">
             Six views of the current build — tabs, Markdown, rich text, dark theme, sidebar, and the
             status bar. Previews are drawn on this page; the real thing is one download away.
           </p>
 
           <div className="mx-auto max-w-md relative">
-            <Search className="w-4 h-4 text-ink-mute absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-fg-subtle absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search views..."
-              className="w-full rounded-lg border border-line dark:border-line-dark bg-surface dark:bg-ink-900 pl-10 pr-3 py-2.5 text-sm text-ink dark:text-paper placeholder:text-ink-mute focus:outline-none focus:border-accent"
+              className="w-full rounded-lg border border-line dark:border-line-dark bg-surface dark:bg-ink-900 pl-10 pr-3 py-2.5 text-sm text-fg placeholder:text-fg-subtle focus:outline-none focus:border-fg-accent"
             />
           </div>
         </div>
@@ -80,7 +80,7 @@ export const ScreenshotsPage: React.FC<ScreenshotsPageProps> = ({
               className={`shrink-0 rounded-md px-3.5 py-1.5 text-xs font-semibold transition-colors ${
                 activeCategory === cat
                   ? 'bg-ink text-paper dark:bg-paper dark:text-ink'
-                  : 'border border-line dark:border-line-dark text-ink-soft dark:text-paper/60 hover:border-line-strong'
+                  : 'border border-line dark:border-line-dark text-fg-muted hover:border-line-strong dark:hover:border-ink-800'
               }`}
             >
               {cat}
@@ -95,11 +95,11 @@ export const ScreenshotsPage: React.FC<ScreenshotsPageProps> = ({
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12">
           {filteredScreenshots.length === 0 ? (
             <div className="text-center py-16 border border-line dark:border-line-dark bg-surface dark:bg-ink-850 space-y-3">
-              <ImageIcon className="w-8 h-8 text-ink-mute mx-auto" />
-              <h3 className="text-base font-semibold text-ink dark:text-paper">No views match</h3>
+              <ImageIcon className="w-8 h-8 text-fg-subtle mx-auto" />
+              <h3 className="text-base font-semibold text-fg">No views match</h3>
               <button
                 onClick={reset}
-                className="text-sm font-semibold text-accent hover:text-accent-deep"
+                className="text-sm font-semibold text-fg-accent hover:opacity-75"
               >
                 Reset filters
               </button>

@@ -62,7 +62,7 @@ export const LightboxModal: React.FC<LightboxProps> = ({
               {screenshot.filename}
             </span>
             <h3 className="font-bold text-lg leading-tight">{screenshot.title}</h3>
-            <span className="text-xs text-paper/55">
+            <span className="text-xs text-paper/70">
               {currentIndex + 1} of {screenshotsList.length} · {screenshot.category}
             </span>
           </div>
@@ -103,58 +103,61 @@ export const LightboxModal: React.FC<LightboxProps> = ({
 
           {/* Full-size rendered scene */}
           <div className="p-6 sm:p-10 text-left">
-            <div className={`${screenshot.previewColor} rounded-lg border border-line dark:border-line-dark shadow-xl overflow-hidden`}>
-              <div className="flex items-center justify-between bg-paper-2/80 dark:bg-ink-900 px-4 py-2.5 border-b border-line dark:border-line-dark">
+            <div
+              data-scene-tone={screenshot.sceneTone}
+              className="bg-surface-scene rounded-lg border border-line dark:border-line-dark shadow-xl overflow-hidden"
+            >
+              <div className="flex items-center justify-between bg-surface-chrome/80 px-4 py-2.5 border-b border-line dark:border-line-dark">
                 <div className="flex items-center gap-2">
                   <span className="h-3 w-3 rounded-full bg-rose-400" />
                   <span className="h-3 w-3 rounded-full bg-amber-400" />
                   <span className="h-3 w-3 rounded-full bg-emerald-400" />
-                  <span className="ml-2 font-mono text-xs text-ink-soft dark:text-paper/55">LinkDit Pad — {screenshot.filename}</span>
+                  <span className="ml-2 font-mono text-xs text-fg-muted">LinkDit Pad — {screenshot.filename}</span>
                 </div>
               </div>
               <div className="flex min-h-[300px]">
-                <aside className="hidden sm:block w-44 shrink-0 border-r border-line dark:border-line-dark bg-paper-2/40 dark:bg-ink-900/30 p-4 space-y-2.5 text-xs">
-                  <div className="font-mono text-[10px] uppercase tracking-wider text-ink-mute dark:text-paper/40 pb-1">
+                <aside className="hidden sm:block w-44 shrink-0 border-r border-line dark:border-line-dark bg-surface-chrome/40 p-4 space-y-2.5 text-xs">
+                  <div className="font-mono text-[10px] uppercase tracking-wider text-fg-subtle pb-1">
                     Recent
                   </div>
-                  <div className="flex items-center gap-2 rounded bg-accent-soft dark:bg-accent/15 px-2 py-1.5 font-medium text-accent-deep dark:text-blue-300">
+                  <div className="flex items-center gap-2 rounded bg-surface-accent px-2 py-1.5 font-medium text-fg-accent">
                     <FileText className="w-3.5 h-3.5" />
                     <span className="truncate">{screenshot.filename}</span>
                   </div>
-                  <div className="flex items-center gap-2 px-2 py-1.5 text-ink-soft dark:text-paper/55">
+                  <div className="flex items-center gap-2 px-2 py-1.5 text-fg-muted">
                     <FileText className="w-3.5 h-3.5" />
                     <span className="truncate">notes.md</span>
                   </div>
-                  <div className="flex items-center gap-2 px-2 py-1.5 text-ink-soft dark:text-paper/55">
+                  <div className="flex items-center gap-2 px-2 py-1.5 text-fg-muted">
                     <FileText className="w-3.5 h-3.5" />
                     <span className="truncate">journal.txt</span>
                   </div>
                 </aside>
                 <div className="flex-1 p-6 sm:p-8 space-y-4">
                   <div className="flex items-start gap-4">
-                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-paper-2 dark:bg-ink-900 text-accent-deep dark:text-blue-300 shrink-0">
+                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-surface-chip text-fg-accent shrink-0">
                       <FileText className="w-5 h-5" />
                     </span>
                     <div className="space-y-1">
-                      <h4 className="text-lg sm:text-xl font-bold text-ink dark:text-paper">
+                      <h4 className="text-lg sm:text-xl font-bold text-fg">
                         {screenshot.mockContent.title}
                       </h4>
-                      <p className="text-sm text-ink-soft dark:text-paper/65">{screenshot.mockContent.subtext}</p>
+                      <p className="text-sm text-fg-muted">{screenshot.mockContent.subtext}</p>
                     </div>
                   </div>
                   <div className="border-t border-line dark:border-line-dark pt-4 space-y-2">
                     {screenshot.mockContent.details.map((detail, idx) => (
-                      <div key={idx} className="flex items-center gap-3 font-mono text-xs text-ink-soft dark:text-paper/60">
-                        <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                      <div key={idx} className="flex items-center gap-3 font-mono text-xs text-fg-muted">
+                        <span className="h-1.5 w-1.5 rounded-full bg-fg-accent" />
                         {detail}
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
-              <div className="bg-paper-2/60 dark:bg-ink-900/50 px-4 py-2 border-t border-line dark:border-line-dark text-[11px] font-mono text-ink-mute dark:text-paper/45 flex items-center justify-between">
+              <div className="bg-surface-chrome/60 px-4 py-2 border-t border-line dark:border-line-dark text-[11px] font-mono text-fg-subtle flex items-center justify-between">
                 <span>UTF-8 · {screenshot.category}</span>
-                <span className="text-emerald-600 dark:text-emerald-400">Local</span>
+                <span className="text-fg-positive">Local</span>
               </div>
             </div>
           </div>
@@ -171,7 +174,7 @@ export const LightboxModal: React.FC<LightboxProps> = ({
         {/* Caption */}
         <div className="pt-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-paper/60">
           <p className="leading-relaxed">{screenshot.description}</p>
-          <div className="flex items-center gap-3 shrink-0 font-mono text-paper/45 text-[10px]">
+          <div className="flex items-center gap-3 shrink-0 font-mono text-paper/65 text-[10px]">
             <span>← → : navigate</span>
             <span>Esc : close</span>
           </div>

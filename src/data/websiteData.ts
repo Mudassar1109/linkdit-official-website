@@ -32,7 +32,7 @@ export const SCREENSHOTS: ScreenshotItem[] = [
     title: 'The Workspace',
     category: 'Interface',
     description: 'A frameless window with the document tab bar on top and the editor beneath. Open, edit, and save files that live on your own disk.',
-    previewColor: 'bg-paper',
+    sceneTone: 'light',
     mockContent: {
       title: 'Untitled — LinkDit Pad',
       subtext: 'A tabbed writing workspace with nothing between you and the text',
@@ -45,7 +45,7 @@ export const SCREENSHOTS: ScreenshotItem[] = [
     title: 'Multiple Open Documents',
     category: 'Interface',
     description: 'Keep several files open at once. Uncommitted changes are marked so you always know what needs saving.',
-    previewColor: 'bg-paper',
+    sceneTone: 'light',
     mockContent: {
       title: 'three documents open at once',
       subtext: 'Dirty-state dot on the tab you have not saved yet',
@@ -58,7 +58,7 @@ export const SCREENSHOTS: ScreenshotItem[] = [
     title: 'Rich Text & Markdown',
     category: 'Editor',
     description: 'Switch between Markdown source and rich text. Tables, task lists, highlights, links, and formatted headings for documents that need more than plain text.',
-    previewColor: 'bg-paper',
+    sceneTone: 'light',
     mockContent: {
       title: 'Formatting that stays out of the way',
       subtext: 'Markdown source or WYSIWYG — your choice per document',
@@ -71,7 +71,7 @@ export const SCREENSHOTS: ScreenshotItem[] = [
     title: 'Dark Theme',
     category: 'Themes',
     description: 'A warm dark theme for low-light sessions, with the same tabbed workspace and status bar.',
-    previewColor: 'bg-ink-950',
+    sceneTone: 'dark',
     mockContent: {
       title: 'Dark mode for evenings',
       subtext: 'The same workspace, tuned for low-light writing sessions',
@@ -84,7 +84,7 @@ export const SCREENSHOTS: ScreenshotItem[] = [
     title: 'Files, Recent & Pinned',
     category: 'Interface',
     description: 'The sidebar lists your recent documents and pinned files, and offers search plus settings — all without leaving your writing flow.',
-    previewColor: 'bg-paper',
+    sceneTone: 'light',
     mockContent: {
       title: 'Quick access to what matters',
       subtext: 'Recent files, pinned documents, search, and settings in one rail',
@@ -97,7 +97,7 @@ export const SCREENSHOTS: ScreenshotItem[] = [
     title: 'Word Count & Status Bar',
     category: 'Editor',
     description: 'A quiet status bar shows the live word and character count while you type, plus the current editing mode.',
-    previewColor: 'bg-paper',
+    sceneTone: 'light',
     mockContent: {
       title: 'Live word and character counts',
       subtext: 'Updated on every keystroke in the status bar',

@@ -23,7 +23,10 @@ export interface ScreenshotItem {
   category: 'Editor' | 'Themes' | 'Customization' | 'Tools' | 'Interface';
   description: string;
   shortcut?: string;
-  previewColor: string;
+  /** Tone of the rendered preview surface. Drives the scene background AND
+      the text colours drawn on it, so a preview that is itself a dark
+      screenshot stays readable in both themes. */
+  sceneTone: 'light' | 'dark';
   mockContent: {
     title: string;
     subtext: string;
