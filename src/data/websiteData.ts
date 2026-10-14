@@ -180,7 +180,7 @@ export const FEATURE_CATEGORIES: FeatureCategory[] = [
     iconName: 'Zap',
     features: [
       { name: 'Native Windows App', description: 'Built with Tauri — a small Rust core driving the WebView2-rendered interface.' },
-      { name: 'Small Installer', description: 'The Windows setup package is about 4 MB, so installs are quick on any connection.' },
+      { name: 'Small Installer', description: 'The Windows setup package is about 6 MB, so installs are quick on any connection.' },
       { name: 'No Background Services', description: 'Nothing runs in the background and nothing phones home when you are not using it.' },
       { name: 'Works Offline', description: 'Launch, write, and save with no internet connection at all.' },
     ],
@@ -207,7 +207,7 @@ export const DOWNLOAD_OPTIONS: DownloadOption[] = [
     format: '.exe',
     version: CURRENT_VERSION_LABEL,
     releaseDate: 'September 2026',
-    fileSize: '4.10 MB',
+    fileSize: '5.98 MB',
     sha256: DOWNLOAD_SHA256,
     requirements: 'Windows 10 / 11 (64-bit)',
     isAvailable: true,
@@ -411,6 +411,8 @@ export const CHANGELOG_ITEMS: ChangelogItem[] = [
       'Clear save status feedback: Saving, Saved, Auto-save failed, and Auto Save off',
       'Improved save handling for focused split-editor panes',
       'Preserved .ldp document support and offline/local-first workflow',
+      'Urdu Nastaliq typography with a bundled Noto Nastaliq Urdu font, plus custom font import',
+      'Reliable Print & PDF output that preserves your selected and imported fonts',
     ],
     featuresAdded: [
       'Capture Screenshot: snapshot the visible editor area or the entire document, preview the result, save it as a PNG, or copy it straight to the clipboard',
@@ -419,6 +421,9 @@ export const CHANGELOG_ITEMS: ChangelogItem[] = [
       'Auto Save shares the exact save pipeline as File > Save for identical output (.ldp serialization included)',
       'Status bar Auto Save indicator: Saving, Saved, Auto-save failed, and Auto Save off',
       'Auto Save follows the focused pane in split-editor view',
+      'Import custom fonts (TTF/OTF) and use them in the editor and in printed output',
+      'Urdu Nastaliq support: ship a bundled Noto Nastaliq Urdu font and apply the Nastaliq stack to Urdu text',
+      'Multipage Print & PDF export with correct page margins, multi-column pagination, and N-up sheet layouts',
     ],
     improvements: [
       'Serialized write queue prevents manual Save and Auto Save from ever overlapping on the same file',
@@ -426,6 +431,8 @@ export const CHANGELOG_ITEMS: ChangelogItem[] = [
     ],
     bugFixes: [
       'Fixed Auto Save reliability for documents with unsaved changes',
+      'Fixed selected and imported fonts (including Urdu Nastaliq) falling back to a default font in Print Preview and exported PDFs',
+      'Fixed print pagination, per-page margins, and N-up page grouping',
     ],
   },
   {
