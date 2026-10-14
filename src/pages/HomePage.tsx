@@ -50,7 +50,7 @@ LinkDit Pad is the current release of a fast, offline-first editor for Windows.
 
 ## Notes
 
-- Installer: LinkDit-Pad-0.1.2-x64-setup.exe (about 6 MB).
+- Installer: LinkDit-Pad-0.1.2-x64-setup.exe (5.98 MB).
 - Works fully offline. Documents never leave your computer.`;
 
 const NOTES_TXT = `meeting-notes.txt — Sep 16, 2026
@@ -229,7 +229,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
     },
     {
       title: 'Native, not a browser tab',
-      desc: 'A lean Windows app on Tauri with a Rust core and an installer around 6 MB.',
+      desc: 'A lean Windows app on Tauri with a Rust core and a 5.98 MB installer.',
     },
     {
       title: 'Quiet, by design',
@@ -326,7 +326,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
             </div>
 
             <p className="text-xs text-ink-mute dark:text-paper/50">
-              6 MB installer · No sign-up · No payment · No data collection
+              5.98 MB installer · No sign-up · No payment · No data collection
             </p>
           </motion.div>
         </div>
