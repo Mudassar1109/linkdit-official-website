@@ -177,6 +177,17 @@ const ContentEditor: React.FC<EditorProps> = ({ record, canEdit, canPublish, can
     setVersions(null);
   }, [record.id, record.value]);
 
+  // Escape closes the editor overlay. Guarded so it never conflicts with the
+  // confirmation dialog (which handles its own Escape) and never discards
+  // unsaved edits.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && confirm === null && !dirty) onClose();
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [confirm, dirty, onClose]);
+
   const isRestricted = record.classification === 'restricted';
   const category = (record.approval_category ?? (isRestricted ? 'legal_page' : null)) as ApprovalCategory | null;
 
@@ -254,7 +265,17 @@ const ContentEditor: React.FC<EditorProps> = ({ record, canEdit, canPublish, can
   };
 
   return (
-    <Panel className="p-5">
+    <div
+      className="fixed inset-0 z-[90] flex items-start justify-center overflow-y-auto bg-black/60 p-4 sm:p-8"
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Edit ${record.key}`}
+    >
+      {/* The editor is presented as an overlay so choosing a field is always
+          visibly acknowledged. Previously it rendered inline beneath the
+          (potentially long) content table, off-screen, which made the Edit
+          button appear to do nothing. */}
+      <Panel className="my-4 w-full max-w-3xl p-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <div className="flex items-center gap-2">
@@ -406,7 +427,8 @@ const ContentEditor: React.FC<EditorProps> = ({ record, canEdit, canPublish, can
             : undefined
         }
       />
-    </Panel>
+      </Panel>
+    </div>
   );
 };
 
