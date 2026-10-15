@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# Private administration area — never index.
+Disallow: /admin
+Disallow: /admin/
+
 Sitemap: https://www.linkdit.online/sitemap.xml

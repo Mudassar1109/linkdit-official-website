@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import { PageId } from './types';
 import { ThemeProvider } from './context/ThemeContext';
 import { SEOHead } from './components/SEOHead';
@@ -38,7 +38,13 @@ const VALID_PAGES: PageId[] = [
   'copyright',
 ];
 
-export default function App() {
+const AdminApp = React.lazy(() => import('./admin/AdminApp'));
+
+function isAdminPath(): boolean {
+  return /^\/admin(\/|$)/.test(window.location.pathname);
+}
+
+function PublicSite() {
   const [currentPage, setCurrentPage] = useState<PageId>(() => {
     const path = window.location.pathname.replace(/^\//, '') || 'home';
     return VALID_PAGES.includes(path as PageId) ? (path as PageId) : '404';
@@ -152,4 +158,29 @@ export default function App() {
       </div>
     </ThemeProvider>
   );
+}
+
+/**
+ * Top-level switch. The public site and the admin console are fully separate:
+ * the admin bundle (and the Supabase client) is lazy-loaded and only fetched
+ * when a visitor actually lands on /admin, so the public site is unaffected.
+ */
+export default function App() {
+  const [admin, setAdmin] = useState(isAdminPath);
+
+  useEffect(() => {
+    const onPop = () => setAdmin(isAdminPath());
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
+  }, []);
+
+  if (admin) {
+    return (
+      <Suspense fallback={<div className="min-h-screen bg-[#070c17]" aria-hidden="true" />}>
+        <AdminApp />
+      </Suspense>
+    );
+  }
+
+  return <PublicSite />;
 }

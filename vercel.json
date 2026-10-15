@@ -1,5 +1,7 @@
 {
   "rewrites": [
+    { "source": "/admin", "destination": "/index.html" },
+    { "source": "/admin/:path*", "destination": "/index.html" },
     { "source": "/products/:path*", "destination": "/products/index.html" },
     { "source": "/features/:path*", "destination": "/features/index.html" },
     { "source": "/download/:path*", "destination": "/download/index.html" },
@@ -14,5 +16,23 @@
     { "source": "/license/:path*", "destination": "/license/index.html" },
     { "source": "/eula/:path*", "destination": "/eula/index.html" },
     { "source": "/copyright/:path*", "destination": "/copyright/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/admin/:path*",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Referrer-Policy", "value": "no-referrer" }
+      ]
+    },
+    {
+      "source": "/admin",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow, noarchive" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "Referrer-Policy", "value": "no-referrer" }
+      ]
+    }
   ]
 }
