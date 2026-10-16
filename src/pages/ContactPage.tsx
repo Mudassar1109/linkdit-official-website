@@ -1,6 +1,6 @@
 import React from 'react';
 import { PageId } from '../types';
-import { CONTACT_EMAIL, DOMAIN_NAME, PRODUCT_NAME } from '../data/websiteData';
+import { CONTACT_EMAIL, PRODUCT_NAME, SITE_URL } from '../data/websiteData';
 import { Mail, Globe, ExternalLink } from 'lucide-react';
 
 interface ContactProps {
@@ -66,8 +66,8 @@ export const ContactPage: React.FC<ContactProps> = ({ navigate }) => {
           </h3>
           <p className="text-sm text-ink-soft dark:text-paper/60 leading-relaxed">
             The only official site is{' '}
-            <a href={`https://${DOMAIN_NAME}/`} className="font-mono text-accent-deep dark:text-blue-300 hover:underline">
-              https://{DOMAIN_NAME}
+            <a href={`${SITE_URL}/`} className="font-mono text-accent-deep dark:text-blue-300 hover:underline">
+              {SITE_URL.replace(/^https?:\/\//, '')}
             </a>
             . We never ask for payment, passwords, or installation of anything outside this domain.
           </p>

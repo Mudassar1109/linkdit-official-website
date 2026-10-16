@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageId } from '../types';
 import { Download, Mail } from 'lucide-react';
-import { CONTACT_EMAIL, DOMAIN_NAME, PRODUCT_NAME, TAGLINE } from '../data/websiteData';
+import { CONTACT_EMAIL, PRODUCT_NAME, TAGLINE } from '../data/websiteData';
 import { trackCta } from '../lib/analytics';
 
 interface FooterProps {
@@ -54,7 +54,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate, currentPage }) => {
               no account, no telemetry, and your files stay on your computer.
             </p>
             <a
-              href={`https://${DOMAIN_NAME}/`}
+              href="/"
               onClick={() => trackCta('footer_download', currentPage, 'Download for Windows')}
               className="inline-flex items-center gap-2 rounded-lg bg-ink px-4 py-2 text-xs font-semibold text-paper hover:bg-ink/90 transition-colors dark:bg-paper dark:text-ink dark:hover:bg-paper/90"
             >
