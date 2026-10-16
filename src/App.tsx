@@ -16,6 +16,7 @@ import { ChangelogPage } from './pages/ChangelogPage';
 import { ReleaseNotesPage } from './pages/ReleaseNotesPage';
 import { SupportPage } from './pages/SupportPage';
 import { ContactPage } from './pages/ContactPage';
+import { ComparePage } from './pages/ComparePage';
 import { LegalPages } from './pages/LegalPages';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { trackPageView } from './lib/analytics';
@@ -31,6 +32,7 @@ const VALID_PAGES: PageId[] = [
   'release-notes',
   'support',
   'contact',
+  'compare',
   'privacy',
   'terms',
   'license',
@@ -135,6 +137,8 @@ function PublicSite() {
           {currentPage === 'support' && <SupportPage navigate={navigate} />}
 
           {currentPage === 'contact' && <ContactPage navigate={navigate} />}
+
+          {currentPage === 'compare' && <ComparePage navigate={navigate} />}
 
           {['privacy', 'terms', 'license', 'eula', 'copyright'].includes(currentPage) && (
             <LegalPages initialTab={currentPage} navigate={navigate} />

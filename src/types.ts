@@ -9,6 +9,7 @@ export type PageId =
   | 'release-notes'
   | 'support'
   | 'contact'
+  | 'compare'
   | 'privacy'
   | 'terms'
   | 'license'
@@ -88,6 +89,46 @@ export interface ChangelogItem {
   featuresAdded: string[];
   improvements: string[];
   bugFixes: string[];
+}
+
+export type EditorTag =
+  | 'free'
+  | 'open-source'
+  | 'cross-platform'
+  | 'local-first'
+  | 'live-preview'
+  | 'extensible'
+  | 'academic'
+  | 'windows-only';
+
+export interface ComparisonRow {
+  id: string;
+  label: string;
+}
+
+export interface EditorComparison {
+  id: string;
+  name: string;
+  isLinkDit: boolean;
+  tagline: string;
+  websiteLabel: string;
+  websiteHref: string;
+  tags: EditorTag[];
+  /** Feature values keyed by ComparisonRow.id. */
+  cells: Record<string, string>;
+  pros: string[];
+  limitations: string[];
+  useCases: string[];
+}
+
+export interface ComparisonFilter {
+  id: EditorTag | 'all';
+  label: string;
+}
+
+export interface ComparisonSource {
+  editor: string;
+  links: { label: string; href: string }[];
 }
 
 export interface FAQItem {

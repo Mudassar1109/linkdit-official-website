@@ -11,6 +11,7 @@
     { "source": "/release-notes/:path*", "destination": "/release-notes/index.html" },
     { "source": "/support/:path*", "destination": "/support/index.html" },
     { "source": "/contact/:path*", "destination": "/contact/index.html" },
+    { "source": "/compare/:path*", "destination": "/compare/index.html" },
     { "source": "/privacy/:path*", "destination": "/privacy/index.html" },
     { "source": "/terms/:path*", "destination": "/terms/index.html" },
     { "source": "/license/:path*", "destination": "/license/index.html" },

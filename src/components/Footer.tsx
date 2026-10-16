@@ -19,6 +19,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate, currentPage }) => {
 
   const companyLinks: { id: PageId; label: string }[] = [
     { id: 'screenshots', label: 'Interface Gallery' },
+    { id: 'compare', label: 'Compare Editors' },
     { id: 'changelog', label: 'Changelog' },
     { id: 'docs', label: 'Documentation' },
     { id: 'support', label: 'Support' },

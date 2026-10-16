@@ -24,6 +24,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, navigate, onOpenSea
   const navItems: { id: PageId; label: string }[] = [
     { id: 'products', label: 'Product' },
     { id: 'features', label: 'Features' },
+    { id: 'compare', label: 'Compare' },
     { id: 'download', label: 'Download' },
     { id: 'release-notes', label: 'Release Notes' },
   ];

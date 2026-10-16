@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PageId } from '../types';
 import { SCREENSHOTS, DOC_ARTICLES } from '../data/websiteData';
-import { Search, X, ArrowRight, FileText, Download, Image, BookOpen, Layers } from 'lucide-react';
+import { Search, X, ArrowRight, FileText, Download, Image, BookOpen, Layers, Scale } from 'lucide-react';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -54,6 +54,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({
     { id: 'screenshots', title: 'Interface Gallery', desc: 'Rendered previews of the workspace', icon: <Image className="w-4 h-4" /> },
     { id: 'docs', title: 'Documentation & Guides', desc: 'Quick start, Markdown, rich text, themes', icon: <BookOpen className="w-4 h-4" /> },
     { id: 'features', title: 'All Features', desc: 'Editing, files, themes, privacy', icon: <Layers className="w-4 h-4" /> },
+    { id: 'compare', title: 'Compare Editors', desc: 'LinkDit Pad vs VS Code, Obsidian, Typora, MarkText, Zettlr', icon: <Scale className="w-4 h-4" /> },
   ];
 
   const filteredPages = pages.filter(
