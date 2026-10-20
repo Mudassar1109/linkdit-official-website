@@ -44,7 +44,7 @@ const EMPTY: PostForm = {
   slug: '',
   title: '',
   description: '',
-  author: 'LinkDit',
+  author: 'Typodocs',
   body: '',
   cover_media_id: '',
   cover_alt: '',

@@ -398,7 +398,7 @@ begin
      seo_title, seo_description, og_title, og_description, og_image, status, created_by)
   values
     (v_slug, coalesce(p_payload->>'title',''), coalesce(p_payload->>'description',''),
-     coalesce(p_payload->>'author','LinkDit'), coalesce(p_payload->>'body',''),
+     coalesce(p_payload->>'author','Typodocs'), coalesce(p_payload->>'body',''),
      nullif(p_payload->>'cover_media_id','')::uuid, coalesce(p_payload->>'cover_alt',''),
      nullif(p_payload->>'canonical_url',''), nullif(p_payload->>'seo_title',''),
      nullif(p_payload->>'seo_description',''), nullif(p_payload->>'og_title',''),

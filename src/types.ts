@@ -109,7 +109,7 @@ export interface ComparisonRow {
 export interface EditorComparison {
   id: string;
   name: string;
-  isLinkDit: boolean;
+  isTypodocs: boolean;
   tagline: string;
   websiteLabel: string;
   websiteHref: string;

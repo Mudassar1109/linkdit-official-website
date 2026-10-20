@@ -45,18 +45,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, navigate, onOpenSea
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         {/* Brand */}
         <div className="flex items-center gap-2">
-          <button onClick={() => go('home')} className="flex items-center gap-2.5 group" aria-label="LinkDit Pad — home">
+          <button onClick={() => go('home')} className="flex items-center gap-2.5 group" aria-label="Typodocs — home">
             <img
               src="/icon-128.png?v=20260918"
               alt=""
               className="w-8 h-8 rounded-lg object-contain ring-1 ring-line dark:ring-line-dark"
             />
-            <span className="flex items-baseline gap-1.5">
-              <span className="text-lg font-bold tracking-tight text-ink dark:text-paper">LinkDit</span>
-              <span className="text-xs font-mono font-semibold px-1.5 py-0.5 rounded bg-accent-soft text-accent-deep dark:bg-accent/15 dark:text-blue-300">
-                Pad
-              </span>
-            </span>
+            <span className="text-lg font-bold tracking-tight text-ink dark:text-paper">Typodocs</span>
           </button>
         </div>
 
@@ -147,13 +142,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, navigate, onOpenSea
           <div className="pt-3 border-t border-line dark:border-line-dark">
             <button
               onClick={() => {
-                trackCta('header_mobile_download', currentPage, 'Download LinkDit Pad');
+                trackCta('header_mobile_download', currentPage, 'Download Typodocs');
                 go('download');
               }}
               className="w-full flex items-center justify-center gap-2 rounded-lg bg-ink px-4 py-2.5 text-sm font-semibold text-paper dark:bg-paper dark:text-ink"
             >
               <Download className="w-4 h-4" />
-              <span>Download LinkDit Pad</span>
+              <span>Download Typodocs</span>
             </button>
           </div>
         </div>

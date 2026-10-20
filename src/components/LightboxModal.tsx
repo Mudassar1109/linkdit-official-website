@@ -112,7 +112,7 @@ export const LightboxModal: React.FC<LightboxProps> = ({
                   <span className="h-3 w-3 rounded-full bg-rose-400" />
                   <span className="h-3 w-3 rounded-full bg-amber-400" />
                   <span className="h-3 w-3 rounded-full bg-emerald-400" />
-                  <span className="ml-2 font-mono text-xs text-fg-muted">LinkDit Pad — {screenshot.filename}</span>
+                  <span className="ml-2 font-mono text-xs text-fg-muted">Typodocs — {screenshot.filename}</span>
                 </div>
               </div>
               <div className="flex min-h-[300px]">

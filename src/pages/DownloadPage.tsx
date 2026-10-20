@@ -193,7 +193,7 @@ export const DownloadPage: React.FC<DownloadPageProps> = ({ navigate }) => {
               {[
                 'Download the setup (.exe) above.',
                 'Run it and follow the installer prompts — a UAC confirmation appears, which is normal for a per-machine install.',
-                'Open LinkDit Pad from the Start menu and start writing.',
+                'Open Typodocs from the Start menu and start writing.',
               ].map((step, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm text-ink-soft dark:text-paper/70 leading-relaxed">
                   <span className="mt-0.5 inline-flex items-center justify-center w-5 h-5 rounded-full bg-accent-soft dark:bg-accent/15 text-accent-deep dark:text-blue-300 font-mono text-[11px] font-bold shrink-0">

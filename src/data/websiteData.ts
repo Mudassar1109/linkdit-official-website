@@ -34,7 +34,7 @@ export const SCREENSHOTS: ScreenshotItem[] = [
     description: 'A frameless window with the document tab bar on top and the editor beneath. Open, edit, and save files that live on your own disk.',
     sceneTone: 'light',
     mockContent: {
-      title: 'Untitled — LinkDit Pad',
+      title: 'Untitled — Typodocs',
       subtext: 'A tabbed writing workspace with nothing between you and the text',
       details: ['Window Controls', 'Tab Bar', 'Editor Canvas'],
     },
@@ -169,7 +169,7 @@ export const FEATURE_CATEGORIES: FeatureCategory[] = [
     iconName: 'Palette',
     features: [
       { name: 'Light & Dark', description: 'Two carefully balanced palettes — a warm paper light theme and a warm dark theme for evenings.' },
-      { name: 'Restrained Accents', description: 'A single blue accent (the LinkDit Pad blue) used sparingly for focus and highlights.' },
+      { name: 'Restrained Accents', description: 'A single blue accent (the Typodocs blue) used sparingly for focus and highlights.' },
       { name: 'Consistent Canvas', description: 'Editor, tabs, sidebar, and status bar share one design language in both themes.' },
     ],
   },
@@ -188,7 +188,7 @@ export const FEATURE_CATEGORIES: FeatureCategory[] = [
   {
     id: 'privacy',
     title: 'Privacy & Ownership',
-    description: 'Your documents belong to you. LinkDit Pad keeps them on your disk.',
+    description: 'Your documents belong to you. Typodocs keeps them on your disk.',
     iconName: 'Shield',
     features: [
       { name: 'Local Files Only', description: 'Documents are stored as plain files on your computer. There is no proprietary vault or lock-in.' },
@@ -227,7 +227,7 @@ export const DOWNLOAD_OPTIONS: DownloadOption[] = [
     requirements: 'Windows 10/11 (64-bit)',
     isAvailable: true,
     type: 'Enterprise MSI',
-    tagline: 'A previous build of LinkDit Pad for IT administrators who already deploy MSI packages.',
+    tagline: 'A previous build of Typodocs for IT administrators who already deploy MSI packages.',
     note: `Legacy release — it predates the current v${CURRENT_VERSION_LABEL} build. New installs should use the v${CURRENT_VERSION_LABEL} setup (.exe).`,
   },
   {
@@ -242,13 +242,13 @@ export const DOWNLOAD_OPTIONS: DownloadOption[] = [
     requirements: 'Windows 10/11 (64-bit)',
     isAvailable: true,
     type: 'Installer',
-    tagline: 'The earlier LinkDit Pad setup wizard, kept for anyone who needs to reinstall the previous build.',
+    tagline: 'The earlier Typodocs setup wizard, kept for anyone who needs to reinstall the previous build.',
     note: `Legacy release — it predates the current v${CURRENT_VERSION_LABEL} build. New installs should use the v${CURRENT_VERSION_LABEL} setup (.exe).`,
   },
   {
     id: 'msix',
     title: 'App Package (.msix)',
-    filename: 'LinkDit-Pad.msix',
+    filename: 'Typodocs.msix',
     format: '.msix',
     version: '—',
     releaseDate: 'Not yet released',
@@ -263,7 +263,7 @@ export const DOWNLOAD_OPTIONS: DownloadOption[] = [
   {
     id: 'portable',
     title: 'Portable ZIP',
-    filename: 'LinkDit-Pad-Portable.zip',
+    filename: 'Typodocs-Portable.zip',
     format: '.zip',
     version: 'Upcoming',
     releaseDate: 'Planned',
@@ -272,7 +272,7 @@ export const DOWNLOAD_OPTIONS: DownloadOption[] = [
     requirements: 'Windows 10/11 (64-bit)',
     isAvailable: false,
     type: 'Portable',
-    tagline: 'A no-install ZIP build for running LinkDit Pad from a USB drive.',
+    tagline: 'A no-install ZIP build for running Typodocs from a USB drive.',
     note: 'Portable builds are planned for a future release and not yet published.',
   },
 ];
@@ -287,9 +287,9 @@ export const DOC_ARTICLES: DocArticle[] = [
     lastUpdated: '2026-07',
     readTime: '3 min read',
     content: `
-# Getting Started with LinkDit Pad
+# Getting Started with Typodocs
 
-LinkDit Pad is a desktop editor for Windows that keeps words on your disk and
+Typodocs is a desktop editor for Windows that keeps words on your disk and
 nothing else. There is no account, no cloud, and nothing running in the
 background.
 
@@ -304,7 +304,7 @@ background.
 
 ## Write your first document
 
-1. Open LinkDit Pad.
+1. Open Typodocs.
 2. Start typing — a new tab is ready immediately.
 3. Use the status bar to follow your word count as you go.
 
@@ -323,9 +323,9 @@ with plain \`.md\` and \`.txt\` files that live wherever you keep them.
     lastUpdated: '2026-07',
     readTime: '4 min read',
     content: `
-# Writing Markdown in LinkDit Pad
+# Writing Markdown in Typodocs
 
-Markdown is the native language of LinkDit Pad. You can type it directly as
+Markdown is the native language of Typodocs. You can type it directly as
 source, or switch a document to rich text and let the toolbar format for you.
 
 ## Common syntax
@@ -339,7 +339,7 @@ source, or switch a document to rich text and let the toolbar format for you.
 
 ## Plain text
 
-LinkDit Pad opens \`.txt\` files as-is. What you type is what is saved — no
+Typodocs opens \`.txt\` files as-is. What you type is what is saved — no
 hidden formatting, no surprise encoding changes.
     `,
   },
@@ -383,7 +383,7 @@ Each document remembers its own mode.
     content: `
 # Light & Dark Themes
 
-LinkDit Pad ships with two themes built around the same layout:
+Typodocs ships with two themes built around the same layout:
 
 1. **Paper (light)** — a warm off-white canvas with near-black text, tuned for
    daytime writing.
@@ -401,7 +401,7 @@ export const CHANGELOG_ITEMS: ChangelogItem[] = [
     version: CURRENT_VERSION,
     date: 'September 2026',
     title: 'Current release',
-    summary: `The current release of LinkDit Pad: a rebuilt, offline-first Markdown and rich-text editor for Windows 10 and 11, with dependable Auto Save that writes through the real document save pipeline. Version numbering restarted from 0.1 when the product line was rebuilt on a new codebase.`,
+    summary: `The current release of Typodocs: a rebuilt, offline-first Markdown and rich-text editor for Windows 10 and 11, with dependable Auto Save that writes through the real document save pipeline. Version numbering restarted from 0.1 when the product line was rebuilt on a new codebase.`,
     badge: 'Current',
     status: 'current',
     highlights: [
@@ -439,7 +439,7 @@ export const CHANGELOG_ITEMS: ChangelogItem[] = [
     version: '0.1.1',
     date: 'September 2026',
     title: 'Previous release',
-    summary: `The previous release of LinkDit Pad: the rebuilt, offline-first Markdown and rich-text editor for Windows 10 and 11. Version numbering restarted from 0.1 when the product line was rebuilt on a new codebase.`,
+    summary: `The previous release of Typodocs: the rebuilt, offline-first Markdown and rich-text editor for Windows 10 and 11. Version numbering restarted from 0.1 when the product line was rebuilt on a new codebase.`,
     badge: 'Previous',
     status: 'previous',
     highlights: [
@@ -476,11 +476,11 @@ export const CHANGELOG_ITEMS: ChangelogItem[] = [
     version: '1.0.0',
     date: 'July 22, 2026',
     title: 'Legacy release',
-    summary: 'An earlier release of LinkDit Pad built on the previous codebase. It is superseded by the rebuilt v' + CURRENT_VERSION_LABEL + '.',
+    summary: 'An earlier release of Typodocs built on the previous codebase. It is superseded by the rebuilt v' + CURRENT_VERSION_LABEL + '.',
     badge: 'Legacy',
     status: 'legacy',
     highlights: [
-      'Belongs to the previous LinkDit Pad codebase',
+      'Belongs to the previous Typodocs codebase',
       'Superseded by the current v' + CURRENT_VERSION_LABEL + ' release',
     ],
     featuresAdded: [],
@@ -491,7 +491,7 @@ export const CHANGELOG_ITEMS: ChangelogItem[] = [
     version: '0.9.5',
     date: 'June 15, 2026',
     title: 'Legacy beta',
-    summary: 'A beta of the original LinkDit Pad concept. Superseded by the current v' + CURRENT_VERSION_LABEL + ' release.',
+    summary: 'A beta of the original Typodocs concept. Superseded by the current v' + CURRENT_VERSION_LABEL + ' release.',
     badge: 'Legacy',
     status: 'legacy',
     highlights: [
@@ -507,22 +507,22 @@ export const CHANGELOG_ITEMS: ChangelogItem[] = [
 export const FAQS: FAQItem[] = [
   {
     category: 'General',
-    question: 'What is LinkDit Pad?',
-    answer: 'LinkDit Pad is a desktop Markdown and rich-text editor for Windows 10 and 11. It is tabbed, fast, works fully offline, and keeps every document as a normal file on your own computer.',
+    question: 'What is Typodocs?',
+    answer: 'Typodocs is a desktop Markdown and rich-text editor for Windows 10 and 11. It is tabbed, fast, works fully offline, and keeps every document as a normal file on your own computer.',
   },
   {
     category: 'Privacy',
-    question: 'Does LinkDit Pad track or log my writing?',
-    answer: 'No. LinkDit Pad has no analytics, no error trackers, and no background usage reporting. Documents are stored as plain files on your local drive and are never uploaded.',
+    question: 'Does Typodocs track or log my writing?',
+    answer: 'No. Typodocs has no analytics, no error trackers, and no background usage reporting. Documents are stored as plain files on your local drive and are never uploaded.',
   },
   {
     category: 'Licensing',
-    question: 'Is LinkDit Pad free to use?',
-    answer: 'Yes. LinkDit Pad is free to download and use for personal, academic, and commercial purposes. There is no paid tier and no account to create.',
+    question: 'Is Typodocs free to use?',
+    answer: 'Yes. Typodocs is free to download and use for personal, academic, and commercial purposes. There is no paid tier and no account to create.',
   },
   {
     category: 'Installation',
-    question: 'Does LinkDit Pad need an internet connection?',
+    question: 'Does Typodocs need an internet connection?',
     answer: 'No. Install it once, and it runs entirely offline. There is no cloud dependency, no login, and nothing waiting for a connection.',
   },
   {

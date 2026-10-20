@@ -1,4 +1,4 @@
-# LinkDit Pad — Admin CMS backend (Supabase)
+# Typodocs — Admin CMS backend (Supabase)
 
 This directory contains the complete, reproducible database backend for the
 private `/admin` console. It is designed so that the **public website keeps

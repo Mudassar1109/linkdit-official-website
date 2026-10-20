@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 /* ------------------------------------------------------------------------- */
-/* Admin-only design primitives. Scoped to the dark navy LinkDit Pad identity */
+/* Admin-only design primitives. Scoped to the dark navy Typodocs identity */
 /* (dark navy base, cyan/blue and gold accents). These classes are only ever   */
 /* rendered inside the lazy-loaded /admin bundle, so they never affect the     */
 /* public website or its Tailwind theme tokens.                               */

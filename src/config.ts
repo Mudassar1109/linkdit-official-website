@@ -5,18 +5,23 @@ export const SITE_URL = 'https://www.linkdit.online';
 
 export const CONTACT_EMAIL = 'elahimudassasr1@gmail.com';
 
+// Company / publisher identity (legal entity). Kept separate from the product.
 export const APP_NAME = 'LinkDit';
-export const PRODUCT_NAME = 'LinkDit Pad';
+// Product name shown to visitors across the site.
+export const PRODUCT_NAME = 'Typodocs';
 export const TAGLINE = 'Write clearly. Write locally.';
 
 export const CURRENT_VERSION = '0.1.2';
 export const CURRENT_VERSION_LABEL = `v${CURRENT_VERSION}`;
+// NOTE: the published installer binaries still carry the legacy LinkDit-Pad
+// filenames (and legacy embedded metadata) until the desktop app is rebuilt.
+// Keep these names so existing download links stay functional.
 export const DOWNLOAD_FILENAME = `LinkDit-Pad-${CURRENT_VERSION}-x64-setup.exe`;
 export const DOWNLOAD_FILE_SIZE = '5.98 MB';
 export const DOWNLOAD_SHA256 = '8AB1B3469814EC7B4FE18FA0D33373949C9B4AF53E6375AAA6A6C2B0D60F299D';
 
 export const BRAND_DESCRIPTION =
-  'LinkDit Pad is a fast, offline-first Markdown and rich-text editor for Windows 10 and 11. Multi-tab editing, live word counts, local files only — no account, no telemetry.';
+  'Typodocs is a fast, offline-first Markdown and rich-text editor for Windows 10 and 11. Multi-tab editing, live word counts, local files only — no account, no telemetry.';
 
 export interface PageMeta {
   id: PageId;
@@ -37,14 +42,14 @@ export const PAGE_META: Record<PageId, PageMeta> = {
     path: '/products',
     title: `About ${PRODUCT_NAME} — The Product`,
     description:
-      'What LinkDit Pad is and why it exists: a fast, offline-first Markdown and rich-text editor for Windows that keeps every document as a plain, local file.',
+      'What Typodocs is and why it exists: a fast, offline-first Markdown and rich-text editor for Windows that keeps every document as a plain, local file.',
   },
   features: {
     id: 'features',
     path: '/features',
     title: `Features — ${PRODUCT_NAME} for Windows`,
     description:
-      'All LinkDit Pad features: tabbed editing, Markdown and rich text, screenshot capture, light and dark themes, search and replace, and a file system that stays entirely on your PC.',
+      'All Typodocs features: tabbed editing, Markdown and rich text, screenshot capture, light and dark themes, search and replace, and a file system that stays entirely on your PC.',
   },
   download: {
     id: 'download',
@@ -57,14 +62,14 @@ export const PAGE_META: Record<PageId, PageMeta> = {
     path: '/screenshots',
     title: `Interface Gallery — ${PRODUCT_NAME}`,
     description:
-      'A closer look at LinkDit Pad: the tabbed workspace, Markdown and rich-text views, dark theme, sidebar, and live word-count status bar.',
+      'A closer look at Typodocs: the tabbed workspace, Markdown and rich-text views, dark theme, sidebar, and live word-count status bar.',
   },
   docs: {
     id: 'docs',
     path: '/docs',
     title: `Documentation & Guides — ${PRODUCT_NAME}`,
     description:
-      'Get started with LinkDit Pad: quick-start guide, Markdown and rich-text reference, themes, files, and privacy.',
+      'Get started with Typodocs: quick-start guide, Markdown and rich-text reference, themes, files, and privacy.',
   },
   changelog: {
     id: 'changelog',
@@ -85,7 +90,7 @@ export const PAGE_META: Record<PageId, PageMeta> = {
     path: '/support',
     title: `Support & FAQ — ${PRODUCT_NAME}`,
     description:
-      'Help for LinkDit Pad: frequently asked questions about installation, features, privacy, and licensing, plus how to contact support.',
+      'Help for Typodocs: frequently asked questions about installation, features, privacy, and licensing, plus how to contact support.',
   },
   contact: {
     id: 'contact',
@@ -106,7 +111,7 @@ export const PAGE_META: Record<PageId, PageMeta> = {
     path: '/privacy',
     title: `Privacy Policy — ${PRODUCT_NAME}`,
     description:
-      'LinkDit Pad privacy: the desktop app has no telemetry, no logins, and no cloud — documents stay as local files. This website uses aggregate Google Analytics and Google AdSense advertising.',
+      'Typodocs privacy: the desktop app has no telemetry, no logins, and no cloud — documents stay as local files. This website uses aggregate Google Analytics and Google AdSense advertising.',
   },
   terms: {
     id: 'terms',
@@ -120,14 +125,14 @@ export const PAGE_META: Record<PageId, PageMeta> = {
     path: '/license',
     title: `Software License — ${PRODUCT_NAME}`,
     description:
-      'The software license for LinkDit Pad: free for personal, academic, and commercial use, with restrictions on redistribution.',
+      'The software license for Typodocs: free for personal, academic, and commercial use, with restrictions on redistribution.',
   },
   eula: {
     id: 'eula',
     path: '/eula',
     title: `End User License Agreement — ${PRODUCT_NAME}`,
     description:
-      'The end-user license agreement for LinkDit Pad for Windows installations.',
+      'The end-user license agreement for Typodocs for Windows installations.',
   },
   copyright: {
     id: 'copyright',

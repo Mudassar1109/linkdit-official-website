@@ -38,7 +38,7 @@ Nothing is uploaded. There is no account, no telemetry, and no cloud.`;
 
 const RELEASE_MD = `# Release Notes — v0.1.2
 
-LinkDit Pad is the current release of a fast, offline-first editor for Windows.
+Typodocs is the current release of a fast, offline-first editor for Windows.
 
 ## In this release
 
@@ -242,35 +242,35 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
       index: '01',
       title: 'Professional Markdown Editor',
       image: '/images/software/01-main-editor.png',
-      alt: 'LinkDit Pad Markdown editor interface',
+      alt: 'Typodocs Markdown editor interface',
       description: 'Write and organize content in a clean, focused Markdown workspace.',
     },
     {
       index: '02',
       title: 'Editor & Auto Save',
       image: '/images/software/02-settings-editor.png',
-      alt: 'LinkDit Pad editor settings and Auto Save controls',
+      alt: 'Typodocs editor settings and Auto Save controls',
       description: 'Customize your editor and keep your documents saved automatically.',
     },
     {
       index: '03',
       title: 'Dark Workspace',
       image: '/images/software/03-workspace-dark.png',
-      alt: 'LinkDit Pad dark workspace with document editing interface',
+      alt: 'Typodocs dark workspace with document editing interface',
       description: 'A focused dark workspace designed for comfortable writing and editing.',
     },
     {
       index: '04',
       title: 'Trash & Recovery',
       image: '/images/software/04-trash-recovery.png',
-      alt: 'LinkDit Pad Trash and deleted document management interface',
+      alt: 'Typodocs Trash and deleted document management interface',
       description: 'Manage deleted documents and keep your workspace organized.',
     },
     {
       index: '05',
       title: 'Document Lock',
       image: '/images/software/05-document-lock.png',
-      alt: 'LinkDit Pad document lock and password protection interface',
+      alt: 'Typodocs document lock and password protection interface',
       description: 'Protect documents with local password-based locking and read-only access.',
     },
   ];
@@ -371,10 +371,10 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="mx-auto mb-12 sm:mb-16 max-w-2xl text-center space-y-3">
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink dark:text-paper leading-tight">
-              See LinkDit Pad in Action
+              See Typodocs in Action
             </h2>
             <p className="text-sm sm:text-base text-ink-soft dark:text-paper/65 leading-relaxed">
-              A closer look at the tools and workflows built into LinkDit Pad.
+              A closer look at the tools and workflows built into Typodocs.
             </p>
           </div>
 
@@ -427,7 +427,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
               </p>
               <button
                 onClick={() => {
-                  trackCta('home_learn_products', 'home', 'Learn about LinkDit Pad');
+                  trackCta('home_learn_products', 'home', 'Learn about Typodocs');
                   navigate('products');
                 }}
                 className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-deep"
@@ -479,7 +479,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
         </p>
         <button
           onClick={() => {
-            trackCta('home_final_download', 'home', 'Download LinkDit Pad');
+            trackCta('home_final_download', 'home', 'Download Typodocs');
             navigate('download');
           }}
           className="inline-flex items-center gap-2 rounded-lg bg-ink px-7 py-3 text-sm font-semibold text-paper hover:bg-ink/90 transition-colors dark:bg-paper dark:text-ink dark:hover:bg-paper/90"
@@ -527,7 +527,7 @@ const AppWindow: React.FC<AppWindowProps> = ({
           <span className="h-3 w-3 rounded-full bg-rose-400" />
           <span className="h-3 w-3 rounded-full bg-amber-400" />
           <span className="h-3 w-3 rounded-full bg-emerald-400" />
-          <span className="ml-2 text-xs font-mono text-ink-mute dark:text-paper/50">LinkDit Pad</span>
+          <span className="ml-2 text-xs font-mono text-ink-mute dark:text-paper/50">Typodocs</span>
         </div>
         <div className="flex items-center gap-1.5">
           <button

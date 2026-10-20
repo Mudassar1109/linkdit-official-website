@@ -29,9 +29,9 @@ export const COMPARISON_FILTERS: ComparisonFilter[] = [
 
 export const EDITORS: EditorComparison[] = [
   {
-    id: 'linkdit',
-    name: 'LinkDit Pad',
-    isLinkDit: true,
+    id: 'typodocs',
+    name: 'Typodocs',
+    isTypodocs: true,
     tagline: 'A lean, offline-first Markdown and rich-text editor for Windows.',
     websiteLabel: 'linkdit.online',
     websiteHref: 'https://www.linkdit.online/',
@@ -67,7 +67,7 @@ export const EDITORS: EditorComparison[] = [
   {
     id: 'vscode',
     name: 'Visual Studio Code',
-    isLinkDit: false,
+    isTypodocs: false,
     tagline: 'A full code editor with Markdown support and preview built in.',
     websiteLabel: 'code.visualstudio.com',
     websiteHref: 'https://code.visualstudio.com/',
@@ -103,7 +103,7 @@ export const EDITORS: EditorComparison[] = [
   {
     id: 'obsidian',
     name: 'Obsidian',
-    isLinkDit: false,
+    isTypodocs: false,
     tagline: 'A local-first knowledge base built on plain Markdown files.',
     websiteLabel: 'obsidian.md',
     websiteHref: 'https://obsidian.md/',
@@ -139,7 +139,7 @@ export const EDITORS: EditorComparison[] = [
   {
     id: 'typora',
     name: 'Typora',
-    isLinkDit: false,
+    isTypodocs: false,
     tagline: 'A minimal Markdown editor with seamless live preview.',
     websiteLabel: 'typora.io',
     websiteHref: 'https://typora.io/',
@@ -175,7 +175,7 @@ export const EDITORS: EditorComparison[] = [
   {
     id: 'marktext',
     name: 'MarkText',
-    isLinkDit: false,
+    isTypodocs: false,
     tagline: 'A free, open-source WYSIWYG Markdown editor.',
     websiteLabel: 'github.com/marktext/marktext',
     websiteHref: 'https://github.com/marktext/marktext',
@@ -211,7 +211,7 @@ export const EDITORS: EditorComparison[] = [
   {
     id: 'zettlr',
     name: 'Zettlr',
-    isLinkDit: false,
+    isTypodocs: false,
     tagline: 'A free, open-source publication workbench for academic writing.',
     websiteLabel: 'zettlr.com',
     websiteHref: 'https://www.zettlr.com/',
@@ -256,7 +256,7 @@ export const EDITORS: EditorComparison[] = [
 
 export const COMPARISON_SOURCES: ComparisonSource[] = [
   {
-    editor: 'LinkDit Pad',
+    editor: 'Typodocs',
     links: [
       { label: 'Feature overview', href: 'https://www.linkdit.online/features' },
       { label: 'Software licence', href: 'https://www.linkdit.online/license' },

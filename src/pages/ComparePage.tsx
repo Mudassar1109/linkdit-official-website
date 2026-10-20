@@ -185,7 +185,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
                         key={editor.id}
                         scope="col"
                         className={`px-5 py-3 font-semibold ${
-                          editor.isLinkDit ? 'text-accent' : ''
+                          editor.isTypodocs ? 'text-accent' : ''
                         }`}
                       >
                         {editor.name}
@@ -206,7 +206,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
                         <td
                           key={editor.id}
                           className={`px-5 py-3.5 align-top ${
-                            editor.isLinkDit ? 'bg-accent-soft/40 dark:bg-accent/10' : ''
+                            editor.isTypodocs ? 'bg-accent-soft/40 dark:bg-accent/10' : ''
                           }`}
                         >
                           {editor.cells[row.id]}
@@ -248,7 +248,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
                 <article
                   key={editor.id}
                   className={`flex flex-col gap-5 border bg-surface dark:bg-ink-850 p-6 ${
-                    editor.isLinkDit
+                    editor.isTypodocs
                       ? 'border-accent/50 dark:border-accent/50'
                       : 'border-line dark:border-line-dark'
                   }`}
@@ -258,7 +258,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
                       <h3 className="text-lg font-bold tracking-tight text-ink dark:text-paper">
                         {editor.name}
                       </h3>
-                      {editor.isLinkDit && (
+                      {editor.isTypodocs && (
                         <span className="text-[10px] font-mono font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-accent-soft text-accent-deep dark:bg-accent/15 dark:text-blue-300">
                           This site
                         </span>
@@ -312,7 +312,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
                   </div>
 
                   <div className="mt-auto pt-4 border-t border-line dark:border-line-dark flex flex-wrap items-center gap-3">
-                    {editor.isLinkDit ? (
+                    {editor.isTypodocs ? (
                       <button
                         onClick={() => {
                           trackCta('compare_card_download', 'compare', 'Download for Windows');

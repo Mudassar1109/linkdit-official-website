@@ -1,6 +1,6 @@
 # linkdit-official-website
 
-The official website for LinkDit and LinkDit Pad, built with React + Vite + Tailwind CSS v4.
+The official website for LinkDit and Typodocs, built with React + Vite + Tailwind CSS v4.
 
 ## Run locally
 

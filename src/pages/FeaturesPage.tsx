@@ -136,7 +136,7 @@ export const FeaturesPage: React.FC<FeaturesPageProps> = ({ navigate }) => {
               className="pt-5 text-sm sm:text-base text-ink dark:text-paper"
               style={{ fontWeight: demoWeight, lineHeight: demoLineHeight }}
             >
-              The words you read here are sized with the same kind of restraint LinkDit Pad applies to its
+              The words you read here are sized with the same kind of restraint Typodocs applies to its
               own interface: comfortable line spacing, a calm typeface, and nothing competing with the text.
             </p>
           </div>

@@ -2,7 +2,7 @@ import { PRODUCT_NAME } from '../config'
 import type { DownloadOption } from '../types'
 
 // Website-only Google Analytics 4 measurement ID.
-// The LinkDit Pad desktop application does not load or use this tag.
+// The Typodocs desktop application does not load or use this tag.
 export const GA_MEASUREMENT_ID = 'G-R2R4E9QFLM'
 
 declare global {

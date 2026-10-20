@@ -67,7 +67,7 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
         />
         <div className="leading-tight">
           <div className="flex items-baseline gap-1.5">
-            <span className="text-sm font-bold tracking-tight text-white">LinkDit</span>
+            <span className="text-sm font-bold tracking-tight text-white">Typodocs</span>
             <span className="rounded bg-amber-400/15 px-1.5 py-0.5 text-[10px] font-mono font-semibold text-amber-300">
               ADMIN
             </span>

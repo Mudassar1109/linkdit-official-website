@@ -1,6 +1,6 @@
 {
-  "name": "LinkDit Pad",
-  "short_name": "LinkDit Pad",
+  "name": "Typodocs",
+  "short_name": "Typodocs",
   "description": "A fast, offline-first Markdown and rich-text editor for Windows. Multi-tab editing, live word counts, local files only — no account, no telemetry.",
   "start_url": "/",
   "scope": "/",

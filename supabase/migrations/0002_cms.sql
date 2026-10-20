@@ -112,7 +112,7 @@ create table if not exists public.cms_blog_posts (
   slug            text not null unique,
   title           text not null default '',
   description     text not null default '',
-  author          text not null default 'LinkDit',
+  author          text not null default 'Typodocs',
   body            text not null default '',
   cover_media_id  uuid references public.cms_media (id) on delete set null,
   cover_alt       text not null default '',

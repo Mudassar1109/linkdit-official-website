@@ -1,4 +1,4 @@
-// Local backend verification for the LinkDit Pad admin/Supabase layer.
+// Local backend verification for the Typodocs admin/Supabase layer.
 //
 // Runs the real SQL migrations against an embedded PostgreSQL (PGlite, WASM) so
 // the schema, RLS policies, permission matrix, approval workflow, guards and
@@ -368,9 +368,9 @@ async function main() {
       'Not authorized to edit settings');
   });
   await test('owner edits a non-restricted setting without a reason', async () => {
-    await asOwner(() => q("select public.admin_update_setting('seo.default_title_prefix','LinkDit Pad HQ',false,null)"));
+    await asOwner(() => q("select public.admin_update_setting('seo.default_title_prefix','Typodocs HQ',false,null)"));
     const r = await q("select value from public.cms_settings where key='seo.default_title_prefix'");
-    eq(r.rows[0].value, 'LinkDit Pad HQ', 'value updated');
+    eq(r.rows[0].value, 'Typodocs HQ', 'value updated');
   });
   await test('restricted setting needs approval or owner override', async () => {
     await expectError(
@@ -495,7 +495,7 @@ async function main() {
   // --- Report -----------------------------------------------------------------
   const passed = results.filter((r) => r.ok).length;
   const failed = results.filter((r) => !r.ok);
-  console.log('\n=== LinkDit Pad backend verification ===\n');
+  console.log('\n=== Typodocs backend verification ===\n');
   let lastGroup = null;
   for (const r of results) {
     if (r.group !== lastGroup) { console.log(`\n[${r.group}]`); lastGroup = r.group; }

@@ -46,7 +46,7 @@ const SetupRequired: React.FC = () => (
   <div className="flex min-h-screen items-center justify-center bg-[#070c17] p-6">
     <div className="w-full max-w-lg space-y-4 rounded-lg border border-[#1e2a44] bg-[#0f172a] p-7">
       <div className="flex items-baseline gap-2">
-        <span className="text-lg font-bold text-white">LinkDit</span>
+        <span className="text-lg font-bold text-white">Typodocs</span>
         <span className="rounded bg-amber-400/15 px-1.5 py-0.5 text-[10px] font-mono font-semibold text-amber-300">
           ADMIN
         </span>

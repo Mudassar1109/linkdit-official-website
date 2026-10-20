@@ -67,7 +67,7 @@ async function generateAllIcons() {
     throw new Error(`Official master icon not found: ${MASTER}`);
   }
 
-  console.log('Generating LinkDit Pad icons from official master...');
+  console.log('Generating Typodocs icons from official master...');
 
   for (const target of PNG_TARGETS) {
     if (target.name === 'app-icon-1024.png') {

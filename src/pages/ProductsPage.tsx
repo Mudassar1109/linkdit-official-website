@@ -120,7 +120,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ navigate }) => {
               Your files are just files.
             </h2>
             <p className="text-sm text-ink-soft dark:text-paper/65 leading-relaxed">
-              Open anything text-based — Markdown, plain text, config, logs, or source code. LinkDit Pad
+              Open anything text-based — Markdown, plain text, config, logs, or source code. Typodocs
               works with the same open formats every other text tool understands, so nothing is ever
               locked into one program.
             </p>
@@ -156,7 +156,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ navigate }) => {
                 <thead>
                   <tr className="border-b border-line dark:border-line-dark text-xs font-mono uppercase tracking-wider text-ink-mute dark:text-paper/50">
                     <th className="px-5 py-3 font-semibold">Dimension</th>
-                    <th className="px-5 py-3 font-semibold text-accent">LinkDit Pad</th>
+                    <th className="px-5 py-3 font-semibold text-accent">Typodocs</th>
                     <th className="px-5 py-3 font-semibold">Typical web docs</th>
                   </tr>
                 </thead>
@@ -179,7 +179,7 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ navigate }) => {
             </div>
 
             <p className="text-xs text-ink-mute dark:text-paper/50 leading-relaxed">
-              We are not claiming LinkDit Pad replaces a full IDE or a collaborative suite. This table only
+              We are not claiming Typodocs replaces a full IDE or a collaborative suite. This table only
               describes how the two categories store and treat your documents.
             </p>
           </div>
