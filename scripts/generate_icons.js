@@ -6,6 +6,28 @@ const publicDir = path.join(process.cwd(), 'public');
 
 const MASTER = path.join(publicDir, 'app-icon-1024.png');
 
+// A square, transparent canvas built from the master: the source art is
+// trimmed of empty margins and re-centered, so derived sizes never stretch or
+// clip the logo regardless of the master's original aspect ratio.
+async function buildSquareMaster() {
+  const trimmed = await sharp(MASTER).trim({ threshold: 1 }).png().toBuffer();
+  const meta = await sharp(trimmed).metadata();
+  const side = Math.max(meta.width, meta.height);
+  const pad = Math.round(side * 0.06);
+  const square = await sharp({
+    create: { width: side, height: side, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } },
+  })
+    .composite([{ input: trimmed, gravity: 'center' }])
+    .png()
+    .toBuffer();
+  return sharp({
+    create: { width: side + pad * 2, height: side + pad * 2, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } },
+  })
+    .composite([{ input: square, gravity: 'center' }])
+    .png()
+    .toBuffer();
+}
+
 const PNG_TARGETS = [
   { name: 'app-icon-1024.png', size: 1024 },
   { name: 'icon-512.png', size: 512 },
@@ -21,8 +43,9 @@ const PNG_TARGETS = [
 const ICO_SIZES = [16, 32, 48];
 
 async function resizePng(size) {
-  return sharp(MASTER)
-    .resize(size, size, { fit: 'fill' })
+  const master = await buildSquareMaster();
+  return sharp(master)
+    .resize(size, size, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .png()
     .toBuffer();
 }
@@ -70,12 +93,8 @@ async function generateAllIcons() {
   console.log('Generating Typodocs icons from official master...');
 
   for (const target of PNG_TARGETS) {
-    if (target.name === 'app-icon-1024.png') {
-      console.log('Kept app-icon-1024.png (official master)');
-      continue;
-    }
-    await sharp(MASTER)
-      .resize(target.size, target.size, { fit: 'fill' })
+    await sharp(await buildSquareMaster())
+      .resize(target.size, target.size, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
       .png({ compressionLevel: 9 })
       .toFile(path.join(publicDir, target.name));
     console.log(`Created ${target.name}`);

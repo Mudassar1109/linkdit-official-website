@@ -22,15 +22,15 @@ const DesignPage: React.FC = () => {
         <h3 className="text-sm font-semibold text-white">Current brand assets</h3>
         <div className="mt-3 flex flex-wrap items-center gap-6">
           <div className="flex flex-col items-center gap-1.5">
-            <img src="/icon-128.png?v=20260918" alt="Current logo" className="h-14 w-14 rounded-lg object-contain ring-1 ring-[#2a3a5c]" />
+            <img src="/icon-128.png?v=20261020" alt="Current logo" className="h-14 w-14 rounded-lg object-contain ring-1 ring-[#2a3a5c]" />
             <span className="text-[11px] text-slate-500">Logo</span>
           </div>
           <div className="flex flex-col items-center gap-1.5">
-            <img src="/favicon.ico?v=20260918" alt="Current favicon" className="h-10 w-10 object-contain ring-1 ring-[#2a3a5c]" />
+            <img src="/favicon.ico?v=20261020" alt="Current favicon" className="h-10 w-10 object-contain ring-1 ring-[#2a3a5c]" />
             <span className="text-[11px] text-slate-500">Favicon</span>
           </div>
           <div className="flex flex-col items-center gap-1.5">
-            <img src="/app-icon-1024.png?v=20260918" alt="Current app icon" className="h-14 w-14 rounded-lg object-contain ring-1 ring-[#2a3a5c]" />
+            <img src="/app-icon-1024.png?v=20261020" alt="Current app icon" className="h-14 w-14 rounded-lg object-contain ring-1 ring-[#2a3a5c]" />
             <span className="text-[11px] text-slate-500">Social / app icon</span>
           </div>
         </div>

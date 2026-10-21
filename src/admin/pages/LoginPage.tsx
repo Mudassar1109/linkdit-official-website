@@ -44,7 +44,7 @@ const LoginPage: React.FC = () => {
     <div className="flex min-h-screen items-center justify-center bg-[#070c17] p-6">
       <div className="w-full max-w-sm space-y-5">
         <div className="text-center">
-          <img src="/icon-128.png?v=20260918" alt="" className="mx-auto h-12 w-12 rounded-xl object-contain" />
+          <img src="/icon-128.png?v=20261020" alt="" className="mx-auto h-12 w-12 rounded-xl object-contain" />
           <div className="mt-3 flex items-center justify-center gap-1.5">
             <span className="text-lg font-bold text-white">Typodocs</span>
             <span className="rounded bg-amber-400/15 px-1.5 py-0.5 text-[10px] font-mono font-semibold text-amber-300">

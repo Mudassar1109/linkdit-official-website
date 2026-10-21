@@ -41,7 +41,7 @@ export const Footer: React.FC<FooterProps> = ({ navigate, currentPage }) => {
           {/* Brand */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
-              <img src="/icon-128.png?v=20260918" alt="" className="w-8 h-8 rounded-lg object-contain ring-1 ring-line dark:ring-line-dark" />
+              <img src="/icon-128.png?v=20261020" alt="" className="w-8 h-8 rounded-lg object-contain ring-1 ring-line dark:ring-line-dark" />
               <span className="text-lg font-bold tracking-tight text-ink dark:text-paper">Typodocs</span>
             </div>
             <p className="text-xs text-ink-soft dark:text-paper/55 max-w-xs leading-relaxed">

@@ -61,7 +61,7 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
     <div className="flex h-full flex-col">
       <div className="flex items-center gap-2.5 px-5 py-4">
         <img
-          src="/icon-128.png?v=20260918"
+          src="/icon-128.png?v=20261020"
           alt=""
           className="h-8 w-8 rounded-lg object-contain ring-1 ring-[#2a3a5c]"
         />
