@@ -43,10 +43,10 @@ function useNoIndex() {
 }
 
 const SetupRequired: React.FC = () => (
-  <div className="flex min-h-screen items-center justify-center bg-[#070c17] p-6">
-    <div className="w-full max-w-lg space-y-4 rounded-lg border border-[#1e2a44] bg-[#0f172a] p-7">
+  <div className="flex min-h-screen items-center justify-center bg-navy-950 p-6">
+    <div className="w-full max-w-lg space-y-4 rounded-xl border border-navy-700 bg-navy-850 p-7 shadow-admin-panel">
       <div className="flex items-baseline gap-2">
-        <span className="text-lg font-bold text-white">Typodocs</span>
+        <span className="text-lg font-bold text-white">TypoDocs</span>
         <span className="rounded bg-amber-400/15 px-1.5 py-0.5 text-[10px] font-mono font-semibold text-amber-300">
           ADMIN
         </span>
@@ -65,8 +65,8 @@ const SetupRequired: React.FC = () => (
 const NotAuthorized: React.FC = () => {
   const { user, signOut } = useAuth();
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#070c17] p-6">
-      <div className="w-full max-w-md space-y-4 rounded-lg border border-[#1e2a44] bg-[#0f172a] p-7">
+    <div className="flex min-h-screen items-center justify-center bg-navy-950 p-6">
+      <div className="w-full max-w-md space-y-4 rounded-xl border border-navy-700 bg-navy-850 p-7 shadow-admin-panel">
         <h1 className="text-lg font-semibold text-white">Administrator access required</h1>
         <p className="text-sm text-slate-400">
           The account <span className="text-slate-200">{user?.email}</span> is signed in but has no administrator
@@ -122,7 +122,7 @@ const AdminShell: React.FC = () => {
 
   if (initializing) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#070c17]">
+      <div className="flex min-h-screen items-center justify-center bg-navy-950">
         <LoadingBlock label="Checking session…" />
       </div>
     );

@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 
 /* ------------------------------------------------------------------------- */
-/* Admin-only design primitives. Scoped to the dark navy Typodocs identity */
-/* (dark navy base, cyan/blue and gold accents). These classes are only ever   */
-/* rendered inside the lazy-loaded /admin bundle, so they never affect the     */
-/* public website or its Tailwind theme tokens.                               */
+/* Admin-only design primitives. Scoped to the dark navy TypoDocs identity.   */
+/* Colours come from the `--color-navy-*` and `--color-admin-*` tokens defined */
+/* in index.css, so the whole console shares one layered surface hierarchy.    */
+/* These classes are only ever rendered inside the lazy-loaded /admin bundle,  */
+/* so they never affect the public website or its Tailwind theme tokens.       */
 /* ------------------------------------------------------------------------- */
 
 export function cx(...parts: Array<string | false | null | undefined>): string {
@@ -23,11 +24,16 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const BUTTON_VARIANTS: Record<ButtonVariant, string> = {
-  primary: 'bg-cyan-500 text-slate-950 hover:bg-cyan-400 focus-visible:outline-cyan-400 font-semibold',
-  secondary: 'bg-[#1b2942] text-slate-100 hover:bg-[#233453] border border-[#2a3a5c]',
-  danger: 'bg-rose-600 text-white hover:bg-rose-500 font-semibold',
-  ghost: 'bg-transparent text-slate-300 hover:bg-[#1b2942] hover:text-white',
-  gold: 'bg-amber-400 text-slate-950 hover:bg-amber-300 font-semibold',
+  primary:
+    'bg-cyan-500 text-navy-950 shadow-sm shadow-cyan-500/20 hover:bg-cyan-400 focus-visible:outline-cyan-400 font-semibold',
+  secondary:
+    'bg-navy-750 text-slate-100 border border-navy-600 shadow-sm shadow-black/20 hover:bg-navy-700 hover:border-navy-500 focus-visible:outline-cyan-400',
+  danger:
+    'bg-rose-600 text-white shadow-sm shadow-rose-600/20 hover:bg-rose-500 focus-visible:outline-rose-400 font-semibold',
+  ghost:
+    'bg-transparent text-slate-300 hover:bg-navy-800 hover:text-white focus-visible:outline-cyan-400',
+  gold:
+    'bg-amber-400 text-navy-950 shadow-sm shadow-amber-400/20 hover:bg-amber-300 focus-visible:outline-amber-300 font-semibold',
 };
 
 export const Button: React.FC<ButtonProps> = ({
@@ -43,7 +49,7 @@ export const Button: React.FC<ButtonProps> = ({
     {...rest}
     disabled={disabled || loading}
     className={cx(
-      'inline-flex items-center justify-center gap-2 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed',
+      'inline-flex select-none items-center justify-center gap-2 rounded-md transition-[background-color,border-color,color,box-shadow,transform] duration-150 active:translate-y-px disabled:pointer-events-none disabled:opacity-50',
       size === 'sm' ? 'px-2.5 py-1.5 text-xs' : 'px-3.5 py-2 text-sm',
       BUTTON_VARIANTS[variant],
       className,
@@ -82,11 +88,12 @@ const STATUS_STYLES: Record<string, string> = {
 export const StatusBadge: React.FC<{ status: string; className?: string }> = ({ status, className }) => (
   <span
     className={cx(
-      'inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[11px] font-medium capitalize',
+      'inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-0.5 text-[11px] font-medium capitalize',
       STATUS_STYLES[status] ?? 'bg-slate-500/15 text-slate-300 border-slate-500/30',
       className,
     )}
   >
+    <span className="h-1.5 w-1.5 rounded-full bg-current opacity-80" />
     {status.replace(/_/g, ' ')}
   </span>
 );
@@ -118,7 +125,7 @@ export const Field: React.FC<FieldProps> = ({ label, htmlFor, hint, error, requi
 );
 
 const INPUT_CLASS =
-  'w-full rounded-md border border-[#2a3a5c] bg-[#0b1220] px-3 py-2 text-sm text-slate-100 placeholder-slate-500 focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 disabled:opacity-50';
+  'w-full rounded-md border border-navy-600 bg-navy-900 px-3 py-2 text-sm text-slate-100 shadow-inner shadow-black/20 transition-colors placeholder-slate-500 hover:border-navy-500 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/25 disabled:opacity-50';
 
 export const Input: React.FC<React.InputHTMLAttributes<HTMLInputElement>> = ({ className, ...rest }) => (
   <input {...rest} className={cx(INPUT_CLASS, className)} />
@@ -137,7 +144,7 @@ export const Select: React.FC<React.SelectHTMLAttributes<HTMLSelectElement>> = (
 /* ------------------------------ Panels ---------------------------------- */
 
 export const Panel: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => (
-  <div className={cx('rounded-lg border border-[#1e2a44] bg-[#0f172a]', className)}>{children}</div>
+  <div className={cx('rounded-lg border border-navy-700 bg-navy-850 shadow-admin-panel', className)}>{children}</div>
 );
 
 export const SectionHeader: React.FC<{ title: string; description?: string; actions?: React.ReactNode }> = ({
@@ -147,12 +154,46 @@ export const SectionHeader: React.FC<{ title: string; description?: string; acti
 }) => (
   <div className="flex flex-wrap items-start justify-between gap-3">
     <div>
-      <h2 className="text-lg font-semibold text-white">{title}</h2>
+      <h2 className="text-lg font-semibold tracking-tight text-white">{title}</h2>
       {description && <p className="mt-0.5 text-sm text-slate-400">{description}</p>}
     </div>
     {actions && <div className="flex items-center gap-2">{actions}</div>}
   </div>
 );
+
+/* ------------------------------ Stat card ------------------------------- */
+
+export const StatCard: React.FC<{
+  label: string;
+  value: React.ReactNode;
+  hint?: string;
+  icon?: React.ReactNode;
+  accent?: 'cyan' | 'amber' | 'emerald' | 'rose' | 'slate';
+}> = ({ label, value, hint, icon, accent = 'cyan' }) => {
+  const accents: Record<string, string> = {
+    cyan: 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20',
+    amber: 'bg-amber-500/10 text-amber-300 border-amber-500/20',
+    emerald: 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20',
+    rose: 'bg-rose-500/10 text-rose-300 border-rose-500/20',
+    slate: 'bg-slate-500/10 text-slate-300 border-slate-500/20',
+  };
+  return (
+    <Panel className="p-5 transition-colors hover:border-navy-600">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <div className="text-[11px] font-medium uppercase tracking-wider text-slate-500">{label}</div>
+          <div className="mt-1.5 text-2xl font-semibold tracking-tight text-white">{value}</div>
+          {hint && <div className="mt-0.5 truncate text-xs text-slate-500">{hint}</div>}
+        </div>
+        {icon && (
+          <span className={cx('inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md border', accents[accent])}>
+            {icon}
+          </span>
+        )}
+      </div>
+    </Panel>
+  );
+};
 
 /* ------------------------------ Alerts ---------------------------------- */
 
@@ -183,7 +224,7 @@ export const EmptyState: React.FC<{ title: string; description?: string; action?
   description,
   action,
 }) => (
-  <div className="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-[#2a3a5c] bg-[#0b1220] px-6 py-14 text-center">
+  <div className="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-navy-600 bg-navy-900/60 px-6 py-14 text-center">
     <p className="text-sm font-medium text-slate-300">{title}</p>
     {description && <p className="max-w-md text-xs text-slate-500">{description}</p>}
     {action && <div className="mt-2">{action}</div>}
@@ -225,26 +266,26 @@ export const Modal: React.FC<ModalProps> = ({ open, title, onClose, children, fo
 
   if (!open) return null;
   return (
-    <div className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-black/60 p-4 sm:p-8">
+    <div className="fixed inset-0 z-[100] flex animate-kd-fade-in items-start justify-center overflow-y-auto bg-navy-950/80 p-4 backdrop-blur-sm sm:p-8">
       <div
         ref={ref}
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className="my-8 w-full max-w-lg rounded-lg border border-[#1e2a44] bg-[#0f172a] shadow-2xl"
+        className="my-8 w-full max-w-lg animate-kd-scale-in rounded-xl border border-navy-700 bg-navy-850 shadow-admin-pop"
       >
-        <div className="flex items-center justify-between border-b border-[#1e2a44] px-5 py-3.5">
+        <div className="flex items-center justify-between border-b border-navy-700 px-5 py-3.5">
           <h3 className="text-sm font-semibold text-white">{title}</h3>
           <button
             onClick={onClose}
             aria-label="Close dialog"
-            className="rounded p-1 text-slate-400 hover:bg-[#1b2942] hover:text-white"
+            className="rounded p-1 text-slate-400 transition-colors hover:bg-navy-800 hover:text-white"
           >
             ✕
           </button>
         </div>
         <div className="max-h-[70vh] overflow-y-auto px-5 py-4">{children}</div>
-        {footer && <div className="flex justify-end gap-2 border-t border-[#1e2a44] px-5 py-3.5">{footer}</div>}
+        {footer && <div className="flex justify-end gap-2 border-t border-navy-700 px-5 py-3.5">{footer}</div>}
       </div>
     </div>
   );
@@ -316,7 +357,7 @@ export const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
 
 export function Table({ children }: { children: React.ReactNode }) {
   return (
-    <div className="overflow-x-auto rounded-lg border border-[#1e2a44]">
+    <div className="overflow-x-auto rounded-lg border border-navy-700">
       <table className="w-full min-w-[640px] border-collapse text-sm">{children}</table>
     </div>
   );
@@ -327,7 +368,7 @@ export function Th({ children, className }: { children?: React.ReactNode; classN
     <th
       scope="col"
       className={cx(
-        'border-b border-[#1e2a44] bg-[#0b1220] px-4 py-2.5 text-left text-[11px] font-semibold uppercase tracking-wider text-slate-400',
+        'border-b border-navy-700 bg-navy-900 px-4 py-2.5 text-left text-[11px] font-semibold uppercase tracking-wider text-slate-400',
         className,
       )}
     >
@@ -337,7 +378,16 @@ export function Th({ children, className }: { children?: React.ReactNode; classN
 }
 
 export function Td({ children, className }: { children: React.ReactNode; className?: string; key?: React.Key }) {
-  return <td className={cx('border-b border-[#16203a] px-4 py-3 align-top text-slate-300', className)}>{children}</td>;
+  return (
+    <td
+      className={cx(
+        'border-b border-navy-800 px-4 py-3 align-top text-slate-300 transition-colors hover:bg-navy-800/40',
+        className,
+      )}
+    >
+      {children}
+    </td>
+  );
 }
 
 export const Mono: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className }) => (

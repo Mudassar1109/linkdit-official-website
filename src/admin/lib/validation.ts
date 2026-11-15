@@ -7,6 +7,10 @@
 
 /** Hosts allowed for externally hosted installer downloads. */
 export const APPROVED_DOWNLOAD_HOSTS = [
+  'typodocs.online',
+  'www.typodocs.online',
+  // Legacy hosts stay allowed while linkdit.online is still connected; remove
+  // them once the old domain is retired.
   'www.linkdit.online',
   'linkdit.online',
   'github.com',

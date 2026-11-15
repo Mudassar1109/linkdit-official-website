@@ -44,7 +44,7 @@ const EMPTY: PostForm = {
   slug: '',
   title: '',
   description: '',
-  author: 'Typodocs',
+  author: 'TypoDocs',
   body: '',
   cover_media_id: '',
   cover_alt: '',
@@ -169,7 +169,7 @@ const BlogPage: React.FC = () => {
               <h1 className="text-xl font-bold text-white">{form.title || 'Untitled'}</h1>
               <p className="text-sm text-slate-400">{form.description}</p>
               <Mono>by {form.author} · draft preview</Mono>
-              <div className="whitespace-pre-wrap rounded-md border border-[#1e2a44] bg-[#0b1220] p-4 text-sm text-slate-300">
+              <div className="whitespace-pre-wrap rounded-md border border-navy-700 bg-navy-900 p-4 text-sm text-slate-300">
                 {form.body}
               </div>
             </article>

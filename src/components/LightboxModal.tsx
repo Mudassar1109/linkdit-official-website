@@ -49,16 +49,16 @@ export const LightboxModal: React.FC<LightboxProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-ink-950/90 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
+      className="fixed inset-0 z-50 bg-ink-950/90 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 animate-kd-fade-in"
       role="dialog"
       aria-modal="true"
       aria-label={screenshot.title}
     >
-      <div className="w-full max-w-4xl max-h-full flex flex-col overflow-hidden">
+      <div className="w-full max-w-4xl max-h-full flex flex-col overflow-hidden animate-kd-scale-in">
         {/* Header */}
         <div className="flex items-center justify-between text-paper pb-3 gap-4">
           <div className="space-y-0.5">
-            <span className="font-mono text-[11px] px-2 py-0.5 rounded bg-accent/20 text-blue-300">
+            <span className="font-mono text-[11px] px-2 py-0.5 rounded bg-accent/20 text-blue-400">
               {screenshot.filename}
             </span>
             <h3 className="font-bold text-lg leading-tight">{screenshot.title}</h3>
@@ -112,7 +112,7 @@ export const LightboxModal: React.FC<LightboxProps> = ({
                   <span className="h-3 w-3 rounded-full bg-rose-400" />
                   <span className="h-3 w-3 rounded-full bg-amber-400" />
                   <span className="h-3 w-3 rounded-full bg-emerald-400" />
-                  <span className="ml-2 font-mono text-xs text-fg-muted">Typodocs — {screenshot.filename}</span>
+                  <span className="ml-2 font-mono text-xs text-fg-muted">TypoDocs — {screenshot.filename}</span>
                 </div>
               </div>
               <div className="flex min-h-[300px]">

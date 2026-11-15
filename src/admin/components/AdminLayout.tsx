@@ -51,6 +51,7 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const items = NAV.filter((item) => roleHasPermission(role, item.permission));
   const active: AdminSegment | '' = segment === '' ? 'dashboard' : segment;
+  const activeLabel = NAV.find((n) => n.segment === active)?.label ?? 'Dashboard';
 
   const go = (seg: AdminSegment) => {
     navigate(`/${seg}`);
@@ -61,13 +62,13 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
     <div className="flex h-full flex-col">
       <div className="flex items-center gap-2.5 px-5 py-4">
         <img
-          src="/icon-128.png?v=20261020"
+          src="/icon-128.png?v=20261025"
           alt=""
-          className="h-8 w-8 rounded-lg object-contain ring-1 ring-[#2a3a5c]"
+          className="h-8 w-8 rounded-lg object-contain ring-1 ring-navy-600"
         />
         <div className="leading-tight">
           <div className="flex items-baseline gap-1.5">
-            <span className="text-sm font-bold tracking-tight text-white">Typodocs</span>
+            <span className="text-sm font-bold tracking-tight text-white">TypoDocs</span>
             <span className="rounded bg-amber-400/15 px-1.5 py-0.5 text-[10px] font-mono font-semibold text-amber-300">
               ADMIN
             </span>
@@ -77,6 +78,9 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
       </div>
 
       <nav className="flex-1 space-y-0.5 overflow-y-auto px-3 py-2" aria-label="Admin sections">
+        <div className="px-3 pb-1 pt-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-600">
+          Workspace
+        </div>
         {items.map((item) => {
           const Icon = item.icon;
           const isActive = active === item.segment;
@@ -86,27 +90,33 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
               onClick={() => go(item.segment)}
               aria-current={isActive ? 'page' : undefined}
               className={cx(
-                'flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors',
+                'group relative flex w-full items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors',
                 isActive
                   ? 'bg-cyan-500/10 font-medium text-cyan-300'
-                  : 'text-slate-400 hover:bg-[#1b2942] hover:text-slate-100',
+                  : 'text-slate-400 hover:bg-navy-800 hover:text-slate-100',
               )}
             >
-              <Icon className="h-4 w-4 shrink-0" />
-              {item.label}
+              {isActive && (
+                <span className="absolute left-0 top-1/2 h-5 w-0.5 -translate-y-1/2 rounded-full bg-cyan-400" />
+              )}
+              <Icon className={cx('h-4 w-4 shrink-0 transition-colors', isActive ? 'text-cyan-300' : 'text-slate-500 group-hover:text-slate-300')} />
+              <span className="truncate">{item.label}</span>
             </button>
           );
         })}
       </nav>
 
-      <div className="border-t border-[#1e2a44] p-3">
-        <div className="rounded-md bg-[#0b1220] px-3 py-2.5">
+      <div className="border-t border-navy-700 p-3">
+        <div className="rounded-md border border-navy-700 bg-navy-900 px-3 py-2.5">
           <div className="truncate text-xs font-medium text-slate-200">{profile?.email}</div>
-          <div className="mt-0.5 text-[11px] text-slate-500">{role ? ROLE_LABELS[role] : 'No role'}</div>
+          <div className="mt-1 flex items-center gap-1.5">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span className="text-[11px] text-slate-500">{role ? ROLE_LABELS[role] : 'No role'}</span>
+          </div>
         </div>
         <button
           onClick={() => signOut()}
-          className="mt-2 flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-slate-400 transition-colors hover:bg-[#1b2942] hover:text-rose-300"
+          className="mt-2 flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-slate-400 transition-colors hover:bg-navy-800 hover:text-rose-300"
         >
           <LogOut className="h-4 w-4" /> Sign out
         </button>
@@ -115,39 +125,50 @@ export const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children 
   );
 
   return (
-    <div className="min-h-screen bg-[#070c17] text-slate-200">
+    <div className="min-h-screen bg-navy-950 text-slate-200">
       {/* Desktop sidebar */}
-      <aside className="fixed inset-y-0 left-0 hidden w-64 border-r border-[#1e2a44] bg-[#0b1220] lg:block">
+      <aside className="fixed inset-y-0 left-0 hidden w-64 border-r border-navy-700 bg-navy-900 lg:block">
         {sidebar}
       </aside>
 
       {/* Mobile sidebar */}
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="absolute inset-0 bg-black/60" onClick={() => setMobileOpen(false)} />
-          <div className="absolute inset-y-0 left-0 w-64 border-r border-[#1e2a44] bg-[#0b1220]">{sidebar}</div>
+          <div
+            className="absolute inset-0 animate-kd-fade-in bg-navy-950/70 backdrop-blur-sm"
+            onClick={() => setMobileOpen(false)}
+          />
+          <div className="absolute inset-y-0 left-0 w-64 animate-kd-slide-in-left border-r border-navy-700 bg-navy-900 shadow-admin-pop">
+            {sidebar}
+          </div>
         </div>
       )}
 
       <div className="lg:pl-64">
-        <header className="sticky top-0 z-40 flex h-14 items-center justify-between gap-3 border-b border-[#1e2a44] bg-[#070c17]/90 px-4 backdrop-blur lg:px-8">
-          <button
-            onClick={() => setMobileOpen((o) => !o)}
-            className="rounded-md p-2 text-slate-400 hover:bg-[#1b2942] hover:text-white lg:hidden"
-            aria-label="Toggle navigation"
-          >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-          <div className="flex items-center gap-2 text-xs text-slate-500">
-            <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
-            <span className="hidden sm:inline">Private admin area · not indexed · server-enforced access</span>
+        <header className="sticky top-0 z-40 flex h-14 items-center justify-between gap-3 border-b border-navy-700 bg-navy-950/90 px-4 backdrop-blur lg:px-8">
+          <div className="flex min-w-0 items-center gap-2">
+            <button
+              onClick={() => setMobileOpen((o) => !o)}
+              className="-ml-1 rounded-md p-2 text-slate-400 transition-colors hover:bg-navy-800 hover:text-white lg:hidden"
+              aria-label="Toggle navigation"
+            >
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+            <h1 className="truncate text-sm font-semibold text-white">{activeLabel}</h1>
           </div>
-          <a
-            href="/"
-            className="text-xs font-medium text-slate-400 transition-colors hover:text-cyan-300"
-          >
-            View public site ↗
-          </a>
+
+          <div className="flex items-center gap-4">
+            <div className="hidden items-center gap-2 text-xs text-slate-500 sm:flex">
+              <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+              <span>Private · not indexed</span>
+            </div>
+            <a
+              href="/"
+              className="inline-flex items-center gap-1 rounded-md px-2.5 py-1.5 text-xs font-medium text-slate-400 transition-colors hover:bg-navy-800 hover:text-cyan-300"
+            >
+              View public site <span aria-hidden="true">↗</span>
+            </a>
+          </div>
         </header>
 
         <main className="mx-auto max-w-6xl px-4 py-6 lg:px-8 lg:py-8">{children}</main>

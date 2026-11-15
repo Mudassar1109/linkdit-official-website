@@ -103,7 +103,7 @@ const MediaPage: React.FC = () => {
                 type="file"
                 accept="image/png,image/jpeg,image/webp,image/gif,image/x-icon,image/svg+xml"
                 onChange={(e) => setFile(e.target.files?.[0] ?? null)}
-                className="w-full text-xs text-slate-300 file:mr-3 file:rounded-md file:border-0 file:bg-[#1b2942] file:px-3 file:py-2 file:text-xs file:text-slate-100"
+                className="w-full text-xs text-slate-300 file:mr-3 file:rounded-md file:border-0 file:bg-navy-750 file:px-3 file:py-2 file:text-xs file:text-slate-100"
               />
             </Field>
             <Field label="Purpose">
@@ -201,7 +201,7 @@ const MediaCard: React.FC<CardProps> = ({ asset, canDelete, canEdit, onDelete, o
 
   return (
     <Panel className="overflow-hidden">
-      <div className="flex h-36 items-center justify-center bg-[#0b1220] p-3">
+      <div className="flex h-36 items-center justify-center bg-navy-900 p-3">
         <img src={url} alt={asset.alt_text} className="max-h-full max-w-full object-contain" />
       </div>
       <div className="space-y-2 p-3.5">

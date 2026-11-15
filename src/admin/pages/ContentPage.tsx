@@ -104,7 +104,7 @@ const ContentPage: React.FC = () => {
           </thead>
           <tbody>
             {filtered.map((r) => (
-              <tr key={r.id} className={cx('hover:bg-[#111d33]', selectedKey === r.key && 'bg-cyan-500/5')}>
+              <tr key={r.id} className={cx('hover:bg-navy-800', selectedKey === r.key && 'bg-cyan-500/5')}>
                 <Td>
                   <span className="font-mono text-xs text-slate-200">{r.key}</span>
                 </Td>
@@ -341,7 +341,7 @@ const ContentEditor: React.FC<EditorProps> = ({ record, canEdit, canPublish, can
         {dirty && <span className="self-center text-xs text-amber-300">Unsaved changes — save before publishing.</span>}
       </div>
 
-      <div className="mt-6 border-t border-[#1e2a44] pt-4">
+      <div className="mt-6 border-t border-navy-700 pt-4">
         <div className="flex items-center justify-between">
           <h4 className="text-sm font-semibold text-white">Version history</h4>
           <Button size="sm" variant="ghost" onClick={loadVersions}>

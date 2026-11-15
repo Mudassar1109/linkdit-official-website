@@ -1,17 +1,10 @@
 import React from 'react';
+import { FileText, CheckCircle2, Clock, DownloadCloud } from 'lucide-react';
 import { useAuth } from '../lib/auth';
 import { roleHasPermission, ROLE_LABELS } from '../lib/permissions';
 import { useAsync, useDocumentTitle } from '../lib/hooks';
 import * as api from '../lib/api';
-import { Alert, LoadingBlock, Mono, Panel, SectionHeader, StatusBadge } from '../components/ui';
-
-const Card: React.FC<{ label: string; value: React.ReactNode; hint?: string }> = ({ label, value, hint }) => (
-  <Panel className="p-5">
-    <div className="text-[11px] font-medium uppercase tracking-wider text-slate-500">{label}</div>
-    <div className="mt-1 text-2xl font-semibold text-white">{value}</div>
-    {hint && <div className="mt-0.5 text-xs text-slate-500">{hint}</div>}
-  </Panel>
-);
+import { Alert, LoadingBlock, Mono, Panel, SectionHeader, StatCard, StatusBadge } from '../components/ui';
 
 const DashboardPage: React.FC = () => {
   useDocumentTitle('Dashboard');
@@ -58,13 +51,33 @@ const DashboardPage: React.FC = () => {
       ) : (
         <>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card label="Content drafts" value={drafts} hint="Awaiting publication" />
-            <Card label="Published content" value={publishedContent} hint="Serving the public site" />
-            <Card label="Pending approvals" value={pending} hint="Submitted or in review" />
-            <Card
+            <StatCard
+              label="Content drafts"
+              value={drafts}
+              hint="Awaiting publication"
+              accent="amber"
+              icon={<FileText className="h-4 w-4" />}
+            />
+            <StatCard
+              label="Published content"
+              value={publishedContent}
+              hint="Serving the public site"
+              accent="emerald"
+              icon={<CheckCircle2 className="h-4 w-4" />}
+            />
+            <StatCard
+              label="Pending approvals"
+              value={pending}
+              hint="Submitted or in review"
+              accent="cyan"
+              icon={<Clock className="h-4 w-4" />}
+            />
+            <StatCard
               label="Current release"
               value={currentRelease ? currentRelease.version : '—'}
               hint={currentRelease ? currentRelease.channel : 'No published release'}
+              accent="slate"
+              icon={<DownloadCloud className="h-4 w-4" />}
             />
           </div>
 

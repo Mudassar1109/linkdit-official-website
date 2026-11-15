@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+﻿import React, { useMemo, useState } from 'react';
 import { PageId, EditorComparison } from '../types';
 import {
   COMPARISON_CHECKED,
@@ -9,6 +9,7 @@ import {
 } from '../data/comparisonData';
 import { PRODUCT_NAME } from '../data/websiteData';
 import { trackCta } from '../lib/analytics';
+import { PageHero } from '../components/PageHero';
 import { Search, Download, ArrowRight, Check, Minus, ExternalLink, X } from 'lucide-react';
 
 interface ComparePageProps {
@@ -53,52 +54,52 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
   return (
     <div className="font-sans">
       {/* Comparison hero */}
-      <header className="border-b border-line dark:border-line-dark">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-14 text-center space-y-6">
-          <span className="text-xs font-mono font-semibold uppercase tracking-[0.2em] text-ink-mute dark:text-paper/55">
-            Editor comparison
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-ink dark:text-paper">
-            Markdown editors, compared
-          </h1>
-          <p className="mx-auto max-w-2xl text-sm sm:text-base text-ink-soft dark:text-paper/65 leading-relaxed">
+      <PageHero
+        eyebrow="Editor comparison"
+        title={
+          <>
+            Markdown editors,{' '}
+            <span className="text-gradient-accent">
+              compared
+            </span>
+          </>
+        }
+        description={
+          <>
             {PRODUCT_NAME} next to five editors writers and developers reach for every day. Price,
             platforms, editing model, privacy, and extensibility — every fact taken from the vendors&apos;
             own documentation, never guessed.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-            <button
-              onClick={() => {
-                trackCta('compare_hero_download', 'compare', 'Download for Windows');
-                navigate('download');
-              }}
-              className="inline-flex items-center gap-2 rounded-lg bg-ink px-6 py-2.5 text-sm font-semibold text-paper hover:bg-ink/90 transition-colors dark:bg-paper dark:text-ink dark:hover:bg-paper/90"
-            >
-              <Download className="w-4 h-4" />
-              <span>Download for Windows</span>
-            </button>
-            <a
-              href="#comparison-table"
-              className="inline-flex items-center gap-1.5 rounded-lg border border-line-strong px-6 py-2.5 text-sm font-semibold text-ink hover:border-ink transition-colors dark:border-line-dark dark:text-paper dark:hover:border-paper"
-            >
-              Jump to the table
-              <ArrowRight className="w-4 h-4" />
-            </a>
-          </div>
-          <p className="text-xs font-mono text-ink-mute dark:text-paper/45 pt-1">
-            {EDITORS.length} editors · {COMPARISON_ROWS.length} dimensions · official sources only
-          </p>
-        </div>
-      </header>
+          </>
+        }
+      >
+        <button
+          onClick={() => {
+            trackCta('compare_hero_download', 'compare', 'Download for Windows');
+            navigate('download');
+          }}
+          className="btn-accent btn-lg"
+        >
+          <Download className="w-4 h-4" />
+          <span>Download for Windows</span>
+        </button>
+        <a
+          href="#comparison-table"
+          className="btn-secondary btn-lg"
+        >
+          Jump to the table
+          <ArrowRight className="w-4 h-4" />
+        </a>
+        <p className="w-full text-center font-mono text-xs text-ink-mute dark:text-zinc-500">
+          {EDITORS.length} editors · {COMPARISON_ROWS.length} dimensions · official sources only
+        </p>
+      </PageHero>
 
       {/* Searchable, filterable comparison table */}
       <section id="comparison-table" className="border-b border-line dark:border-line-dark scroll-mt-20">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 space-y-8">
+        <div className="container-site py-16 sm:py-20 space-y-8">
           <div className="space-y-2">
-            <span className="text-xs font-mono font-semibold uppercase tracking-[0.2em] text-ink-mute dark:text-paper/55">
-              Side by side
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-ink dark:text-paper">
+            <p className="eyebrow text-fg-accent">Side by side</p>
+            <h2 className="font-display text-2xl font-bold tracking-[-0.02em] text-ink sm:text-3xl dark:text-paper">
               The full comparison table
             </h2>
             <p className="text-sm text-ink-soft dark:text-paper/65 leading-relaxed max-w-2xl">
@@ -117,7 +118,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search editors or features (e.g. plugins, citations, offline)..."
                 aria-label="Search editors or features"
-                className="w-full rounded-lg border border-line dark:border-line-dark bg-surface dark:bg-ink-900 pl-9 pr-3 py-2.5 text-sm text-ink dark:text-paper placeholder:text-ink-mute focus:outline-none focus:border-accent"
+                className="w-full rounded-full border border-line dark:border-line-dark bg-surface dark:bg-ink-900 pl-10 pr-4 py-2.5 text-sm text-ink dark:text-paper placeholder:text-ink-mute focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
               />
             </div>
             <div
@@ -132,10 +133,10 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
                     key={f.id}
                     onClick={() => setFilter(f.id)}
                     aria-pressed={active}
-                    className={`shrink-0 rounded-md px-3 py-2 text-xs font-semibold transition-colors ${
+                    className={`shrink-0 rounded-full px-3.5 py-2 text-xs font-semibold transition-colors ${
                       active
-                        ? 'bg-ink text-paper dark:bg-paper dark:text-ink'
-                        : 'border border-line dark:border-line-dark text-ink-soft dark:text-paper/60 hover:border-line-strong dark:hover:border-paper/40'
+                        ? 'gradient-violet text-white shadow-glow'
+                        : 'border border-line dark:border-line-dark text-ink-soft dark:text-paper/60 hover:border-accent hover:text-fg-accent'
                     }`}
                   >
                     {f.label}
@@ -152,31 +153,31 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
           </p>
 
           {visibleEditors.length === 0 ? (
-            <div className="border border-line dark:border-line-dark bg-surface dark:bg-ink-850 p-10 text-center space-y-3">
+            <div className="card-base p-10 text-center space-y-3">
               <p className="text-sm font-semibold text-ink dark:text-paper">No editors match your search.</p>
               <p className="text-xs text-ink-soft dark:text-paper/60">
                 Try a different term, or reset the search and filters.
               </p>
               <button
                 onClick={clearFilters}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-line-strong px-4 py-2 text-xs font-semibold text-ink hover:border-ink transition-colors dark:border-line-dark dark:text-paper dark:hover:border-paper"
+                className="btn-secondary btn-sm"
               >
                 <X className="w-3.5 h-3.5" />
                 Clear search and filters
               </button>
             </div>
           ) : (
-            <div className="overflow-x-auto border border-line dark:border-line-dark bg-surface dark:bg-ink-850">
+            <div className="overflow-x-auto card-base">
               <table className="w-full text-left text-sm min-w-[960px]">
                 <caption className="sr-only">
                   Comparison of {EDITORS.map((e) => e.name).join(', ')} across {COMPARISON_ROWS.length}{' '}
                   dimensions, based on official sources checked in {COMPARISON_CHECKED}.
                 </caption>
                 <thead>
-                  <tr className="border-b border-line dark:border-line-dark text-xs font-mono uppercase tracking-wider text-ink-mute dark:text-paper/50">
+                  <tr className="border-b border-line dark:border-line-dark">
                     <th
                       scope="col"
-                      className="sticky left-0 z-20 bg-surface dark:bg-ink-850 px-5 py-3 font-semibold border-r border-line dark:border-line-dark"
+                      className="sticky left-0 z-20 table-header border-r border-line dark:border-line-dark"
                     >
                       Dimension
                     </th>
@@ -184,7 +185,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
                       <th
                         key={editor.id}
                         scope="col"
-                        className={`px-5 py-3 font-semibold ${
+                        className={`table-header ${
                           editor.isTypodocs ? 'text-accent' : ''
                         }`}
                       >
@@ -195,10 +196,10 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
                 </thead>
                 <tbody className="divide-y divide-line dark:divide-line-dark">
                   {COMPARISON_ROWS.map((row) => (
-                    <tr key={row.id} className="text-ink-soft dark:text-paper/70">
+                    <tr key={row.id} className="table-row-hover text-ink-soft dark:text-paper/70">
                       <th
                         scope="row"
-                        className="sticky left-0 z-10 bg-surface dark:bg-ink-850 px-5 py-3.5 font-medium text-ink dark:text-paper border-r border-line dark:border-line-dark align-top"
+                        className="sticky left-0 z-10 px-5 py-3.5 font-medium text-ink dark:text-paper border-r border-line dark:border-line-dark align-top bg-surface dark:bg-ink-850"
                       >
                         {row.label}
                       </th>
@@ -228,12 +229,10 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
 
       {/* Editor cards */}
       <section id="editor-cards" className="border-b border-line dark:border-line-dark bg-paper-2/50 dark:bg-ink-900/40">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 space-y-8">
+        <div className="container-site py-16 sm:py-20 space-y-8">
           <div className="space-y-2">
-            <span className="text-xs font-mono font-semibold uppercase tracking-[0.2em] text-ink-mute dark:text-paper/55">
-              The detail
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-ink dark:text-paper">
+            <p className="eyebrow text-fg-accent">The detail</p>
+            <h2 className="font-display text-2xl font-bold tracking-[-0.02em] text-ink sm:text-3xl dark:text-paper">
               Pros, limitations, and who each editor is for
             </h2>
           </div>
@@ -247,9 +246,9 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
               {visibleEditors.map((editor) => (
                 <article
                   key={editor.id}
-                  className={`flex flex-col gap-5 border bg-surface dark:bg-ink-850 p-6 ${
+                  className={`flex flex-col gap-5 card-base card-hover p-6 ${
                     editor.isTypodocs
-                      ? 'border-accent/50 dark:border-accent/50'
+                      ? 'border-accent/40 dark:border-accent/40'
                       : 'border-line dark:border-line-dark'
                   }`}
                 >
@@ -259,9 +258,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
                         {editor.name}
                       </h3>
                       {editor.isTypodocs && (
-                        <span className="text-[10px] font-mono font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-accent-soft text-accent-deep dark:bg-accent/15 dark:text-blue-300">
-                          This site
-                        </span>
+                        <span className="badge-accent">This site</span>
                       )}
                     </div>
                     <p className="text-xs text-ink-soft dark:text-paper/60 leading-relaxed">
@@ -276,7 +273,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
                     <ul className="space-y-1.5">
                       {editor.pros.map((item) => (
                         <li key={item} className="flex gap-2 text-xs text-ink-soft dark:text-paper/65 leading-relaxed">
-                          <Check className="w-3.5 h-3.5 mt-0.5 shrink-0 text-accent-deep dark:text-blue-300" />
+                          <Check className="w-3.5 h-3.5 mt-0.5 shrink-0 text-fg-accent" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -318,7 +315,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
                           trackCta('compare_card_download', 'compare', 'Download for Windows');
                           navigate('download');
                         }}
-                        className="inline-flex items-center gap-1.5 rounded-lg bg-ink px-4 py-2 text-xs font-semibold text-paper hover:bg-ink/90 transition-colors dark:bg-paper dark:text-ink dark:hover:bg-paper/90"
+                        className="btn-primary btn-sm"
                       >
                         <Download className="w-3.5 h-3.5" />
                         Download for Windows
@@ -328,7 +325,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
                         href={editor.websiteHref}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink dark:text-paper hover:text-accent-deep dark:hover:text-blue-300 transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink dark:text-paper hover:text-fg-accent transition-colors"
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
                         {editor.websiteLabel}
@@ -344,10 +341,10 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
 
       {/* Sources and methodology */}
       <section id="sources" className="border-b border-line dark:border-line-dark">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 space-y-10">
+        <div className="container-site py-16 sm:py-20 space-y-10">
           <div className="space-y-2 max-w-2xl">
             <span className="text-xs font-mono font-semibold uppercase tracking-[0.2em] text-ink-mute dark:text-paper/55">
-              Sources &amp; methodology
+              Sources & methodology
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-ink dark:text-paper">
               Where every claim comes from
@@ -390,7 +387,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
               onClick={() => navigate('copyright')}
               className="underline hover:text-ink dark:hover:text-paper transition-colors"
             >
-              Copyright &amp; Trademarks
+              Copyright & Trademarks
             </button>
             .
           </p>
@@ -399,7 +396,7 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
 
       {/* Download CTA */}
       <section className="bg-paper-2/50 dark:bg-ink-900/40">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+        <div className="container-site py-16 sm:py-20">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
             <div className="space-y-3 max-w-xl">
               <span className="text-xs font-mono font-semibold uppercase tracking-[0.2em] text-ink-mute dark:text-paper/55">
@@ -409,8 +406,8 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
                 Write clearly. Write locally.
               </h2>
               <p className="text-sm text-ink-soft dark:text-paper/65 leading-relaxed">
-                If an offline, account-free editor for Windows fits your workflow, {PRODUCT_NAME} is free
-                to download — about 6 MB, no sign-up, and no telemetry.
+                If an offline editor for Windows fits your workflow, the {PRODUCT_NAME} Free plan is
+                available now — about 6 MB, no sign-up, and no telemetry. Pro is coming soon.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0">
@@ -419,16 +416,19 @@ export const ComparePage: React.FC<ComparePageProps> = ({ navigate }) => {
                   trackCta('compare_download', 'compare', 'Download for Windows');
                   navigate('download');
                 }}
-                className="inline-flex items-center gap-2 rounded-lg bg-ink px-6 py-2.5 text-sm font-semibold text-paper hover:bg-ink/90 transition-colors dark:bg-paper dark:text-ink dark:hover:bg-paper/90"
+                className="btn-primary btn-lg"
               >
                 <Download className="w-4 h-4" />
                 <span>Download for Windows</span>
               </button>
               <button
-                onClick={() => navigate('features')}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-line-strong px-6 py-2.5 text-sm font-semibold text-ink hover:border-ink transition-colors dark:border-line-dark dark:text-paper dark:hover:border-paper"
+                onClick={() => {
+                  trackCta('compare_pricing', 'compare', 'See plans and pricing');
+                  navigate('pricing');
+                }}
+                className="btn-secondary btn-lg"
               >
-                See all features
+                See plans & pricing
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>

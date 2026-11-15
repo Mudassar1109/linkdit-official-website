@@ -5,4 +5,4 @@ Allow: /
 Disallow: /admin
 Disallow: /admin/
 
-Sitemap: https://www.linkdit.online/sitemap.xml
+Sitemap: https://www.typodocs.online/sitemap.xml

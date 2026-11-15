@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PageId } from '../types';
 import { SCREENSHOTS, DOC_ARTICLES } from '../data/websiteData';
-import { Search, X, ArrowRight, FileText, Download, Image, BookOpen, Layers, Scale } from 'lucide-react';
+import { Search, X, ArrowRight, FileText, Download, Image, BookOpen, Layers, Scale, BadgeDollarSign } from 'lucide-react';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -30,6 +30,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({
       }
     };
     window.addEventListener('keydown', handleKeyDown);
+    if (isOpen) {
+      const prevOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+        document.body.style.overflow = prevOverflow;
+      };
+    }
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen]);
 
@@ -49,12 +57,13 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   );
 
   const pages: { id: PageId; title: string; desc: string; icon: React.ReactNode }[] = [
-    { id: 'products', title: 'The Product', desc: 'What Typodocs is', icon: <FileText className="w-4 h-4" /> },
-    { id: 'download', title: 'Download Typodocs', desc: 'Windows setup (.exe) — v0.1.2', icon: <Download className="w-4 h-4" /> },
+    { id: 'products', title: 'The Product', desc: 'What TypoDocs is', icon: <FileText className="w-4 h-4" /> },
+    { id: 'pricing', title: 'Pricing & Plans', desc: 'Free plan and planned Pro tools', icon: <BadgeDollarSign className="w-4 h-4" /> },
+    { id: 'download', title: 'Download TypoDocs', desc: 'Windows setup (.exe) — v0.1.2', icon: <Download className="w-4 h-4" /> },
     { id: 'screenshots', title: 'Interface Gallery', desc: 'Rendered previews of the workspace', icon: <Image className="w-4 h-4" /> },
     { id: 'docs', title: 'Documentation & Guides', desc: 'Quick start, Markdown, rich text, themes', icon: <BookOpen className="w-4 h-4" /> },
     { id: 'features', title: 'All Features', desc: 'Editing, files, themes, privacy', icon: <Layers className="w-4 h-4" /> },
-    { id: 'compare', title: 'Compare Editors', desc: 'Typodocs vs VS Code, Obsidian, Typora, MarkText, Zettlr', icon: <Scale className="w-4 h-4" /> },
+    { id: 'compare', title: 'Compare Editors', desc: 'TypoDocs vs VS Code, Obsidian, Typora, MarkText, Zettlr', icon: <Scale className="w-4 h-4" /> },
   ];
 
   const filteredPages = pages.filter(
@@ -63,12 +72,12 @@ export const SearchModal: React.FC<SearchModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-ink-950/70 dark:bg-black/70 backdrop-blur-sm flex items-start justify-center pt-16 sm:pt-24 px-4 font-sans"
+      className="fixed inset-0 z-50 bg-ink-950/70 dark:bg-black/70 backdrop-blur-sm flex items-start justify-center pt-16 sm:pt-24 px-4 font-sans animate-kd-fade-in"
       role="dialog"
       aria-modal="true"
       aria-label="Site search"
     >
-      <div className="w-full max-w-2xl bg-surface dark:bg-ink-850 shadow-2xl border border-line dark:border-line-dark overflow-hidden">
+      <div className="w-full max-w-2xl card-base shadow-card-elevated overflow-hidden animate-kd-scale-in">
         {/* Input */}
         <div className="p-4 border-b border-line dark:border-line-dark flex items-center gap-3">
           <Search className="w-5 h-5 text-ink-mute shrink-0" />
@@ -77,13 +86,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search pages, docs, interface views..."
+            aria-label="Search the site"
             className="w-full bg-transparent text-ink dark:text-paper placeholder:text-ink-mute dark:placeholder:text-paper/40 text-sm focus:outline-none font-medium"
             autoFocus
           />
           <button
             onClick={onClose}
             aria-label="Close search"
-            className="p-1 rounded-md text-ink-mute hover:text-ink dark:hover:text-paper"
+            className="p-1 rounded-md text-ink-mute hover:text-ink dark:hover:text-paper transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -104,10 +114,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                       navigate(p.id);
                       onClose();
                     }}
-                    className="w-full flex items-center justify-between p-2.5 rounded-md hover:bg-paper-2 dark:hover:bg-ink-850 transition-colors text-left group"
+                    className="w-full flex items-center justify-between p-2.5 rounded-control hover:bg-paper-2 dark:hover:bg-ink-800 transition-colors text-left group"
                   >
                     <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-md bg-paper-2 dark:bg-ink-850 text-accent-deep dark:text-blue-300">
+                      <div className="p-2 rounded-md bg-paper-2 dark:bg-ink-850 text-fg-accent">
                         {p.icon}
                       </div>
                       <div>
@@ -136,10 +146,10 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                       if (onSelectScreenshot) onSelectScreenshot(s.id);
                       onClose();
                     }}
-                    className="p-2.5 rounded-md border border-line dark:border-line-dark hover:border-accent bg-paper-2/40 dark:bg-ink-950/40 text-left transition-colors group"
+                    className="p-2.5 rounded-control border border-line dark:border-line-dark hover:border-accent bg-paper-2/40 dark:bg-ink-950/40 text-left transition-colors group"
                   >
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-accent-soft dark:bg-accent/15 text-accent-deep dark:text-blue-300">
+                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-accent-soft dark:bg-accent/15 text-fg-accent">
                         {s.id}
                       </span>
                       <span className="text-xs font-semibold text-ink dark:text-paper truncate">{s.title}</span>
@@ -163,13 +173,19 @@ export const SearchModal: React.FC<SearchModalProps> = ({
                       navigate('docs');
                       onClose();
                     }}
-                    className="w-full p-2.5 rounded-md hover:bg-paper-2 dark:hover:bg-ink-850 transition-colors text-left"
+                    className="w-full p-2.5 rounded-control hover:bg-paper-2 dark:hover:bg-ink-800 transition-colors text-left"
                   >
                     <h5 className="text-sm font-semibold text-ink dark:text-paper">{doc.title}</h5>
                     <p className="text-xs text-ink-mute dark:text-paper/50 line-clamp-1">{doc.description}</p>
                   </button>
                 ))}
               </div>
+            </div>
+          )}
+
+          {(filteredPages.length === 0 && filteredScreenshots.length === 0 && filteredDocs.length === 0) && (
+            <div className="text-center py-8 text-ink-soft dark:text-paper/60">
+              No results found for "{query}"
             </div>
           )}
         </div>

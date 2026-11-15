@@ -1,4 +1,4 @@
-import {
+﻿import {
   ScreenshotItem,
   FeatureCategory,
   DownloadOption,
@@ -6,7 +6,7 @@ import {
   ChangelogItem,
   FAQItem,
 } from '../types';
-import { CONTACT_EMAIL, CURRENT_VERSION, CURRENT_VERSION_LABEL, DOWNLOAD_FILENAME, DOWNLOAD_SHA256 } from '../config';
+import { CONTACT_EMAIL, CURRENT_VERSION, CURRENT_VERSION_LABEL, DOWNLOAD_FILENAME, DOWNLOAD_FILE_SIZE, DOWNLOAD_SHA256 } from '../config';
 
 export {
   DOMAIN_NAME,
@@ -21,6 +21,7 @@ export {
   DOWNLOAD_FILENAME,
   DOWNLOAD_FILE_SIZE,
   DOWNLOAD_SHA256,
+  DOWNLOAD_PATH,
 } from '../config';
 
 // Interface scenes rendered as in-app previews (the app ships no bundled
@@ -34,7 +35,7 @@ export const SCREENSHOTS: ScreenshotItem[] = [
     description: 'A frameless window with the document tab bar on top and the editor beneath. Open, edit, and save files that live on your own disk.',
     sceneTone: 'light',
     mockContent: {
-      title: 'Untitled — Typodocs',
+      title: 'Untitled — TypoDocs',
       subtext: 'A tabbed writing workspace with nothing between you and the text',
       details: ['Window Controls', 'Tab Bar', 'Editor Canvas'],
     },
@@ -57,11 +58,11 @@ export const SCREENSHOTS: ScreenshotItem[] = [
     filename: '02_RichText.png',
     title: 'Rich Text & Markdown',
     category: 'Editor',
-    description: 'Switch between Markdown source and rich text. Tables, task lists, highlights, links, and formatted headings for documents that need more than plain text.',
+    description: 'A formatted editing canvas for Markdown-style documents, with tables, task lists, highlights, links, and headings. TypoDocs uses a rich-text surface rather than a raw Markdown source view.',
     sceneTone: 'light',
     mockContent: {
       title: 'Formatting that stays out of the way',
-      subtext: 'Markdown source or WYSIWYG — your choice per document',
+      subtext: 'Formatted Markdown-style editing — not a raw source view',
       details: ['Tables', 'Task Lists', 'Heading Hierarchy'],
     },
   },
@@ -113,12 +114,12 @@ export const FEATURE_CATEGORIES: FeatureCategory[] = [
     description: 'A fast editor for plain text, Markdown, and rich-text documents.',
     iconName: 'FileText',
     features: [
-      { name: 'Capture & Share Your Notes', description: 'Capture the visible editor area or the entire document, preview it, save it as PNG, or copy it directly to your clipboard. Fully local — no AI, no cloud, no account.' },
+      { name: 'Capture & Share Your Notes', description: 'Capture the visible editor area, preview it, save it as a PNG, or copy it to your clipboard. Runs locally — no AI, cloud, or account.' },
       { name: 'Multiple Tabs', description: 'Keep many documents open at once and switch instantly between them. Unsaved tabs are clearly marked.' },
-      { name: 'Markdown & Plain Text', description: 'Write and edit standard .md and .txt files that stay on your machine in open formats.' },
+      { name: 'Markdown & Plain Text', description: 'Open and edit .md and .txt documents that stay on your machine in open formats.' },
       { name: 'Rich Text Workspace', description: 'A rich-text surface for headings, bold, emphasis, tables, task lists, quotes, links, and images.' },
       { name: 'Code & Config Files', description: 'Open .js, .ts, .py, .html, .css, .sql, .yaml, .json, and .log files and edit them as plain text alongside your documents.' },
-      { name: 'Search & Replace', description: 'Find text in the active document and replace it, with case-sensitive, whole-word, and regex options.' },
+      { name: 'Search & Replace', description: 'Basic find and replace in the active document with match navigation. Replace All is best used in plain-text documents.' },
       { name: 'Document Outline', description: 'A headings outline panel lets you jump around a long document without scrolling.' },
       { name: 'Undo & Redo', description: 'Rely on dependable undo/redo history while you draft, restructure, or experiment.' },
       { name: 'RTL & Multilingual Text', description: 'Layout prepared for right-to-left scripts such as Arabic and Urdu.' },
@@ -145,32 +146,30 @@ export const FEATURE_CATEGORIES: FeatureCategory[] = [
     features: [
       { name: 'Files & Recent', description: 'The sidebar lists recent documents so a draft you worked on yesterday is one click away.' },
       { name: 'Bookmarks & Pinned', description: 'Pin the files you use most, or bookmark a position inside a document, for instant access.' },
-      { name: 'File Explorer', description: 'A folder tree in the sidebar with drag-and-drop file organization.' },
       { name: 'Native Open / Save', description: 'Open and save through standard Windows file dialogs, so files live exactly where you put them.' },
-      { name: 'Find in Files', description: 'A sidebar search that scans open documents and saved files, with click-to-jump results.' },
       { name: 'Trash', description: 'Deleted documents go to a local Trash where you can restore them or empty it.' },
     ],
   },
   {
     id: 'control',
-    title: 'Control & Recovery',
-    description: 'Tooling so you never lose work and can keep sensitive documents private.',
+    title: 'Save & Recovery',
+    description: 'Local save tooling designed to keep work on disk.',
     iconName: 'FileText',
     features: [
-      { name: 'Version History', description: 'Per-document snapshots let you step back to an earlier draft at any time.' },
-      { name: 'Auto Backup', description: 'Automatic local backups on top of your saved files, with a recovery dialog after an unexpected shutdown.' },
-      { name: 'Document Lock', description: 'Lock a document behind a local password — no cloud, no account, nothing ever leaves your machine.' },
+      { name: 'Auto Save', description: 'Writes changes through the same save pipeline as manual Save after a configurable idle delay.' },
+      { name: 'Save Status', description: 'The status bar reports Saving, Saved, Auto-save failed, and Auto Save off.' },
+      { name: 'Recovery Workspace', description: 'Local recovery support after an unexpected shutdown, with no cloud or account dependency.' },
     ],
   },
   {
     id: 'themes',
     title: 'Themes',
-    description: 'Light and dark themes built to be easy on the eyes, period.',
+    description: 'Six themes and six accent colors for light and dark writing.',
     iconName: 'Palette',
     features: [
-      { name: 'Light & Dark', description: 'Two carefully balanced palettes — a warm paper light theme and a warm dark theme for evenings.' },
-      { name: 'Restrained Accents', description: 'A single blue accent (the Typodocs blue) used sparingly for focus and highlights.' },
-      { name: 'Consistent Canvas', description: 'Editor, tabs, sidebar, and status bar share one design language in both themes.' },
+      { name: 'Six Themes', description: 'Choose from six built-in themes, including warm light and dark palettes for long sessions.' },
+      { name: 'Six Accents', description: 'Pair a theme with one of six accent colors for focus and highlights.' },
+      { name: 'Consistent Canvas', description: 'Editor, tabs, sidebar, and status bar share one design language across themes.' },
     ],
   },
   {
@@ -188,11 +187,11 @@ export const FEATURE_CATEGORIES: FeatureCategory[] = [
   {
     id: 'privacy',
     title: 'Privacy & Ownership',
-    description: 'Your documents belong to you. Typodocs keeps them on your disk.',
+    description: 'Your documents belong to you. TypoDocs keeps them on your disk.',
     iconName: 'Shield',
     features: [
-      { name: 'Local Files Only', description: 'Documents are stored as plain files on your computer. There is no proprietary vault or lock-in.' },
-      { name: 'No Account, No Login', description: 'Install, open, and write — no sign-up, no password, no profile.' },
+      { name: 'Local Files Only', description: 'Documents are stored as files on your computer. There is no cloud vault or forced sync.' },
+      { name: 'Free Plan: No Account', description: 'Install, open, and write with no sign-up or profile. Pro will require an account only when it launches.' },
       { name: 'No Telemetry', description: 'The app contains no analytics, error trackers, or background usage reporting.' },
       { name: 'Open Formats', description: 'Plain text and Markdown files you can open with any other tool, now or years from now.' },
     ],
@@ -206,8 +205,8 @@ export const DOWNLOAD_OPTIONS: DownloadOption[] = [
     filename: DOWNLOAD_FILENAME,
     format: '.exe',
     version: CURRENT_VERSION_LABEL,
-    releaseDate: 'September 2026',
-    fileSize: '5.98 MB',
+    releaseDate: 'October 2026',
+    fileSize: DOWNLOAD_FILE_SIZE,
     sha256: DOWNLOAD_SHA256,
     requirements: 'Windows 10 / 11 (64-bit)',
     isAvailable: true,
@@ -217,18 +216,17 @@ export const DOWNLOAD_OPTIONS: DownloadOption[] = [
   },
   {
     id: 'msi',
-    title: 'Enterprise MSI (Legacy v1.0.0)',
-    filename: 'LinkDit-Pad.msi',
+    title: 'Enterprise MSI',
+    filename: 'Typodocs_0.1.2_x64_en-US.msi',
     format: '.msi',
-    version: 'v1.0.0',
-    releaseDate: 'July 2026',
-    fileSize: '2.81 MB',
-    sha256: '82ef2150d8edc0c21d85e9051223601d136567df26a7e946cbb8a1665cd8bfeb',
-    requirements: 'Windows 10/11 (64-bit)',
+    version: CURRENT_VERSION_LABEL,
+    releaseDate: 'October 2026',
+    fileSize: '6.80 MB',
+    sha256: 'F79E99E71B2E7AC71F9B222B42F06439985A8D6E65E877B7DDBB0487BB7713C2',
+    requirements: 'Windows 10 / 11 (64-bit)',
     isAvailable: true,
     type: 'Enterprise MSI',
-    tagline: 'A previous build of Typodocs for IT administrators who already deploy MSI packages.',
-    note: `Legacy release — it predates the current v${CURRENT_VERSION_LABEL} build. New installs should use the v${CURRENT_VERSION_LABEL} setup (.exe).`,
+    tagline: 'Windows Installer (MSI) package for system administrators and enterprise deployment.',
   },
   {
     id: 'legacy-setup',
@@ -242,7 +240,7 @@ export const DOWNLOAD_OPTIONS: DownloadOption[] = [
     requirements: 'Windows 10/11 (64-bit)',
     isAvailable: true,
     type: 'Installer',
-    tagline: 'The earlier Typodocs setup wizard, kept for anyone who needs to reinstall the previous build.',
+    tagline: 'The earlier setup wizard, kept for anyone who needs to reinstall the previous build.',
     note: `Legacy release — it predates the current v${CURRENT_VERSION_LABEL} build. New installs should use the v${CURRENT_VERSION_LABEL} setup (.exe).`,
   },
   {
@@ -272,7 +270,7 @@ export const DOWNLOAD_OPTIONS: DownloadOption[] = [
     requirements: 'Windows 10/11 (64-bit)',
     isAvailable: false,
     type: 'Portable',
-    tagline: 'A no-install ZIP build for running Typodocs from a USB drive.',
+    tagline: 'A no-install ZIP build for running TypoDocs from a USB drive.',
     note: 'Portable builds are planned for a future release and not yet published.',
   },
 ];
@@ -287,11 +285,11 @@ export const DOC_ARTICLES: DocArticle[] = [
     lastUpdated: '2026-07',
     readTime: '3 min read',
     content: `
-# Getting Started with Typodocs
+# Getting Started with TypoDocs
 
-Typodocs is a desktop editor for Windows that keeps words on your disk and
-nothing else. There is no account, no cloud, and nothing running in the
-background.
+TypoDocs is a desktop editor for Windows that keeps words on your disk and
+nothing else. The Free plan needs no account, uses no cloud storage, and runs
+nothing in the background.
 
 ## The workspace
 
@@ -304,7 +302,7 @@ background.
 
 ## Write your first document
 
-1. Open Typodocs.
+1. Open TypoDocs.
 2. Start typing — a new tab is ready immediately.
 3. Use the status bar to follow your word count as you go.
 
@@ -319,28 +317,30 @@ with plain \`.md\` and \`.txt\` files that live wherever you keep them.
     categoryId: 'editing',
     categoryName: 'Editing & Formatting',
     title: 'Markdown & Plain Text',
-    description: 'Write Markdown source directly, or switch a document to rich text.',
-    lastUpdated: '2026-07',
+    description: 'Use the formatted editor for Markdown-style documents, or keep a file as plain text.',
+    lastUpdated: '2026-10',
     readTime: '4 min read',
     content: `
-# Writing Markdown in Typodocs
+# Markdown-Style Editing in TypoDocs
 
-Markdown is the native language of Typodocs. You can type it directly as
-source, or switch a document to rich text and let the toolbar format for you.
+TypoDocs uses a formatted editing canvas rather than a raw Markdown source
+view. You apply formatting with the toolbar or keyboard shortcuts, and the
+document is edited as rendered text.
 
-## Common syntax
+## Formatting you can apply
 
-- **Bold** \\*\\*text\\*\\* and *italic* \\*text\\*
-- ## Headings from level 1 to 6
-- \\- List items and \\- [ ] checkbox task lists
-- \\| Tables \\| with \\| columns \\|
-- \\> Block quotes, and \\\`code\\\` inline
-- Links \\[text\\](https://example.com) and images
+- **Bold** and *italic* text.
+- Headings from level 1 to 6.
+- Bulleted and numbered lists, including checkbox task lists.
+- Tables with editable cells.
+- Block quotes and inline code.
+- Links and images.
 
 ## Plain text
 
-Typodocs opens \`.txt\` files as-is. What you type is what is saved — no
-hidden formatting, no surprise encoding changes.
+TypoDocs opens \`.txt\` files as-is. What you type is what is saved — no
+hidden formatting, no surprise encoding changes. If you need to read or edit
+raw Markdown source line by line, use a source-code editor.
     `,
   },
   {
@@ -377,21 +377,17 @@ Each document remembers its own mode.
     categoryId: 'customization',
     categoryName: 'Themes & Customization',
     title: 'Light & Dark Themes',
-    description: 'Switch between the warm light and dark palettes in Settings.',
-    lastUpdated: '2026-07',
+    description: 'Choose from six themes and six accent colors in Settings.',
+    lastUpdated: '2026-10',
     readTime: '2 min read',
     content: `
-# Light & Dark Themes
+# Themes and Accents
 
-Typodocs ships with two themes built around the same layout:
+TypoDocs ships with six themes and six accent colors built around the same
+layout, including light and dark palettes for daytime and evening writing.
 
-1. **Paper (light)** — a warm off-white canvas with near-black text, tuned for
-   daytime writing.
-2. **Evening (dark)** — a warm near-black canvas with soft text and a single
-   restrained accent.
-
-Both are designed to be easy on the eyes during long sessions. Switch them
-anywhere from **Settings** in the sidebar.
+Both the theme and the accent are designed to be easy on the eyes during long
+sessions. Switch them anywhere from **Settings** in the sidebar.
     `,
   },
 ];
@@ -401,7 +397,7 @@ export const CHANGELOG_ITEMS: ChangelogItem[] = [
     version: CURRENT_VERSION,
     date: 'September 2026',
     title: 'Current release',
-    summary: `The current release of Typodocs: a rebuilt, offline-first Markdown and rich-text editor for Windows 10 and 11, with dependable Auto Save that writes through the real document save pipeline. Version numbering restarted from 0.1 when the product line was rebuilt on a new codebase.`,
+    summary: `The current release of TypoDocs: a rebuilt, offline-first Markdown and rich-text editor for Windows 10 and 11, with dependable Auto Save that writes through the real document save pipeline. Some advanced tools in this build are planned for the Pro plan when it launches. Version numbering restarted from 0.1 when the product line was rebuilt on a new codebase.`,
     badge: 'Current',
     status: 'current',
     highlights: [
@@ -439,31 +435,26 @@ export const CHANGELOG_ITEMS: ChangelogItem[] = [
     version: '0.1.1',
     date: 'September 2026',
     title: 'Previous release',
-    summary: `The previous release of Typodocs: the rebuilt, offline-first Markdown and rich-text editor for Windows 10 and 11. Version numbering restarted from 0.1 when the product line was rebuilt on a new codebase.`,
+    summary: `The previous release of TypoDocs: the rebuilt, offline-first Markdown and rich-text editor for Windows 10 and 11. Version numbering restarted from 0.1 when the product line was rebuilt on a new codebase.`,
     badge: 'Previous',
     status: 'previous',
     highlights: [
       'Multi-tab editor with dirty-state indicators',
       'Markdown / plain text and rich text (tables, task lists, highlights, links)',
       'Sidebar with files, recent, bookmarks, search, and settings',
-      'Search & replace, version history, trash, document lock, and auto backup',
-      'Local files only — no account, no telemetry, no cloud',
+      'Search & replace and local Trash',
+      'Local files only — Free plan needs no account; no telemetry, no cloud',
     ],
     featuresAdded: [
       'Tabbed document workspace with dirty-state indicators',
       'Per-document switching between Markdown / plain text and rich text',
-      'Search & replace with case-sensitive, whole-word, and regex options',
-      'Find-in-files search from the sidebar with jump-to-match results',
-      'Version history with per-document snapshots and restore',
+      'Basic search and replace in the active document',
       'Local Trash with restore and empty actions',
-      'File Explorer with drag-and-drop organization',
       'Document outline panel',
-      'Document lock (local password, no cloud)',
-      'Auto backup with a recovery dialog',
       'Command palette for keyboard-first actions',
       'Bookmarks and pinned documents in the sidebar',
       'Live word and character counts in the status bar',
-      'Warm light and dark themes',
+      'Light and dark themes',
       'SQLite-backed local index for documents and recent files',
       'RTL (Arabic / Urdu) layout readiness',
     ],
@@ -476,11 +467,11 @@ export const CHANGELOG_ITEMS: ChangelogItem[] = [
     version: '1.0.0',
     date: 'July 22, 2026',
     title: 'Legacy release',
-    summary: 'An earlier release of Typodocs built on the previous codebase. It is superseded by the rebuilt v' + CURRENT_VERSION_LABEL + '.',
+    summary: 'An earlier release of TypoDocs built on the previous codebase. It is superseded by the rebuilt v' + CURRENT_VERSION_LABEL + '.',
     badge: 'Legacy',
     status: 'legacy',
     highlights: [
-      'Belongs to the previous Typodocs codebase',
+      'Belongs to the previous TypoDocs codebase',
       'Superseded by the current v' + CURRENT_VERSION_LABEL + ' release',
     ],
     featuresAdded: [],
@@ -491,7 +482,7 @@ export const CHANGELOG_ITEMS: ChangelogItem[] = [
     version: '0.9.5',
     date: 'June 15, 2026',
     title: 'Legacy beta',
-    summary: 'A beta of the original Typodocs concept. Superseded by the current v' + CURRENT_VERSION_LABEL + ' release.',
+    summary: 'A beta of the original TypoDocs concept. Superseded by the current v' + CURRENT_VERSION_LABEL + ' release.',
     badge: 'Legacy',
     status: 'legacy',
     highlights: [
@@ -507,33 +498,38 @@ export const CHANGELOG_ITEMS: ChangelogItem[] = [
 export const FAQS: FAQItem[] = [
   {
     category: 'General',
-    question: 'What is Typodocs?',
-    answer: 'Typodocs is a desktop Markdown and rich-text editor for Windows 10 and 11. It is tabbed, fast, works fully offline, and keeps every document as a normal file on your own computer.',
+    question: 'What is TypoDocs?',
+    answer: 'TypoDocs is a desktop Markdown and rich-text editor for Windows 10 and 11. It is tabbed, fast, works fully offline, and keeps every document as a normal file on your own computer.',
   },
   {
     category: 'Privacy',
-    question: 'Does Typodocs track or log my writing?',
-    answer: 'No. Typodocs has no analytics, no error trackers, and no background usage reporting. Documents are stored as plain files on your local drive and are never uploaded.',
+    question: 'Does TypoDocs track or log my writing?',
+    answer: 'No. The desktop application has no analytics, no error trackers, and no background usage reporting. Documents are stored as files on your local drive and are never uploaded.',
   },
   {
     category: 'Licensing',
-    question: 'Is Typodocs free to use?',
-    answer: 'Yes. Typodocs is free to download and use for personal, academic, and commercial purposes. There is no paid tier and no account to create.',
+    question: 'Is TypoDocs free to use?',
+    answer: 'The Free plan is free to download and use for personal, academic, and commercial writing. It requires no account. A Pro plan is planned at $5.99/month or $47.99/year, but no checkout or payment is available yet.',
+  },
+  {
+    category: 'Licensing',
+    question: 'Is there a Pro plan?',
+    answer: 'Pro is planned but not available to buy. It will add advanced Print & PDF tools, imported fonts, image tools, and Pro updates while subscribed. The Free plan remains available. See the Pricing page for the full comparison and launch status.',
   },
   {
     category: 'Installation',
-    question: 'Does Typodocs need an internet connection?',
-    answer: 'No. Install it once, and it runs entirely offline. There is no cloud dependency, no login, and nothing waiting for a connection.',
+    question: 'Does TypoDocs need an internet connection?',
+    answer: 'No. Install it once, and it runs entirely offline. There is no cloud dependency, no login for the Free plan, and nothing waiting for a connection.',
   },
   {
     category: 'Installation',
     question: 'Which installer should I choose?',
-    answer: `Use the current Windows Setup (.exe), v${CURRENT_VERSION_LABEL}, for everyone. The legacy links — the MSI (v1.0.0) and the older Setup.exe (v1.0.0) — are kept for IT administrators who already deploy those files; both predate the current v${CURRENT_VERSION_LABEL} build, and new installs should use the v${CURRENT_VERSION_LABEL} setup. A Microsoft Store-style MSIX package is not published yet.`,
+    answer: `Use the current Windows Setup (.exe), v${CURRENT_VERSION_LABEL}, for everyone. The current Enterprise MSI is also v${CURRENT_VERSION_LABEL}. The older Setup.exe is a v1.0.0 legacy build kept for reinstallation only. New installs should use the current setup. A Microsoft Store-style MSIX package is not published yet.`,
   },
   {
     category: 'Features',
     question: 'Can I write both Markdown and rich text?',
-    answer: 'Yes. Each document can run in Markdown/plain-text mode or rich-text mode — with headings, tables, task lists, highlights, links, and images — and you can switch per document.',
+    answer: 'Yes. Each document can run in a plain-text mode or a formatted rich-text mode, with headings, tables, task lists, highlights, links, and images. The formatted editor is not a raw Markdown source view.',
   },
   {
     category: 'General',

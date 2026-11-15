@@ -83,6 +83,9 @@ Order matters: `0001_core` defines the helper functions the later files use.
 | `0005_functions.sql` | All `admin_*` RPCs and the public `public_published_content`/`public_site_settings`. |
 | `0006_storage.sql` | Creates the `cms-media` bucket with admin-only write policies. |
 | `0007_seed.sql` | Settings registry + content baselines (as drafts). **Blog is intentionally not seeded.** |
+| `0008_fixes.sql` | Additive correctness fixes (site-relative installer URLs, owner deactivation guard). |
+| `0009_rebrand_typodocs.sql` | Source-controlled rebrand defaults (LinkDit Pad → Typodocs). |
+| `0010_domain_migration.sql` | Domain migration defaults (`linkdit.online` → `typodocs.online`). |
 
 ### 3.3 Create the first Owner
 
@@ -117,7 +120,7 @@ Preview) environments, then redeploy. Only the **anon** key belongs here.
 
 ## 4. Accessing the console
 
-- URL: `https://www.linkdit.online/admin`
+- URL: `https://typodocs.online/admin`
 - `/admin` and `/admin/*` are `noindex` (meta at runtime **and**
   `X-Robots-Tag` header on Vercel) and disallowed in `robots.txt`.
 - The admin bundle is code-split: the Supabase client is **only** downloaded by

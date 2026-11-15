@@ -1,7 +1,7 @@
 {
-  "name": "Typodocs",
-  "short_name": "Typodocs",
-  "description": "A fast, offline-first Markdown and rich-text editor for Windows. Multi-tab editing, live word counts, local files only — no account, no telemetry.",
+  "name": "TypoDocs",
+  "short_name": "TypoDocs",
+  "description": "A fast, offline-first Markdown and rich-text editor for Windows. Free plan available, Pro coming soon. Local files only, no telemetry.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -9,41 +9,41 @@
   "theme_color": "#faf9f6",
   "icons": [
     {
-      "src": "/favicon-32x32.png?v=20261020",
+      "src": "/favicon-32x32.png?v=20261025",
       "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "/favicon-48x48.png?v=20261020",
+      "src": "/favicon-48x48.png?v=20261025",
       "sizes": "48x48",
       "type": "image/png"
     },
     {
-      "src": "/icon-128.png?v=20261020",
+      "src": "/icon-128.png?v=20261025",
       "sizes": "128x128",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icon-192.png?v=20261020",
+      "src": "/icon-192.png?v=20261025",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icon-256.png?v=20261020",
+      "src": "/icon-256.png?v=20261025",
       "sizes": "256x256",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icon-512.png?v=20261020",
+      "src": "/icon-512.png?v=20261025",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/app-icon-1024.png?v=20261020",
+      "src": "/app-icon-1024.png?v=20261025",
       "sizes": "1024x1024",
       "type": "image/png",
       "purpose": "any maskable"

@@ -286,7 +286,7 @@ async function main() {
   await test('reject plain http', async () => {
     await expectError(
       () => asUser(U.admin, () => q('select public.admin_save_release($1::jsonb)', [JSON.stringify({
-        version: '0.0.8', installer_url: 'http://www.linkdit.online/x.exe', sha256: SHA, format: '.exe',
+        version: '0.0.8', installer_url: 'http://www.typodocs.online/x.exe', sha256: SHA, format: '.exe',
       })])),
       'approved host');
   });

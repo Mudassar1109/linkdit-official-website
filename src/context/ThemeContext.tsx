@@ -14,10 +14,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const [theme, setThemeState] = useState<Theme>(() => {
     const saved = localStorage.getItem('linkdit-theme') as Theme;
     if (saved === 'light' || saved === 'dark') return saved;
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
-    return 'light'; // Default modern white theme per request
+    return 'dark'; // Aurora navy is the primary identity
   });
 
   useEffect(() => {

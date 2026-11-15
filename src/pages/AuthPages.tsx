@@ -18,75 +18,9 @@ interface AuthPageProps {
 }
 
 const inputClass =
-  'w-full rounded-lg border border-line bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-ink-mute/70 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 dark:border-line-dark dark:bg-ink-900 dark:text-paper dark:placeholder:text-paper/35';
+  'w-full input-base input-focus input-with-icon';
 
-const labelClass = 'block text-xs font-semibold uppercase tracking-wide text-ink-mute dark:text-paper/55';
-const primaryButton =
-  'inline-flex w-full items-center justify-center gap-2 rounded-lg bg-ink px-5 py-3 text-sm font-semibold text-paper transition-colors hover:bg-ink/90 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-paper dark:text-ink dark:hover:bg-paper/90';
-const secondaryButton =
-  'inline-flex items-center justify-center gap-2 rounded-lg border border-line-strong px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-ink dark:border-line-dark dark:text-paper dark:hover:border-paper';
-const oauthButton =
-  'inline-flex w-full items-center justify-center gap-2 rounded-lg border border-line-strong px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-ink hover:bg-paper-2/70 disabled:cursor-not-allowed disabled:opacity-60 dark:border-line-dark dark:text-paper dark:hover:border-paper dark:hover:bg-ink-900/70';
-
-const AuthShell: React.FC<{
-  eyebrow: string;
-  title: string;
-  subtitle: string;
-  children: React.ReactNode;
-  footer?: React.ReactNode;
-}> = ({ eyebrow, title, subtitle, children, footer }) => (
-  <div className="font-sans">
-    <div className="mx-auto flex max-w-md flex-col px-4 py-14 sm:py-20">
-      <div className="rounded-card border border-line bg-surface p-6 shadow-card dark:border-line-dark dark:bg-ink-850 sm:p-8">
-        <div className="mb-6 space-y-2">
-          <span className="text-xs font-mono font-semibold uppercase tracking-[0.2em] text-ink-mute dark:text-paper/55">
-            {eyebrow}
-          </span>
-          <h1 className="text-2xl font-bold tracking-tight text-ink dark:text-paper">{title}</h1>
-          <p className="text-sm leading-relaxed text-ink-soft dark:text-paper/65">{subtitle}</p>
-        </div>
-        {children}
-      </div>
-      {footer && <div className="mt-5 text-center text-xs text-ink-soft dark:text-paper/60">{footer}</div>}
-      <p className="mt-6 text-center text-[11px] leading-relaxed text-ink-mute dark:text-paper/45">
-        Free plan needs no account. Signing in is only required for Pro subscription and billing
-        management. {PRODUCT_NAME} never stores your documents in the cloud.
-      </p>
-    </div>
-  </div>
-);
-
-const NotConfiguredNotice: React.FC = () => (
-  <div className="rounded-lg border border-amber-500/30 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-400/30 dark:bg-amber-400/10 dark:text-amber-200">
-    Accounts are not configured on this deployment yet. Set the Supabase public environment
-    variables. No sign-in, payment, or subscription can occur until then.
-  </div>
-);
-
-const FormMessage: React.FC<{ tone: 'error' | 'success' | 'info'; children: React.ReactNode }> = ({
-  tone,
-  children,
-}) => {
-  const styles =
-    tone === 'error'
-      ? 'border-danger/30 bg-danger/5 text-danger'
-      : tone === 'success'
-        ? 'border-emerald-600/30 bg-emerald-600/5 text-emerald-800 dark:text-emerald-300'
-        : 'border-line bg-paper-2/60 text-ink-soft dark:border-line-dark dark:bg-ink-900 dark:text-paper/65';
-  const Icon = tone === 'error' ? AlertCircle : CheckCircle2;
-  return (
-    <div className={`flex items-start gap-2 rounded-lg border p-3 text-xs leading-relaxed ${styles}`} role={tone === 'error' ? 'alert' : 'status'}>
-      <Icon className="mt-0.5 h-4 w-4 shrink-0" />
-      <div>{children}</div>
-    </div>
-  );
-};
-
-const Spinner: React.FC = () => <Loader2 className="h-4 w-4 animate-spin" />;
-
-function isEmail(value: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
-}
+const labelClass = 'label-base';
 
 const GoogleIcon = () => (
   <svg className="h-4 w-4" viewBox="0 0 24 24" aria-hidden="true">
@@ -108,6 +42,65 @@ const GoogleIcon = () => (
     />
   </svg>
 );
+
+const AuthShell: React.FC<{
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  children: React.ReactNode;
+  footer?: React.ReactNode;
+}> = ({ eyebrow, title, subtitle, children, footer }) => (
+  <div className="font-sans">
+    <div className="relative mx-auto flex max-w-md flex-col px-4 py-14 sm:py-20">
+      {/* Quiet violet glow behind the auth card */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-8 -z-10 h-72 w-[36rem] max-w-none -translate-x-1/2 rounded-full bg-violet-500/15 blur-3xl"
+      />
+      <div className="card-base card-elevated relative overflow-hidden p-6 sm:p-8">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-1.5 gradient-violet"
+        />
+        <div className="mb-6 space-y-2">
+          <span className="eyebrow text-fg-accent">
+            {eyebrow}
+          </span>
+          <h1 className="font-display text-2xl font-bold tracking-[-0.02em] text-ink dark:text-paper">{title}</h1>
+          <p className="text-sm leading-relaxed text-ink-soft dark:text-paper/65">{subtitle}</p>
+        </div>
+        {children}
+      </div>
+      {footer && <div className="mt-5 text-center text-xs text-ink-soft dark:text-paper/60">{footer}</div>}
+      <p className="mt-6 text-center text-[11px] leading-relaxed text-ink-mute dark:text-paper/45">
+        Free plan needs no account. Signing in is only required for Pro subscription and billing
+        management. {PRODUCT_NAME} never stores your documents in the cloud.
+      </p>
+    </div>
+  </div>
+);
+
+const NotConfiguredNotice: React.FC = () => (
+  <div className="callout-warning mb-4">
+    Accounts are not configured on this deployment yet. Set the Supabase public environment
+    variables. No sign-in, payment, or subscription can occur until then.
+  </div>
+);
+
+const FormMessage: React.FC<{ tone: 'error' | 'success' | 'info'; children: React.ReactNode }> = ({
+  tone,
+  children,
+}) => {
+  if (tone === 'error') return <div className="form-message-error">{children}</div>;
+  if (tone === 'success') return <div className="form-message-success">{children}</div>;
+  return <div className="form-message-info">{children}</div>;
+};
+
+const Spinner: React.FC = () => <Loader2 className="h-4 w-4 animate-spin" />;
+
+function isEmail(value: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+}
 
 export const SignInPage: React.FC<AuthPageProps> = ({ navigate }) => {
   const { configured, user, signIn, signInWithGoogle, signInWithGithub } = useAuth();
@@ -157,10 +150,10 @@ export const SignInPage: React.FC<AuthPageProps> = ({ navigate }) => {
     return (
       <AuthShell eyebrow="Account" title="You are signed in" subtitle="Manage your profile, plan and billing.">
         <div className="space-y-3">
-          <button type="button" onClick={() => navigate('account')} className={primaryButton}>
+          <button type="button" onClick={() => navigate('account')} className="btn-primary w-full">
             Open account <ArrowRight className="h-4 w-4" />
           </button>
-          <button type="button" onClick={() => navigate('billing')} className={secondaryButton + ' w-full'}>
+          <button type="button" onClick={() => navigate('billing')} className="btn-secondary w-full">
             Billing & subscription
           </button>
         </div>
@@ -176,7 +169,7 @@ export const SignInPage: React.FC<AuthPageProps> = ({ navigate }) => {
       footer={
         <>
           New here?{' '}
-          <button type="button" onClick={() => navigate('sign-up')} className="font-semibold text-accent-deep hover:underline dark:text-blue-300">
+          <button type="button" onClick={() => navigate('sign-up')} className="font-semibold text-fg-accent hover:underline">
             Create an account
           </button>
         </>
@@ -185,18 +178,18 @@ export const SignInPage: React.FC<AuthPageProps> = ({ navigate }) => {
       <div className="space-y-4">
         {error && <FormMessage tone="error">{error}</FormMessage>}
         <div className="grid gap-2 sm:grid-cols-2">
-          <button type="button" disabled={oauthSubmitting !== null} onClick={handleGoogle} className={oauthButton}>
+          <button type="button" disabled={oauthSubmitting !== null} onClick={handleGoogle} className="btn-secondary w-full">
             {oauthSubmitting === 'google' ? <Spinner /> : <GoogleIcon />}
             Continue with Google
           </button>
-          <button type="button" disabled={oauthSubmitting !== null} onClick={handleGithub} className={oauthButton}>
+          <button type="button" disabled={oauthSubmitting !== null} onClick={handleGithub} className="btn-secondary w-full">
             {oauthSubmitting === 'github' ? <Spinner /> : <Github className="h-4 w-4" />}
             Continue with GitHub
           </button>
         </div>
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-line dark:border-line-dark" />
+            <div className="w-full divider" />
           </div>
           <div className="relative flex justify-center text-xs">
             <span className="bg-surface px-2 text-ink-mute dark:bg-ink-850 dark:text-paper/50">or</span>
@@ -213,7 +206,7 @@ export const SignInPage: React.FC<AuthPageProps> = ({ navigate }) => {
                 autoComplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={inputClass + ' pl-9'}
+                className={inputClass}
                 placeholder="you@example.com"
                 required
               />
@@ -225,7 +218,7 @@ export const SignInPage: React.FC<AuthPageProps> = ({ navigate }) => {
               <button
                 type="button"
                 onClick={() => navigate('forgot-password')}
-                className="text-[11px] font-semibold text-accent-deep hover:underline dark:text-blue-300"
+                className="text-[11px] font-semibold text-fg-accent hover:underline"
               >
                 Forgot password?
               </button>
@@ -238,12 +231,12 @@ export const SignInPage: React.FC<AuthPageProps> = ({ navigate }) => {
                 autoComplete="current-password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className={inputClass + ' pl-9'}
+                className={inputClass}
                 required
               />
             </div>
           </div>
-          <button type="submit" disabled={submitting || oauthSubmitting !== null} className={primaryButton}>
+          <button type="submit" disabled={submitting || oauthSubmitting !== null} className="btn-primary btn-lg">
             {submitting ? <Spinner /> : null}
             {submitting ? 'Signing in…' : 'Sign in with email'}
           </button>
@@ -320,10 +313,10 @@ export const SignUpPage: React.FC<AuthPageProps> = ({ navigate }) => {
             The link expires. If it does not arrive, check spam or resend it from the verification
             page.
           </FormMessage>
-          <button type="button" onClick={() => navigate('verify-email')} className={primaryButton}>
+          <button type="button" onClick={() => navigate('verify-email')} className="btn-primary btn-lg w-full">
             Verification help <ArrowRight className="h-4 w-4" />
           </button>
-          <button type="button" onClick={() => navigate('sign-in')} className={secondaryButton + ' w-full'}>
+          <button type="button" onClick={() => navigate('sign-in')} className="btn-secondary w-full">
             Back to sign in
           </button>
         </div>
@@ -339,7 +332,7 @@ export const SignUpPage: React.FC<AuthPageProps> = ({ navigate }) => {
       footer={
         <>
           Already have an account?{' '}
-          <button type="button" onClick={() => navigate('sign-in')} className="font-semibold text-accent-deep hover:underline dark:text-blue-300">
+          <button type="button" onClick={() => navigate('sign-in')} className="font-semibold text-fg-accent hover:underline">
             Sign in
           </button>
         </>
@@ -348,18 +341,18 @@ export const SignUpPage: React.FC<AuthPageProps> = ({ navigate }) => {
       <div className="space-y-4">
         {error && <FormMessage tone="error">{error}</FormMessage>}
         <div className="grid gap-2 sm:grid-cols-2">
-          <button type="button" disabled={oauthSubmitting !== null} onClick={handleGoogle} className={oauthButton}>
+          <button type="button" disabled={oauthSubmitting !== null} onClick={handleGoogle} className="btn-secondary w-full">
             {oauthSubmitting === 'google' ? <Spinner /> : <GoogleIcon />}
             Sign up with Google
           </button>
-          <button type="button" disabled={oauthSubmitting !== null} onClick={handleGithub} className={oauthButton}>
+          <button type="button" disabled={oauthSubmitting !== null} onClick={handleGithub} className="btn-secondary w-full">
             {oauthSubmitting === 'github' ? <Spinner /> : <Github className="h-4 w-4" />}
             Sign up with GitHub
           </button>
         </div>
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-line dark:border-line-dark" />
+            <div className="w-full divider" />
           </div>
           <div className="relative flex justify-center text-xs">
             <span className="bg-surface px-2 text-ink-mute dark:bg-ink-850 dark:text-paper/50">or</span>
@@ -377,7 +370,7 @@ export const SignUpPage: React.FC<AuthPageProps> = ({ navigate }) => {
                 maxLength={80}
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
-                className={inputClass + ' pl-9'}
+                className={inputClass}
                 placeholder="Your name"
               />
             </div>
@@ -392,7 +385,7 @@ export const SignUpPage: React.FC<AuthPageProps> = ({ navigate }) => {
                 autoComplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={inputClass + ' pl-9'}
+                className={inputClass}
                 placeholder="you@example.com"
                 required
               />
@@ -406,7 +399,7 @@ export const SignUpPage: React.FC<AuthPageProps> = ({ navigate }) => {
               autoComplete="new-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className={inputClass}
+              className={inputClass.replace('input-with-icon', '')}
               required
             />
             <p className="text-[11px] text-ink-mute dark:text-paper/45">
@@ -421,11 +414,11 @@ export const SignUpPage: React.FC<AuthPageProps> = ({ navigate }) => {
               autoComplete="new-password"
               value={confirm}
               onChange={(e) => setConfirm(e.target.value)}
-              className={inputClass}
+              className={inputClass.replace('input-with-icon', '')}
               required
             />
           </div>
-          <button type="submit" disabled={submitting || oauthSubmitting !== null} className={primaryButton}>
+          <button type="submit" disabled={submitting || oauthSubmitting !== null} className="btn-primary btn-lg">
             {submitting ? <Spinner /> : null}
             {submitting ? 'Creating account…' : 'Create account with email'}
           </button>
@@ -467,7 +460,7 @@ export const ForgotPasswordPage: React.FC<AuthPageProps> = ({ navigate }) => {
       title="Reset password"
       subtitle="If an account exists for that address, we will send a secure reset link."
       footer={
-        <button type="button" onClick={() => navigate('sign-in')} className="font-semibold text-accent-deep hover:underline dark:text-blue-300">
+        <button type="button" onClick={() => navigate('sign-in')} className="font-semibold text-fg-accent hover:underline">
           Back to sign in
         </button>
       }
@@ -490,13 +483,13 @@ export const ForgotPasswordPage: React.FC<AuthPageProps> = ({ navigate }) => {
                 autoComplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className={inputClass + ' pl-9'}
+                className={inputClass}
                 placeholder="you@example.com"
                 required
               />
             </div>
           </div>
-          <button type="submit" disabled={submitting} className={primaryButton}>
+          <button type="submit" disabled={submitting} className="btn-primary btn-lg">
             {submitting ? <Spinner /> : null}
             {submitting ? 'Sending…' : 'Send reset link'}
           </button>
@@ -553,7 +546,7 @@ export const ResetPasswordPage: React.FC<AuthPageProps> = ({ navigate }) => {
             await signOut();
             navigate('sign-in');
           }}
-          className={primaryButton}
+          className="btn-primary btn-lg w-full"
         >
           Continue to sign in <ArrowRight className="h-4 w-4" />
         </button>
@@ -568,7 +561,7 @@ export const ResetPasswordPage: React.FC<AuthPageProps> = ({ navigate }) => {
           <FormMessage tone="error">
             Request a new reset link. For your security, reset links can only be used once.
           </FormMessage>
-          <button type="button" onClick={() => navigate('forgot-password')} className={primaryButton}>
+          <button type="button" onClick={() => navigate('forgot-password')} className="btn-primary btn-lg w-full">
             Request a new link
           </button>
         </div>
@@ -588,7 +581,7 @@ export const ResetPasswordPage: React.FC<AuthPageProps> = ({ navigate }) => {
             autoComplete="new-password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className={inputClass}
+            className={inputClass.replace('input-with-icon', '')}
             required
           />
           <p className="text-[11px] text-ink-mute dark:text-paper/45">At least 12 characters.</p>
@@ -601,11 +594,11 @@ export const ResetPasswordPage: React.FC<AuthPageProps> = ({ navigate }) => {
             autoComplete="new-password"
             value={confirm}
             onChange={(e) => setConfirm(e.target.value)}
-            className={inputClass}
+            className={inputClass.replace('input-with-icon', '')}
             required
           />
         </div>
-        <button type="submit" disabled={submitting} className={primaryButton}>
+        <button type="submit" disabled={submitting} className="btn-primary btn-lg">
           {submitting ? <Spinner /> : null}
           {submitting ? 'Updating…' : 'Update password'}
         </button>
@@ -621,8 +614,6 @@ export const VerifyEmailPage: React.FC<AuthPageProps> = ({ navigate }) => {
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  const verified = Boolean(user?.email_confirmed_at);
-
   const submit = async (event: React.FormEvent) => {
     event.preventDefault();
     setError(null);
@@ -635,6 +626,8 @@ export const VerifyEmailPage: React.FC<AuthPageProps> = ({ navigate }) => {
     setMessage('If the account is pending verification, a new email has been sent.');
   };
 
+  const verified = Boolean(user?.email_confirmed_at);
+
   return (
     <AuthShell
       eyebrow="Account"
@@ -645,7 +638,7 @@ export const VerifyEmailPage: React.FC<AuthPageProps> = ({ navigate }) => {
           : 'Email verification is required before you can sign in.'
       }
       footer={
-        <button type="button" onClick={() => navigate('sign-in')} className="font-semibold text-accent-deep hover:underline dark:text-blue-300">
+        <button type="button" onClick={() => navigate('sign-in')} className="font-semibold text-fg-accent hover:underline">
           Back to sign in
         </button>
       }
@@ -659,7 +652,7 @@ export const VerifyEmailPage: React.FC<AuthPageProps> = ({ navigate }) => {
       ) : verified ? (
         <div className="space-y-3">
           <FormMessage tone="success">Verification complete.</FormMessage>
-          <button type="button" onClick={() => navigate('account')} className={primaryButton}>
+          <button type="button" onClick={() => navigate('account')} className="btn-primary btn-lg w-full">
             Open account <ArrowRight className="h-4 w-4" />
           </button>
         </div>
@@ -678,12 +671,12 @@ export const VerifyEmailPage: React.FC<AuthPageProps> = ({ navigate }) => {
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className={inputClass}
+              className={inputClass.replace('input-with-icon', '')}
               placeholder="you@example.com"
               required
             />
           </div>
-          <button type="submit" disabled={submitting} className={primaryButton}>
+          <button type="submit" disabled={submitting} className="btn-primary btn-lg">
             {submitting ? <Spinner /> : null}
             {submitting ? 'Sending…' : 'Resend verification email'}
           </button>

@@ -9,6 +9,7 @@ import { SearchModal } from './components/SearchModal';
 import { HomePage } from './pages/HomePage';
 import { ProductsPage } from './pages/ProductsPage';
 import { FeaturesPage } from './pages/FeaturesPage';
+import { PricingPage } from './pages/PricingPage';
 import { DownloadPage } from './pages/DownloadPage';
 import { ScreenshotsPage } from './pages/ScreenshotsPage';
 import { DocumentationPage } from './pages/DocumentationPage';
@@ -19,12 +20,23 @@ import { ContactPage } from './pages/ContactPage';
 import { ComparePage } from './pages/ComparePage';
 import { LegalPages } from './pages/LegalPages';
 import { NotFoundPage } from './pages/NotFoundPage';
+import {
+  ForgotPasswordPage,
+  ResetPasswordPage,
+  SignInPage,
+  SignUpPage,
+  VerifyEmailPage,
+} from './pages/AuthPages';
+import { AccountPage } from './pages/AccountPage';
+import { BillingPage } from './pages/BillingPage';
+import { AuthProvider } from './lib/auth/AuthProvider';
 import { trackPageView } from './lib/analytics';
 
 const VALID_PAGES: PageId[] = [
   'home',
   'products',
   'features',
+  'pricing',
   'download',
   'screenshots',
   'docs',
@@ -38,6 +50,13 @@ const VALID_PAGES: PageId[] = [
   'license',
   'eula',
   'copyright',
+  'account',
+  'billing',
+  'sign-in',
+  'sign-up',
+  'forgot-password',
+  'reset-password',
+  'verify-email',
 ];
 
 const AdminApp = React.lazy(() => import('./admin/AdminApp'));
@@ -99,7 +118,11 @@ function PublicSite() {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-paper dark:bg-ink-950 text-ink dark:text-paper flex flex-col justify-between font-sans transition-colors duration-200">
+      <AuthProvider>
+        <div
+          id="public-site"
+          className="app-bg min-h-screen bg-paper dark:bg-ink-950 text-ink dark:text-paper flex flex-col justify-between font-sans transition-colors duration-200"
+        >
         <SEOHead pageId={currentPage} />
 
         {/* Sticky Global Navigation Bar */}
@@ -110,7 +133,7 @@ function PublicSite() {
         />
 
         {/* Main Route Content Viewport */}
-        <main className="flex-1">
+        <main key={currentPage} className="flex-1 animate-kd-fade-in">
           {currentPage === 'home' && (
             <HomePage navigate={navigate} onOpenScreenshot={handleOpenScreenshot} />
           )}
@@ -118,6 +141,8 @@ function PublicSite() {
           {currentPage === 'products' && <ProductsPage navigate={navigate} />}
 
           {currentPage === 'features' && <FeaturesPage navigate={navigate} />}
+
+          {currentPage === 'pricing' && <PricingPage navigate={navigate} />}
 
           {currentPage === 'download' && <DownloadPage navigate={navigate} />}
 
@@ -144,6 +169,20 @@ function PublicSite() {
             <LegalPages initialTab={currentPage} navigate={navigate} />
           )}
 
+          {currentPage === 'account' && <AccountPage navigate={navigate} />}
+
+          {currentPage === 'billing' && <BillingPage navigate={navigate} />}
+
+          {currentPage === 'sign-in' && <SignInPage navigate={navigate} />}
+
+          {currentPage === 'sign-up' && <SignUpPage navigate={navigate} />}
+
+          {currentPage === 'forgot-password' && <ForgotPasswordPage navigate={navigate} />}
+
+          {currentPage === 'reset-password' && <ResetPasswordPage navigate={navigate} />}
+
+          {currentPage === 'verify-email' && <VerifyEmailPage navigate={navigate} />}
+
           {currentPage === '404' && (
             <NotFoundPage navigate={navigate} onOpenSearch={() => setSearchModalOpen(true)} />
           )}
@@ -159,7 +198,8 @@ function PublicSite() {
           navigate={navigate}
           onSelectScreenshot={(id) => handleOpenScreenshot(id)}
         />
-      </div>
+        </div>
+      </AuthProvider>
     </ThemeProvider>
   );
 }
@@ -180,7 +220,7 @@ export default function App() {
 
   if (admin) {
     return (
-      <Suspense fallback={<div className="min-h-screen bg-[#070c17]" aria-hidden="true" />}>
+      <Suspense fallback={<div className="min-h-screen bg-navy-950" aria-hidden="true" />}>
         <AdminApp />
       </Suspense>
     );

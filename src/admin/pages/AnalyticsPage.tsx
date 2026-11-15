@@ -44,7 +44,7 @@ const AnalyticsPage: React.FC = () => {
         </p>
         <div className="mt-3 space-y-2">
           {EVENTS.map((e) => (
-            <div key={e.name} className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-[#1e2a44] bg-[#0b1220] px-3.5 py-2.5">
+            <div key={e.name} className="flex flex-wrap items-center justify-between gap-2 rounded-md border border-navy-700 bg-navy-900 px-3.5 py-2.5">
               <div className="min-w-0">
                 <Mono className="text-cyan-300">{e.name}</Mono>
                 <div className="text-[11px] text-slate-500">{e.where}</div>
@@ -55,7 +55,7 @@ const AnalyticsPage: React.FC = () => {
             </div>
           ))}
         </div>
-        <div className="mt-4 rounded-md border border-[#1e2a44] bg-[#0b1220] px-3.5 py-3 text-xs text-slate-400">
+        <div className="mt-4 rounded-md border border-navy-700 bg-navy-900 px-3.5 py-3 text-xs text-slate-400">
           <strong className="text-slate-300">Reporting:</strong> No data available in this console. Analytics dashboard
           data is read from Google, not from this application, so nothing is displayed here until a verified reporting
           integration is connected.

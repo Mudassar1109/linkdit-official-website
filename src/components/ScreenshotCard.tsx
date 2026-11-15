@@ -11,7 +11,7 @@ export const ScreenshotCard: React.FC<ScreenshotCardProps> = ({ screenshot, onCl
   return (
     <button
       onClick={() => onClick(screenshot)}
-      className="group text-left border border-line dark:border-line-dark bg-surface dark:bg-ink-850 overflow-hidden hover:border-line-strong dark:hover:border-ink-800 transition-colors focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-fg-accent"
+      className="card-base card-hover group text-left overflow-hidden focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-fg-accent"
       aria-label={`View "${screenshot.title}"`}
     >
       {/* Window bar */}

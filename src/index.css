@@ -1,95 +1,161 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* ---- Warm paper palette (Notion / Bear-inspired, light-first) ----
-     paper      = page background (soft off-white, never stark white)
-     surface    = raised cards (warm near-white, one step lighter than page)
-     paper-2    = section bands / inset areas (one tonal step deeper)
-     ink        = primary text (warm near-black)
-     ink-soft   = secondary text
-     ink-mute   = tertiary text / eyebrows
-     line       = hairline borders — the primary card affordance */
-  --color-paper: #f7f5f0;
-  --color-paper-2: #efede6;
-  --color-surface: #fdfdfa;
-  --color-ink: #211d16;
-  --color-ink-soft: #5c554a;
-  --color-ink-mute: #948c80;
-  --color-line: #e6e2d8;
-  --color-line-strong: #d5d0c4;
+  /* ---- TypoDocs "Aurora" design system ----------------------------------
+     A warm, editorial premium SaaS identity. Headlines are set in Space
+     Grotesk, body in Inter, metadata in JetBrains Mono. The canvas is warm
+     porcelain; the accent is a deep violet that shifts to fuchsia in glows.
+     Token names are semantic and shared with the whole codebase:
+        paper      = page canvas
+        paper-2    = section bands / inset areas
+        paper-3    = deeper accent bands
+        surface    = raised cards
+        ink        = primary text
+        ink-soft   = secondary text
+        ink-mute   = tertiary text / eyebrows
+        line       = hairline borders — the primary card affordance
+        line-strong = stronger borders for emphasis
+      The dark `ink-XXX` scale doubles as the dark surface ladder. */
+  --color-paper: #f7f5f2;
+  --color-paper-2: #efede8;
+  --color-paper-3: #e4e1da;
+  --color-surface: #fffdfa;
+  --color-surface-elevated: #ffffff;
+  --color-ink: #191320;
+  --color-ink-soft: #5c5566;
+  --color-ink-mute: #a09aa8;
+  --color-line: #e7e3dc;
+  --color-line-strong: #d8d3ca;
 
-  /* Single restrained accent — matches Typodocs blue (#2563EB).
-     Used sparingly: links, primary CTA, active states only. */
-  --color-accent: #2563eb;
-  --color-accent-deep: #1e58d0;
-  --color-accent-soft: #e8eef9;
+  /* Violet accent — used sparingly: links, primary CTA, active states. */
+  --color-accent: #9333ff;
+  --color-accent-deep: #7c22f5;
+  --color-accent-soft: #f3efff;
+  --color-accent-glow: rgba(147, 51, 255, 0.35);
+  --color-accent-2: #c026ff;
+  --color-accent-2-soft: #fdf2ff;
+  /* Blue accent — ambient lighting companion on dark surfaces. */
+  --color-accent-blue: #477bff;
+  --color-accent-blue-glow: rgba(71, 123, 255, 0.28);
 
-  /* Dark surfaces (warm near-black), layered for hierarchy:
-     ink-950 = page background, ink-900 = section band,
-     ink-850 = raised card/surface, ink-800 = elevated hover state. */
-  --color-ink-950: #0e0d0c;
-  --color-ink-900: #151412;
-  --color-ink-850: #1b1a17;
-  --color-ink-800: #211f1c;
-  --color-line-dark: #2b2923;
+  /* Success/warning/danger — warm-toned */
+  --color-success: #0d9488;
+  --color-success-soft: #ecfdf9;
+  --color-warning: #d97706;
+  --color-warning-soft: #fffbeb;
+  --color-danger: #e11d48;
+  --color-danger-soft: #fff1f2;
 
-  /* Typography — one clear pairing:
-     Inter (headings + body, clean sans like Notion),
-     Instrument Serif (editorial italic accent only),
-     JetBrains Mono (eyebrows / metadata / code). */
+  /* Dark surfaces — the "Aurora" deep-navy ladder:
+     ink-950 = page background (#080B20), ink-900 = section band,
+     ink-850 = raised card/surface, ink-800 = elevated hover state,
+     ink-750 = pressed/active state, ink-700 = strong borders. */
+  --color-ink-950: #080b20;
+  --color-ink-900: #0c1029;
+  --color-ink-850: #111633;
+  --color-ink-800: #171d42;
+  --color-ink-750: #1e2654;
+  --color-ink-700: #2a3468;
+  --color-line-dark: #232a52;
+  --color-line-dark-strong: #3d4880;
+
+  /* Typography — Space Grotesk carries display headings; Inter carries
+     the interface; JetBrains Mono marks eyebrows, metadata and code. */
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
-  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-serif: "Space Grotesk", "Inter", system-ui, sans-serif;
 
-  /* Radii — one consistent language:
+  /* Radii — generous, soft premium geometry:
      card = boxes/panels, control = buttons/inputs/segments, pills stay full. */
-  --radius-card: 0.5rem;
-  --radius-control: 0.375rem;
+  --radius-card: 1.25rem;
+  --radius-control: 0.75rem;
+  --radius-pill: 9999px;
 
-  /* Shadows — border-first design. Ultra-subtle shadows only;
-     hover lifts one step, never a heavy drop-shadow or glow. */
-  --shadow-card: 0 1px 2px rgb(33 29 22 / 0.05);
-  --shadow-card-hover: 0 1px 2px rgb(33 29 22 / 0.06), 0 12px 32px -16px rgb(33 29 22 / 0.12);
-  --shadow-control: 0 1px 2px rgb(33 29 22 / 0.06);
+  /* Shadows — warm and layered; violet-tinted on hover. */
+  --shadow-xs: 0 1px 2px rgb(25 19 32 / 0.05);
+  --shadow-sm: 0 1px 2px rgb(25 19 32 / 0.06), 0 1px 1px rgb(25 19 32 / 0.04);
+  --shadow-card: 0 1px 2px rgb(25 19 32 / 0.05), 0 10px 28px -14px rgb(25 19 32 / 0.14);
+  --shadow-card-hover: 0 2px 4px rgb(25 19 32 / 0.06), 0 22px 48px -18px rgb(147 51 255 / 0.28);
+  --shadow-card-elevated: 0 6px 12px rgb(25 19 32 / 0.06), 0 32px 64px -22px rgb(25 19 32 / 0.3);
+  --shadow-control: 0 1px 2px rgb(25 19 32 / 0.08);
+  --shadow-focus: 0 0 0 3px var(--color-accent-glow);
+  --shadow-glow: 0 0 36px -8px var(--color-accent-glow);
 
   /* Reading measure — max content width keeps lines comfortable. */
   --container-site: 68rem;
+  --container-narrow: 48rem;
 
-  /* UI status colors + subtle hover surface. Neutral, warm-toned,
-     consistent with the paper palette. */
-  --color-surface-strong: #f3f1ea;
-  --color-muted: #a59d91;
-  --color-danger: #d64545;
+  /* UI status colors + subtle hover surface. */
+  --color-surface-strong: #efede8;
+  --color-muted: #a09aa8;
 
-  /* ---- Semantic role tokens --------------------------------------------
-     These describe WHAT a piece of content is, never what colour it is.
-     Utilities compile to `var(--color-fg…)`, so re-declaring the same
-     names under `.dark` (see @layer base) re-themes every consumer at
-     once. Prefer `text-fg` / `bg-surface-scene` over raw `text-ink dark:
-     text-paper` pairs so light and dark can never drift apart.
+  /* ---- Semantic role tokens -------------------------------------------- */
+  --color-fg: #191320;
+  --color-fg-muted: #5c5566;
+  --color-fg-subtle: #a09aa8;
+  --color-fg-accent: #7c22f5;
+  --color-fg-positive: #0d9488;
+  --color-fg-warning: #b45309;
+  --color-fg-danger: #e11d48;
+  --color-surface-scene: #f7f5f2;
+  --color-surface-chip: #efede8;
+  --color-surface-chrome: #efede8;
+  --color-surface-accent: #f3efff;
+  --color-line-scene: #d8d3ca;
 
-       fg            primary text      fg-muted   secondary text
-       fg-subtle     metadata/eyebrow fg-accent links, buttons, active
-       surface-scene rendered preview bg
-       surface-chip  icon chip inside a preview
-       surface-chrome window bars / rails around a preview
-       surface-accent selected row inside a preview
-       line-scene    dots + hairlines inside a preview
-       fg-positive   status text ("Local")
-     Light values intentionally mirror the light palette above, so
-     light-theme rendering is byte-for-byte unchanged. */
-  --color-fg: #211d16;
-  --color-fg-muted: #5c554a;
-  --color-fg-subtle: #948c80;
-  --color-fg-accent: #1e58d0;
-  --color-fg-positive: #047857;
-  --color-surface-scene: #f7f5f0;
-  --color-surface-chip: #efede6;
-  --color-surface-chrome: #efede6;
-  --color-surface-accent: #e8eef9;
-  --color-line-scene: #d5d0c4;
+  /* ---- Admin console palette -------------------------------------------
+     The lazy-loaded /admin bundle has its own dark-navy identity. */
+  --color-navy-950: #060a13;
+  --color-navy-900: #0a101d;
+  --color-navy-850: #0e1626;
+  --color-navy-800: #131d31;
+  --color-navy-750: #182338;
+  --color-navy-700: #1e2a44;
+  --color-navy-600: #2a3a5c;
+  --color-navy-500: #3a4d73;
+
+  /* Admin accents — cyan for active/interactive, gold for the ADMIN mark. */
+  --color-admin-accent: #22d3ee;
+  --color-admin-accent-strong: #06b6d4;
+  --color-admin-gold: #fbbf24;
+
+  /* Admin elevation — soft, layered shadows tuned for dark surfaces. */
+  --shadow-admin-panel: 0 1px 2px rgb(0 0 0 / 0.3), 0 1px 1px rgb(0 0 0 / 0.2);
+  --shadow-admin-pop: 0 12px 40px -12px rgb(0 0 0 / 0.6), 0 2px 8px rgb(0 0 0 / 0.35);
+}
+
+/* ---- Motion -------------------------------------------------------------- */
+@keyframes kd-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes kd-slide-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes kd-scale-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes kd-slide-in-left {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+@keyframes kd-slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+@keyframes kd-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes kd-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 @layer base {
@@ -123,13 +189,13 @@
   }
 
   ::selection {
-    background-color: var(--color-ink);
-    color: var(--color-paper);
+    background-color: var(--color-accent);
+    color: #fffdfa;
   }
 
   :where(.dark) ::selection {
-    background-color: var(--color-paper);
-    color: var(--color-ink);
+    background-color: var(--color-accent);
+    color: #fffdfa;
   }
 
   :focus-visible {
@@ -137,41 +203,37 @@
     outline-offset: 2px;
   }
 
-  /* Dark values for the semantic role tokens. Every `text-fg*` /
-     `bg-surface-scene` utility re-resolves from here, which is why
-     paired `text-ink dark:text-paper` utilities are no longer needed for
-     text colour. Each value clears WCAG AA (>= 4.5:1) on every surface
-     it is used against: paper, surface, ink-850, ink-900 and ink-950. */
+  /* Dark values for the semantic role tokens. */
   .dark {
-    --color-fg: #f7f5f0;
-    --color-fg-muted: #b3aca0;
-    --color-fg-subtle: #9a9287;
-    --color-fg-accent: #93b4fd;
-    --color-fg-positive: #34d399;
-    --color-surface-scene: #151412;
-    --color-surface-chip: #211f1c;
-    --color-surface-chrome: #151412;
-    --color-surface-accent: #1a2a47;
-    --color-line-scene: #3d3a33;
+    --color-fg: #ffffff;
+    --color-fg-muted: #b9bed8;
+    --color-fg-subtle: #8b92b0;
+    --color-fg-accent: #c78aff;
+    --color-fg-positive: #5eead4;
+    --color-fg-warning: #fbbf24;
+    --color-fg-danger: #fb7185;
+    --color-surface-scene: #0c1029;
+    --color-surface-chip: #171d42;
+    --color-surface-chrome: #0c1029;
+    --color-surface-accent: #1c2247;
+    --color-line-scene: #2a3468;
   }
 
-  /* A preview that is *itself* a dark screenshot (e.g. the "Dark Theme"
-     card) keeps its dark surface in both themes. Re-declaring the same
-     role names on the scene element flips its text — and the chrome
-     framing it — to the dark set. Custom properties resolve on the
-     element itself before inheritance, so this wins over the `.dark`
-     block on <html> in either theme. */
+  /* A preview that is *itself* a dark screenshot keeps its dark surface in
+     both themes. */
   [data-scene-tone='dark'] {
-    --color-fg: #f7f5f0;
-    --color-fg-muted: #b3aca0;
-    --color-fg-subtle: #9a9287;
-    --color-fg-accent: #93b4fd;
-    --color-fg-positive: #34d399;
-    --color-surface-scene: #0e0d0c;
-    --color-surface-chip: #211f1c;
-    --color-surface-chrome: #151412;
-    --color-surface-accent: #1a2a47;
-    --color-line-scene: #3d3a33;
+    --color-fg: #ffffff;
+    --color-fg-muted: #b9bed8;
+    --color-fg-subtle: #8b92b0;
+    --color-fg-accent: #c78aff;
+    --color-fg-positive: #5eead4;
+    --color-fg-warning: #fbbf24;
+    --color-fg-danger: #fb7185;
+    --color-surface-scene: #080b20;
+    --color-surface-chip: #171d42;
+    --color-surface-chrome: #0c1029;
+    --color-surface-accent: #1c2247;
+    --color-line-scene: #2a3468;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -181,14 +243,190 @@
   }
 }
 
+/* ---- Display type ------------------------------------------------------- */
+.font-display {
+  font-family: var(--font-display);
+}
 .font-serif {
   font-family: var(--font-serif);
+}
+
+/* Display headings — Space Grotesk with tight tracking gives every public
+   page a confident editorial masthead. Scoped to the public site root so the
+   admin console keeps its own type. */
+#public-site h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+
+#public-site h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+/* ---- Glass / frosted glass utilities ------------------------------------ */
+.glass {
+  background: rgb(255 253 250 / 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgb(231 227 220 / 0.7);
+}
+.dark .glass {
+  background: rgb(12 16 41 / 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgb(35 42 82 / 0.6);
+}
+
+.glass-strong {
+  background: rgb(255 253 250 / 0.88);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border: 1px solid rgb(231 227 220 / 0.85);
+}
+.dark .glass-strong {
+  background: rgb(12 16 41 / 0.88);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border: 1px solid rgb(61 72 128 / 0.7);
+}
+
+.glass-subtle {
+  background: rgb(255 253 250 / 0.45);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgb(231 227 220 / 0.4);
+}
+.dark .glass-subtle {
+  background: rgb(12 16 41 / 0.45);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgb(35 42 82 / 0.35);
+}
+
+/* Ambient canvas backdrop — a warm, quiet violet glow behind the hero. */
+.app-bg {
+  background-image:
+    radial-gradient(64rem 34rem at 50% -8%, rgb(147 51 255 / 0.06), transparent 65%),
+    radial-gradient(44rem 24rem at 88% 6%, rgb(192 38 211 / 0.035), transparent 60%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.dark .app-bg {
+  background-image:
+    radial-gradient(64rem 34rem at 50% -8%, rgb(147 51 255 / 0.16), transparent 65%),
+    radial-gradient(44rem 24rem at 88% 6%, rgb(71 123 255 / 0.09), transparent 60%);
+}
+
+/* Enhanced ambient backdrop with more depth */
+.app-bg-enhanced {
+  background-image:
+    radial-gradient(72rem 36rem at 50% -8%, rgb(147 51 255 / 0.08), transparent 68%),
+    radial-gradient(48rem 26rem at 92% 4%, rgb(25 19 32 / 0.035), transparent 60%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.dark .app-bg-enhanced {
+  background-image:
+    radial-gradient(72rem 36rem at 50% -8%, rgb(147 51 255 / 0.18), transparent 68%),
+    radial-gradient(48rem 26rem at 92% 4%, rgb(71 123 255 / 0.08), transparent 60%);
+}
+
+/* Dot grid — drafting-table texture for hero bands. */
+.bg-grid-dots {
+  background-image: radial-gradient(circle, var(--color-line-strong) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.85), transparent 72%);
+  -webkit-mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.85), transparent 72%);
+}
+.dark .bg-grid-dots {
+  background-image: radial-gradient(circle, rgb(245 242 250 / 0.12) 1px, transparent 1px);
+}
+
+/* Hero mesh — layered violet glow that makes the hero band unmistakably
+   different from a plain section. */
+.hero-mesh {
+  background-image:
+    radial-gradient(42rem 22rem at 18% -10%, rgb(147 51 255 / 0.12), transparent 62%),
+    radial-gradient(38rem 20rem at 85% 0%, rgb(192 38 211 / 0.09), transparent 60%),
+    radial-gradient(30rem 16rem at 55% 18%, rgb(217 119 6 / 0.04), transparent 65%);
+}
+.dark .hero-mesh {
+  background-image:
+    radial-gradient(42rem 22rem at 18% -10%, rgb(147 51 255 / 0.22), transparent 62%),
+    radial-gradient(38rem 20rem at 85% 0%, rgb(192 38 255 / 0.13), transparent 60%),
+    radial-gradient(30rem 16rem at 55% 18%, rgb(71 123 255 / 0.1), transparent 65%);
+}
+
+/* Conic "aurora" ring — decorative halo behind the product visual. */
+.aurora-ring {
+  background: conic-gradient(
+    from 140deg,
+    rgb(147 51 255 / 0.3),
+    rgb(71 123 255 / 0.2),
+    rgb(192 38 255 / 0.16),
+    rgb(147 51 255 / 0.3)
+  );
+  filter: blur(48px);
+}
+
+/* Gradient utilities for premium accents */
+.gradient-accent {
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-deep) 100%);
+}
+.gradient-accent-soft {
+  background: linear-gradient(135deg, var(--color-accent-soft) 0%, var(--color-accent-2-soft) 100%);
+}
+.dark .gradient-accent-soft {
+  background: linear-gradient(135deg, rgba(147, 51, 255, 0.18) 0%, rgba(192, 38, 255, 0.08) 100%);
+}
+.gradient-hero {
+  background: linear-gradient(180deg, transparent 0%, rgb(147 51 255 / 0.07) 100%);
+}
+.dark .gradient-hero {
+  background: linear-gradient(180deg, transparent 0%, rgba(147, 51, 255 / 0.12) 100%);
+}
+.gradient-gold {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+}
+.gradient-emerald {
+  background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+}
+.gradient-violet {
+  background: linear-gradient(120deg, #9333ff 0%, #b033ff 45%, #c026ff 100%);
+}
+
+/* Editorial lead paragraph used under page mastheads. */
+@utility lead {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--color-ink-soft);
+}
+.dark .lead {
+  color: rgb(179 172 192 / 0.85);
 }
 
 /* Site container — comfortable reading measure with consistent gutters */
 @utility container-site {
   margin-inline: auto;
   max-width: var(--container-site);
+  padding-inline: 1.25rem;
+
+  @media (width >= 40rem) {
+    padding-inline: 1.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Narrow container for focused content */
+@utility container-narrow {
+  margin-inline: auto;
+  max-width: var(--container-narrow);
   padding-inline: 1.25rem;
 
   @media (width >= 40rem) {
@@ -206,6 +444,672 @@
   line-height: 1.2;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+/* Motion utilities (see keyframes above). */
+@utility animate-kd-fade-in {
+  animation: kd-fade-in 0.18s ease-out both;
+}
+@utility animate-kd-slide-up {
+  animation: kd-slide-up 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@utility animate-kd-scale-in {
+  animation: kd-scale-in 0.16s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@utility animate-kd-slide-in-left {
+  animation: kd-slide-in-left 0.22s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@utility animate-kd-slide-in-right {
+  animation: kd-slide-in-right 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@utility animate-kd-shimmer {
+  animation: kd-shimmer 2s ease-in-out infinite;
+}
+@utility animate-kd-marquee {
+  animation: kd-marquee 28s linear infinite;
+}
+
+/* Card utilities for consistent elevation */
+@utility card-base {
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.2s ease, transform 0.2s ease;
+}
+.dark .card-base {
+  border-color: var(--color-line-dark);
+  background: var(--color-ink-850);
+  box-shadow: var(--shadow-card);
+}
+
+@utility card-hover {
+  @media (hover: hover) {
+    &:hover {
+      box-shadow: var(--shadow-card-hover);
+      border-color: var(--color-accent);
+      transform: translateY(-3px);
+    }
+  }
+}
+.dark .card-hover:hover {
+  border-color: var(--color-line-dark-strong);
+}
+
+@utility card-elevated {
+  box-shadow: var(--shadow-card-elevated);
+  border-color: var(--color-line-strong);
+}
+.dark .card-elevated {
+  border-color: var(--color-line-dark-strong);
+}
+
+/* Button base utilities — pill geometry, six intents.
+   Heights: sm = 2.125rem, md = 2.5rem, lg = 2.875rem, xl = 3.25rem. */
+@utility btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4375rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25;
+  padding: 0.5625rem 1.125rem;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease,
+    box-shadow 0.2s ease, transform 0.15s ease, opacity 0.15s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+@utility btn-primary {
+  @apply btn-base;
+  background: var(--color-ink);
+  color: #fffdfa;
+  box-shadow: var(--shadow-control);
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      background: #2d2438;
+      box-shadow: var(--shadow-card-hover);
+      transform: translateY(-1px);
+    }
+    &:active:not(:disabled) {
+      background: rgb(25 19 32 / 0.8);
+      transform: translateY(0);
+      box-shadow: var(--shadow-control);
+    }
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-control), var(--shadow-focus);
+  }
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+.dark .btn-primary {
+  background: #f5f2fa;
+  color: var(--color-ink);
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      background: #ffffff;
+    }
+    &:active:not(:disabled) {
+      background: rgb(245 242 250 / 0.85);
+    }
+  }
+}
+
+@utility btn-secondary {
+  @apply btn-base;
+  background: var(--color-surface);
+  color: var(--color-ink-soft);
+  border-color: var(--color-line-strong);
+  box-shadow: var(--shadow-xs);
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      background: var(--color-accent-soft);
+      border-color: var(--color-accent);
+      color: var(--color-fg-accent);
+    }
+    &:active:not(:disabled) {
+      background: #ebe4ff;
+    }
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-xs), var(--shadow-focus);
+  }
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+.dark .btn-secondary {
+  background: rgb(12 16 41 / 0.55);
+  color: #dfe3f4;
+  border-color: rgb(147 51 255 / 0.35);
+  box-shadow: none;
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      background: rgb(147 51 255 / 0.16);
+      border-color: rgb(147 51 255 / 0.6);
+      color: #e9dcff;
+    }
+    &:active:not(:disabled) {
+      background: rgb(147 51 255 / 0.26);
+    }
+  }
+}
+
+@utility btn-ghost {
+  @apply btn-base;
+  background: transparent;
+  color: var(--color-ink-soft);
+  border-color: transparent;
+  box-shadow: none;
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      background: var(--color-paper-2);
+      color: var(--color-ink);
+    }
+    &:active:not(:disabled) {
+      background: var(--color-paper-3);
+    }
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-focus);
+  }
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+.dark .btn-ghost {
+  color: #b3acc0;
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      background: rgb(245 242 250 / 0.06);
+      color: #f5f2fa;
+    }
+  }
+}
+
+@utility btn-accent {
+  @apply btn-base;
+  background: linear-gradient(135deg, #9333ff 0%, #9b2fff 45%, #c026ff 100%);
+  color: white;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.28),
+    0 2px 4px rgb(124 34 245 / 0.35),
+    0 10px 28px -8px rgb(147 51 255 / 0.55);
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, #a355ff 0%, #aa4cff 45%, #cd4cff 100%);
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.3),
+        0 3px 6px rgb(124 34 245 / 0.4),
+        0 16px 36px -10px rgb(147 51 255 / 0.6);
+      transform: translateY(-1px);
+    }
+    &:active:not(:disabled) {
+      transform: translateY(0);
+      background: linear-gradient(135deg, #7c22f5 0%, #8424f0 45%, #ad1ff0 100%);
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.16),
+        0 1px 3px rgb(124 34 245 / 0.3);
+    }
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-control), var(--shadow-focus);
+  }
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+/* Download CTA — the signature action: gradient violet key with a soft
+   icon chip, used on download surfaces where the action is the point. */
+@utility btn-download {
+  @apply btn-base;
+  background: linear-gradient(135deg, #9333ff 0%, #9b2fff 45%, #c026ff 100%);
+  color: white;
+  padding: 0.875rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  gap: 0.625rem;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.28),
+    0 2px 4px rgb(124 34 245 / 0.35),
+    0 16px 40px -12px rgb(147 51 255 / 0.6);
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, #a355ff 0%, #aa4cff 45%, #cd4cff 100%);
+      transform: translateY(-2px);
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.3),
+        0 4px 8px rgb(124 34 245 / 0.4),
+        0 22px 48px -14px rgb(147 51 255 / 0.65);
+    }
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-control), var(--shadow-focus);
+  }
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+.dark .btn-download {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.28),
+    0 2px 4px rgb(124 34 245 / 0.35),
+    0 16px 40px -12px rgb(147 51 255 / 0.7);
+}
+
+/* Quiet square/circular icon button (toolbars, header actions). */
+@utility icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.375rem;
+  width: 2.375rem;
+  border-radius: var(--radius-pill);
+  color: var(--color-ink-soft);
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
+  @media (hover: hover) {
+    &:hover {
+      background: var(--color-paper-2);
+      color: var(--color-ink);
+    }
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-focus);
+  }
+}
+.dark .icon-btn {
+  color: #b3acc0;
+  @media (hover: hover) {
+    &:hover {
+      background: rgb(245 242 250 / 0.07);
+      color: #f5f2fa;
+    }
+  }
+}
+
+@utility btn-danger {
+  @apply btn-base;
+  background: var(--color-danger);
+  color: white;
+  box-shadow: var(--shadow-control);
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      background: #be123c;
+      box-shadow: var(--shadow-card-hover);
+      transform: translateY(-1px);
+    }
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-control), var(--shadow-focus);
+  }
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+@utility btn-warning {
+  @apply btn-base;
+  background: #b45309;
+  color: white;
+  box-shadow: var(--shadow-control);
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      background: #92400e;
+      box-shadow: var(--shadow-card-hover);
+      transform: translateY(-1px);
+    }
+  }
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+/* Button size variants */
+@utility btn-sm {
+  padding: 0.375rem 0.8125rem;
+  font-size: 0.8125rem;
+  gap: 0.3125rem;
+}
+@utility btn-lg {
+  padding: 0.6875rem 1.375rem;
+  font-size: 0.9375rem;
+  gap: 0.5rem;
+}
+@utility btn-xl {
+  padding: 0.9375rem 1.75rem;
+  font-size: 1rem;
+  gap: 0.5rem;
+}
+
+/* Input utilities */
+@utility input-base {
+  width: 100%;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--color-line);
+  background: var(--color-surface);
+  padding: 0.625rem 0.875rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-ink);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  outline: none;
+}
+.dark .input-base {
+  border-color: var(--color-line-dark);
+  background: var(--color-ink-900);
+  color: var(--color-fg);
+}
+
+@utility input-focus {
+  &:focus {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-focus);
+  }
+}
+
+@utility input-error {
+  border-color: var(--color-danger) !important;
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(225 29 72 / 0.15) !important;
+  }
+}
+
+@utility input-success {
+  border-color: var(--color-success) !important;
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(13 148 136 / 0.15) !important;
+  }
+}
+
+@utility input-with-icon {
+  padding-left: 2.75rem;
+}
+
+@utility label-base {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-ink-mute);
+  margin-bottom: 0.375rem;
+}
+.dark .label-base {
+  color: var(--color-fg-subtle);
+}
+
+/* Form message utilities */
+@utility form-message {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-control);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+@utility form-message-error {
+  @apply form-message;
+  background: var(--color-danger-soft);
+  border: 1px solid rgba(225, 29, 72, 0.3);
+  color: var(--color-fg-danger);
+}
+.dark .form-message-error {
+  background: rgba(225, 29, 72, 0.1);
+  border-color: rgba(225, 29, 72, 0.25);
+  color: #fda4af;
+}
+@utility form-message-success {
+  @apply form-message;
+  background: var(--color-success-soft);
+  border: 1px solid rgba(13, 148, 136, 0.3);
+  color: var(--color-success);
+}
+.dark .form-message-success {
+  background: rgba(13, 148, 136, 0.1);
+  border-color: rgba(13, 148, 136, 0.25);
+  color: #5eead4;
+}
+@utility form-message-info {
+  @apply form-message;
+  background: var(--color-paper-2);
+  border: 1px solid var(--color-line);
+  color: var(--color-ink-soft);
+}
+.dark .form-message-info {
+  background: var(--color-ink-900);
+  border-color: var(--color-line-dark);
+  color: var(--color-fg-muted);
+}
+
+/* Callout utilities — inline notices/alerts inside page content. */
+@utility callout {
+  border-radius: var(--radius-card);
+  border: 1px solid;
+  padding: 1rem 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+@utility callout-info {
+  @apply callout;
+  background: var(--color-paper-2);
+  border-color: var(--color-line);
+  color: var(--color-ink-soft);
+}
+.dark .callout-info {
+  background: var(--color-ink-900);
+  border-color: var(--color-line-dark);
+  color: var(--color-fg-muted);
+}
+@utility callout-warning {
+  @apply callout;
+  background: var(--color-warning-soft);
+  border-color: rgba(217, 119, 6, 0.3);
+  color: var(--color-fg-warning);
+}
+.dark .callout-warning {
+  background: rgba(217, 119, 6, 0.08);
+  border-color: rgba(251, 191, 36, 0.25);
+}
+@utility callout-danger {
+  @apply callout;
+  background: var(--color-danger-soft);
+  border-color: rgba(225, 29, 72, 0.3);
+  color: var(--color-fg-danger);
+}
+.dark .callout-danger {
+  background: rgba(225, 29, 72, 0.08);
+  border-color: rgba(251, 113, 133, 0.25);
+}
+
+/* Table utilities */
+@utility table-base {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+@utility table-header {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-mute);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--color-line-strong);
+  background: var(--color-paper-2);
+  font-family: var(--font-mono);
+}
+.dark .table-header {
+  color: var(--color-fg-subtle);
+  border-color: var(--color-line-dark-strong);
+  background: var(--color-ink-900);
+}
+@utility table-cell {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-line);
+  color: var(--color-ink-soft);
+  vertical-align: top;
+}
+.dark .table-cell {
+  border-color: var(--color-line-dark);
+  color: var(--color-fg-muted);
+}
+@utility table-row-hover {
+  @media (hover: hover) {
+    &:hover {
+      background: var(--color-paper-2);
+    }
+  }
+}
+.dark .table-row-hover:hover {
+  background: var(--color-ink-800);
+}
+
+/* Badge utilities */
+@utility badge-base {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+@utility badge-accent {
+  @apply badge-base;
+  background: var(--color-accent-soft);
+  color: var(--color-fg-accent);
+}
+.dark .badge-accent {
+  background: rgba(147, 51, 255, 0.2);
+  color: #d4c5fb;
+}
+@utility badge-success {
+  @apply badge-base;
+  background: var(--color-success-soft);
+  color: var(--color-success);
+}
+.dark .badge-success {
+  background: rgba(13, 148, 136, 0.15);
+  color: #5eead4;
+}
+@utility badge-warning {
+  @apply badge-base;
+  background: var(--color-warning-soft);
+  color: var(--color-warning);
+}
+@utility badge-danger {
+  @apply badge-base;
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+}
+.dark .badge-danger {
+  background: rgba(225, 29, 72, 0.15);
+  color: #fda4af;
+}
+@utility badge-neutral {
+  @apply badge-base;
+  background: var(--color-paper-2);
+  color: var(--color-ink-mute);
+}
+.dark .badge-neutral {
+  background: var(--color-ink-800);
+  color: var(--color-fg-subtle);
+}
+
+/* Divider utilities */
+@utility divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-line-strong), transparent);
+  border: none;
+}
+.dark .divider {
+  background: linear-gradient(90deg, transparent, var(--color-line-dark), transparent);
+}
+@utility divider-strong {
+  height: 1px;
+  background: var(--color-line-strong);
+  border: none;
+}
+.dark .divider-strong {
+  background: var(--color-line-dark-strong);
+}
+
+/* Focus ring utility */
+@utility focus-ring {
+  &:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-focus);
+  }
+}
+
+/* Text gradient utility */
+@utility text-gradient-accent {
+  background: linear-gradient(120deg, #9333ff 0%, #c026ff 50%, #477bff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.dark .text-gradient-accent {
+  background: linear-gradient(120deg, #b57bff 0%, #d96bff 50%, #7d9dff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Skeleton/shimmer loading utility */
+@utility skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-paper-2) 25%,
+    var(--color-paper-3) 50%,
+    var(--color-paper-2) 75%
+  );
+  background-size: 200% 100%;
+  animation: kd-shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius-control);
+}
+.dark .skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-ink-800) 25%,
+    var(--color-ink-750) 50%,
+    var(--color-ink-800) 75%
+  );
+  background-size: 200% 100%;
 }
 
 /* Muted scrolling for the browser chrome, tuned to the palette */

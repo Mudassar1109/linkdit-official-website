@@ -39,7 +39,7 @@ const Inline: React.FC<{ line: string }> = ({ line }) => (
           );
         case 'code':
           return (
-            <code key={i} className="rounded bg-accent-soft dark:bg-ink-850 px-1.5 py-0.5 font-mono text-[0.85em] text-accent-deep dark:text-blue-300">
+            <code key={i} className="rounded bg-accent-soft dark:bg-ink-850 px-1.5 py-0.5 font-mono text-[0.85em] text-fg-accent">
               {t.value}
             </code>
           );
@@ -92,7 +92,7 @@ const ContentLine: React.FC<LineProps> = ({ line, isLast }) => {
     const num = trimmed.match(/^(\d+)\.\s/)![1];
     return (
       <li className="flex items-start gap-2.5 text-sm text-ink-soft dark:text-paper/65 leading-relaxed">
-        <span className="mt-px shrink-0 font-mono text-xs font-semibold text-accent-deep dark:text-blue-300">
+        <span className="mt-px shrink-0 font-mono text-xs font-semibold text-fg-accent">
           {num}.
         </span>
         <span>
@@ -120,39 +120,37 @@ export const DocumentationPage: React.FC<DocsProps> = ({ navigate }) => {
 
   return (
     <div className="border-t border-line dark:border-line-dark">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+      <div className="container-site py-10 sm:py-14">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
           {/* Sidebar */}
-          <aside className="lg:col-span-1 space-y-5">
-            <div className="space-y-2">
-              <span className="text-[10px] font-mono font-semibold uppercase tracking-[0.2em] text-ink-mute dark:text-paper/45 block">
-                Documentation
-              </span>
-              <h2 className="text-2xl font-bold tracking-tight text-ink dark:text-paper">
-                Guides & Reference
+          <aside className="lg:col-span-1 space-y-5 lg:sticky lg:top-32 lg:self-start">
+            <div className="space-y-3">
+              <span className="eyebrow text-fg-accent block">Documentation</span>
+              <h2 className="font-display text-2xl font-bold tracking-[-0.02em] text-ink dark:text-paper">
+                Guides &amp; Reference
               </h2>
               <div className="relative">
-                <Search className="w-4 h-4 text-ink-mute absolute left-3 top-1/2 -translate-y-1/2" />
+                <Search className="w-4 h-4 text-ink-mute absolute left-4 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search docs..."
-                  className="w-full pl-9 pr-3 py-2 rounded-md bg-surface dark:bg-ink-900 border border-line dark:border-line-dark text-xs text-ink dark:text-paper placeholder:text-ink-mute focus:outline-none focus:border-accent"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-full bg-surface dark:bg-ink-900 border border-line dark:border-line-dark text-xs text-ink dark:text-paper placeholder:text-ink-mute focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
                 />
               </div>
             </div>
 
-            <nav className="space-y-1">
+            <nav className="space-y-1.5">
               {filteredArticles.map((article) => {
                 const isActive = activeArticle.id === article.id;
                 return (
                   <button
                     key={article.id}
                     onClick={() => setActiveArticle(article)}
-                    className={`w-full text-left p-3 rounded-md text-xs font-medium transition-colors flex items-center justify-between gap-2 border ${
+                    className={`w-full text-left p-3.5 rounded-2xl text-xs font-medium transition-colors flex items-center justify-between gap-2 border ${
                       isActive
-                        ? 'bg-accent-soft dark:bg-accent/15 text-accent-deep dark:text-blue-300 border-accent/40 dark:border-accent/40 font-semibold'
+                        ? 'bg-accent-soft dark:bg-accent/20 text-fg-accent border-accent/40 font-semibold shadow-xs'
                         : 'text-ink-soft dark:text-paper/60 border-transparent hover:bg-paper-2 dark:hover:bg-ink-850'
                     }`}
                   >
@@ -170,12 +168,14 @@ export const DocumentationPage: React.FC<DocsProps> = ({ navigate }) => {
           </aside>
 
           {/* Article */}
-          <main className="lg:col-span-3 bg-surface dark:bg-ink-850 border border-line dark:border-line-dark">
-            <div className="border-b border-line dark:border-line-dark p-6 sm:p-10 pb-5 space-y-2">
-              <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-ink-mute dark:text-paper/45">
-                <span className="px-2 py-0.5 rounded bg-accent-soft dark:bg-accent/15 text-accent-deep dark:text-blue-300 font-semibold">
-                  {activeArticle.categoryName}
-                </span>
+          <main className="lg:col-span-3 card-base overflow-hidden">
+            <div className="relative border-b border-line dark:border-line-dark p-6 sm:p-10 pb-5 space-y-2">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-[radial-gradient(60%_100%_at_20%_0%,rgba(124,58,237,0.07),transparent_75%)]"
+              />
+              <div className="relative flex flex-wrap items-center gap-2.5 text-xs font-mono text-ink-mute dark:text-paper/45">
+                <span className="badge-accent">{activeArticle.categoryName}</span>
                 <span>Updated {activeArticle.lastUpdated}</span>
                 <span className="text-line-strong dark:text-line-dark">•</span>
                 <span className="inline-flex items-center gap-1">
@@ -183,7 +183,7 @@ export const DocumentationPage: React.FC<DocsProps> = ({ navigate }) => {
                   {activeArticle.readTime}
                 </span>
               </div>
-              <p className="text-sm text-ink-soft dark:text-paper/60">{activeArticle.description}</p>
+              <p className="relative text-sm text-ink-soft dark:text-paper/60">{activeArticle.description}</p>
             </div>
 
             <div className="p-6 sm:p-10 space-y-0.5">
@@ -200,7 +200,7 @@ export const DocumentationPage: React.FC<DocsProps> = ({ navigate }) => {
               </p>
               <button
                 onClick={() => navigate('support')}
-                className="text-xs font-semibold text-accent-deep dark:text-blue-300 hover:underline"
+                className="btn-ghost btn-sm text-fg-accent hover:bg-accent-soft dark:text-violet-300"
               >
                 Need help? Visit Support →
               </button>

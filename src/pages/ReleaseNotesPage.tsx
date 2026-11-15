@@ -1,7 +1,8 @@
-import React from 'react';
+﻿import React from 'react';
 import { PageId } from '../types';
 import { PRODUCT_NAME, CURRENT_VERSION_LABEL, CHANGELOG_ITEMS } from '../data/websiteData';
 import { trackCta } from '../lib/analytics';
+import { PageHero } from '../components/PageHero';
 import { Download, FileText, ArrowRight, CheckCircle, Info, Archive, Clock } from 'lucide-react';
 
 interface ReleaseProps {
@@ -15,39 +16,39 @@ export const ReleaseNotesPage: React.FC<ReleaseProps> = ({ navigate }) => {
 
   return (
     <div className="space-y-16 pb-20 font-sans">
-      <header className="border-b border-line bg-paper-2/60 dark:bg-ink-900/40">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 text-center space-y-5">
-          <span className="text-xs font-mono font-semibold uppercase tracking-[0.2em] text-ink-mute">
-            Release Notes
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-ink dark:text-paper">
-            {PRODUCT_NAME} {current.version}
-          </h1>
-          <p className="text-sm sm:text-base text-ink-soft dark:text-paper/70 max-w-2xl mx-auto leading-relaxed">
-            The current release of a rebuilt, offline-first Markdown and rich-text editor for Windows 10 and 11.
-          </p>
-          <button
-            onClick={() => {
-              trackCta('release_notes_download', 'release-notes', `Download v${current.version}`);
-              navigate('download');
-            }}
-            className="inline-flex items-center gap-2 rounded-lg bg-ink px-5 py-2.5 text-sm font-semibold text-paper hover:bg-ink/90 transition-colors dark:bg-paper dark:text-ink dark:hover:bg-paper/90"
-          >
-            <Download className="w-4 h-4" />
-            <span>Download v{current.version}</span>
-          </button>
-        </div>
-      </header>
+      <PageHero
+        eyebrow="Release Notes"
+        title={
+          <>
+            {PRODUCT_NAME}{' '}
+            <span className="text-gradient-accent">
+              v{current.version}
+            </span>
+          </>
+        }
+        description="The current release of a rebuilt, offline-first Markdown and rich-text editor for Windows 10 and 11."
+      >
+        <button
+          onClick={() => {
+            trackCta('release_notes_download', 'release-notes', `Download v${current.version}`);
+            navigate('download');
+          }}
+          className="btn-accent"
+        >
+          <Download className="w-4 h-4" />
+          <span>Download v{current.version}</span>
+        </button>
+      </PageHero>
 
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        <article className="border border-line bg-surface dark:bg-ink-850 dark:border-line-dark">
+      <section className="container-narrow space-y-10">
+        <article className="card-base overflow-hidden">
           <div className="border-b border-line dark:border-line-dark p-6 sm:p-8 space-y-3">
             <div className="flex flex-wrap items-center gap-3">
               <span className="font-mono text-sm font-semibold text-accent">v{current.version}</span>
-              <span className="text-xs font-mono px-2 py-0.5 rounded bg-accent/10 text-accent font-semibold">Current Release</span>
+              <span className="badge-accent">Current Release</span>
               <span className="text-xs font-mono text-ink-mute">{current.date}</span>
             </div>
-            <h2 className="text-2xl font-bold tracking-tight text-ink dark:text-paper">
+            <h2 className="font-display text-2xl font-bold tracking-[-0.02em] text-ink dark:text-paper">
               {current.title}
             </h2>
             <p className="text-sm text-ink-soft dark:text-paper/70 leading-relaxed">
@@ -58,7 +59,7 @@ export const ReleaseNotesPage: React.FC<ReleaseProps> = ({ navigate }) => {
           <div className="p-6 sm:p-8 space-y-6 text-sm text-ink-soft dark:text-paper/75 leading-relaxed">
             <div className="grid gap-4 sm:grid-cols-2">
               {current.highlights.map((item, idx) => (
-                <div key={idx} className="flex items-start gap-2.5 border border-line dark:border-line-dark p-4">
+                <div key={idx} className="flex items-start gap-2.5 rounded-xl border border-line bg-paper-2/40 p-4 dark:border-line-dark dark:bg-ink-900/60">
                   <CheckCircle className="w-4 h-4 text-accent shrink-0 mt-0.5" />
                   <span>{item}</span>
                 </div>
@@ -87,7 +88,7 @@ export const ReleaseNotesPage: React.FC<ReleaseProps> = ({ navigate }) => {
           </div>
         </article>
 
-        <div className="flex items-start gap-3 border border-line dark:border-line-dark bg-paper-2/60 dark:bg-ink-900 p-5">
+        <div className="card-base flex items-start gap-3 p-5">
           <Info className="w-5 h-5 text-accent shrink-0 mt-0.5" />
           <div className="space-y-1.5">
             <p className="text-sm font-semibold text-ink dark:text-paper">
@@ -112,11 +113,11 @@ export const ReleaseNotesPage: React.FC<ReleaseProps> = ({ navigate }) => {
             {previous.map((item) => (
               <article
                 key={item.version}
-                className="border border-line bg-paper-2/50 dark:bg-ink-900 dark:border-line-dark p-6 space-y-2"
+                className="card-base p-6 space-y-2"
               >
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="font-mono text-sm font-semibold text-ink dark:text-paper">v{item.version}</span>
-                  <span className="text-xs font-mono px-2 py-0.5 rounded bg-paper-2 dark:bg-ink-850 text-ink-soft dark:text-paper/60 font-semibold">
+                  <span className="badge-neutral">
                     Previous release
                   </span>
                   <span className="text-xs font-mono text-ink-mute">{item.date}</span>
@@ -145,7 +146,7 @@ export const ReleaseNotesPage: React.FC<ReleaseProps> = ({ navigate }) => {
               >
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="font-mono text-sm font-semibold text-ink-soft dark:text-paper/80">v{item.version}</span>
-                  <span className="text-xs font-mono px-2 py-0.5 rounded bg-paper-2 dark:bg-ink-850 text-ink-soft dark:text-paper/60 font-semibold">
+                  <span className="badge-neutral">
                     {item.badge === 'Legacy' ? 'Legacy release' : item.title}
                   </span>
                   <span className="text-xs font-mono text-ink-mute">{item.date}</span>

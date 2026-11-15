@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { PageId, ScreenshotItem } from '../types';
 import { SCREENSHOTS, PRODUCT_NAME } from '../data/websiteData';
 import { ScreenshotCard } from '../components/ScreenshotCard';
+import { PageHero } from '../components/PageHero';
 import { LightboxModal } from '../components/LightboxModal';
 import { Search, ImageIcon } from 'lucide-react';
 
@@ -44,43 +45,41 @@ export const ScreenshotsPage: React.FC<ScreenshotsPageProps> = ({
   return (
     <div className="font-sans">
       {/* Header */}
-      <header className="border-b border-line dark:border-line-dark">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-12 text-center space-y-5">
-          <span className="text-xs font-mono font-semibold uppercase tracking-[0.2em] text-fg-subtle">
-            Interface
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-fg">
-            The {PRODUCT_NAME} workspace, rendered
-          </h1>
-          <p className="mx-auto max-w-xl text-sm sm:text-base text-fg-muted leading-relaxed">
-            Six views of the current build — tabs, Markdown, rich text, dark theme, sidebar, and the
-            status bar. Previews are drawn on this page; the real thing is one download away.
-          </p>
-
-          <div className="mx-auto max-w-md relative">
-            <Search className="w-4 h-4 text-fg-subtle absolute left-3.5 top-1/2 -translate-y-1/2" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search views..."
-              className="w-full rounded-lg border border-line dark:border-line-dark bg-surface dark:bg-ink-900 pl-10 pr-3 py-2.5 text-sm text-fg placeholder:text-fg-subtle focus:outline-none focus:border-fg-accent"
-            />
-          </div>
+      <PageHero
+        eyebrow="Interface"
+        title={
+          <>
+            The {PRODUCT_NAME} workspace,{' '}
+            <span className="text-gradient-accent">
+              rendered
+            </span>
+          </>
+        }
+        description="Six views of the current build — tabs, Markdown, rich text, dark theme, sidebar, and the status bar. Previews are drawn on this page; the real thing is one download away."
+      >
+        <div className="mx-auto w-full max-w-md relative">
+          <Search className="w-4 h-4 text-fg-subtle absolute left-4 top-1/2 -translate-y-1/2" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search views..."
+            className="w-full rounded-full border border-line dark:border-line-dark bg-surface dark:bg-ink-900 pl-10 pr-4 py-2.5 text-sm text-fg placeholder:text-fg-subtle focus:outline-none focus:border-fg-accent focus:ring-2 focus:ring-accent/20"
+          />
         </div>
-      </header>
+      </PageHero>
 
       {/* Category tabs */}
       <section className="border-b border-line dark:border-line-dark">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-6 flex items-center gap-1.5 overflow-x-auto scrollbar-none">
+        <div className="container-site py-6 flex items-center gap-1.5 overflow-x-auto scrollbar-none">
           {VIEWS.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`shrink-0 rounded-md px-3.5 py-1.5 text-xs font-semibold transition-colors ${
+              className={`shrink-0 rounded-full px-4 py-1.5 text-xs font-semibold transition-colors ${
                 activeCategory === cat
-                  ? 'bg-ink text-paper dark:bg-paper dark:text-ink'
-                  : 'border border-line dark:border-line-dark text-fg-muted hover:border-line-strong dark:hover:border-ink-800'
+                  ? 'gradient-violet text-white shadow-glow'
+                  : 'border border-line dark:border-line-dark text-fg-muted hover:border-accent hover:text-fg-accent'
               }`}
             >
               {cat}
@@ -92,20 +91,20 @@ export const ScreenshotsPage: React.FC<ScreenshotsPageProps> = ({
 
       {/* Grid */}
       <section className="border-b border-line dark:border-line-dark">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-12">
+        <div className="container-site py-12">
           {filteredScreenshots.length === 0 ? (
-            <div className="text-center py-16 border border-line dark:border-line-dark bg-surface dark:bg-ink-850 space-y-3">
+            <div className="card-base text-center py-16 space-y-3">
               <ImageIcon className="w-8 h-8 text-fg-subtle mx-auto" />
-              <h3 className="text-base font-semibold text-fg">No views match</h3>
+              <h3 className="font-display text-base font-bold text-fg">No views match</h3>
               <button
                 onClick={reset}
-                className="text-sm font-semibold text-fg-accent hover:opacity-75"
+                className="btn-secondary btn-sm mx-auto"
               >
                 Reset filters
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px border border-line dark:border-line-dark bg-line dark:bg-line-dark">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredScreenshots.map((item) => (
                 <ScreenshotCard key={item.id} screenshot={item} onClick={(s) => setActiveLightbox(s)} />
               ))}

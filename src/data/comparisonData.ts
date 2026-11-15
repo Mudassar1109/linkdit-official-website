@@ -30,28 +30,28 @@ export const COMPARISON_FILTERS: ComparisonFilter[] = [
 export const EDITORS: EditorComparison[] = [
   {
     id: 'typodocs',
-    name: 'Typodocs',
+    name: 'TypoDocs',
     isTypodocs: true,
     tagline: 'A lean, offline-first Markdown and rich-text editor for Windows.',
-    websiteLabel: 'linkdit.online',
-    websiteHref: 'https://www.linkdit.online/',
+    websiteLabel: 'typodocs.online',
+    websiteHref: 'https://www.typodocs.online/',
     tags: ['free', 'local-first', 'windows-only'],
     cells: {
-      price: 'Free for personal, academic and commercial use',
-      license: 'No — free, proprietary licence',
+      price: 'Free plan today; Pro planned at $5.99/mo or $47.99/yr (not yet on sale)',
+      license: 'No — proprietary licence; Free plan plus planned Pro subscription',
       platforms: 'Windows 10 / 11 (64-bit)',
-      focus: 'Everyday writing: Markdown, rich text, plain text',
-      editing: 'Markdown source or rich text, chosen per document',
-      files: 'Plain local files (.md, .txt) — no vault, no cloud',
-      account: 'No',
+      focus: 'Everyday writing: formatted Markdown-style documents, rich text, plain text',
+      editing: 'Formatted Markdown-style canvas or plain text, chosen per document',
+      files: 'Local .md and .txt documents — no vault, no cloud',
+      account: 'No for Free; planned Pro account when available',
       telemetry: 'None in the app',
       extensibility: 'None — no plugin store, by design',
       mobile: 'No — desktop only',
     },
     pros: [
-      'No account and no telemetry — documents never leave your PC',
+      'Free plan needs no account and the app has no telemetry — documents stay on your PC',
       'Native Tauri app with a ~6 MB installer and no background services',
-      'Per-document Markdown or rich text, multi-tab editing, and live word count',
+      'Per-document formatted or plain-text editing, multi-tab workspace, and live word count',
     ],
     limitations: [
       'Windows 10/11 only — no macOS, Linux, or mobile apps',
@@ -256,12 +256,13 @@ export const EDITORS: EditorComparison[] = [
 
 export const COMPARISON_SOURCES: ComparisonSource[] = [
   {
-    editor: 'Typodocs',
+    editor: 'TypoDocs',
     links: [
-      { label: 'Feature overview', href: 'https://www.linkdit.online/features' },
-      { label: 'Software licence', href: 'https://www.linkdit.online/license' },
-      { label: 'Privacy', href: 'https://www.linkdit.online/privacy' },
-      { label: 'Download', href: 'https://www.linkdit.online/download' },
+      { label: 'Feature overview', href: 'https://www.typodocs.online/features' },
+      { label: 'Pricing and plans', href: 'https://www.typodocs.online/pricing' },
+      { label: 'Software licence', href: 'https://www.typodocs.online/license' },
+      { label: 'Privacy', href: 'https://www.typodocs.online/privacy' },
+      { label: 'Download', href: 'https://www.typodocs.online/download' },
     ],
   },
   {

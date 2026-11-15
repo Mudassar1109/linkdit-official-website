@@ -41,12 +41,25 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#070c17] p-6">
-      <div className="w-full max-w-sm space-y-5">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-navy-950 p-6">
+      {/* Ambient background wash */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(60rem 40rem at 50% -10%, rgba(34,211,238,0.08), transparent 60%), radial-gradient(40rem 30rem at 90% 110%, rgba(251,191,36,0.05), transparent 55%)',
+        }}
+      />
+      <div className="relative w-full max-w-sm animate-kd-slide-up space-y-5">
         <div className="text-center">
-          <img src="/icon-128.png?v=20261020" alt="" className="mx-auto h-12 w-12 rounded-xl object-contain" />
+          <img
+            src="/icon-128.png?v=20261025"
+            alt=""
+            className="mx-auto h-12 w-12 rounded-xl object-contain ring-1 ring-navy-600"
+          />
           <div className="mt-3 flex items-center justify-center gap-1.5">
-            <span className="text-lg font-bold text-white">Typodocs</span>
+            <span className="text-lg font-bold tracking-tight text-white">TypoDocs</span>
             <span className="rounded bg-amber-400/15 px-1.5 py-0.5 text-[10px] font-mono font-semibold text-amber-300">
               ADMIN
             </span>
@@ -90,7 +103,7 @@ const LoginPage: React.FC = () => {
                   setMode('reset');
                   setError(null);
                 }}
-                className="w-full text-center text-xs text-slate-400 hover:text-cyan-300"
+                className="w-full text-center text-xs text-slate-400 transition-colors hover:text-cyan-300"
               >
                 Forgot password?
               </button>
@@ -122,7 +135,7 @@ const LoginPage: React.FC = () => {
                   setError(null);
                   setMessage(null);
                 }}
-                className="w-full text-center text-xs text-slate-400 hover:text-cyan-300"
+                className="w-full text-center text-xs text-slate-400 transition-colors hover:text-cyan-300"
               >
                 Back to sign in
               </button>

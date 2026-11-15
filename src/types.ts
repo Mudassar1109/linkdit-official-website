@@ -2,6 +2,7 @@ export type PageId =
   | 'home'
   | 'products'
   | 'features'
+  | 'pricing'
   | 'download'
   | 'screenshots'
   | 'docs'
@@ -15,6 +16,13 @@ export type PageId =
   | 'license'
   | 'eula'
   | 'copyright'
+  | 'account'
+  | 'billing'
+  | 'sign-in'
+  | 'sign-up'
+  | 'forgot-password'
+  | 'reset-password'
+  | 'verify-email'
   | '404';
 
 export interface ScreenshotItem {

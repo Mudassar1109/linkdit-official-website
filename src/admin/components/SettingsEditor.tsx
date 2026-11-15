@@ -107,7 +107,7 @@ export const SettingsEditor: React.FC<SettingsEditorProps> = ({ groups, title, d
             const changed = val !== s.value;
             const id = `setting-${s.key}`;
             return (
-              <div key={s.key} className="rounded-md border border-[#1e2a44] bg-[#0b1220] p-3.5">
+              <div key={s.key} className="rounded-md border border-navy-700 bg-navy-900 p-3.5">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <label htmlFor={id} className="text-xs font-medium text-slate-200">
                     {s.label || s.key}

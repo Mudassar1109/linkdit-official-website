@@ -64,7 +64,7 @@ export function useUnsavedWarning(dirty: boolean): void {
 export function useDocumentTitle(title: string): void {
   useEffect(() => {
     const prev = document.title;
-    document.title = `${title} · Typodocs Admin`;
+    document.title = `${title} · TypoDocs Admin`;
     return () => {
       document.title = prev;
     };

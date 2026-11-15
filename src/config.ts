@@ -1,33 +1,33 @@
 import type { PageId } from './types';
 
-export const DOMAIN_NAME = 'linkdit.online';
-export const SITE_URL = 'https://www.linkdit.online';
+export const DOMAIN_NAME = 'typodocs.online';
+export const SITE_URL = 'https://www.typodocs.online';
 
 export const CONTACT_EMAIL = 'elahimudassasr1@gmail.com';
 
 // Company / publisher identity (legal entity). Kept separate from the product.
 export const APP_NAME = 'LinkDit';
 // Product name shown to visitors across the site.
-export const PRODUCT_NAME = 'Typodocs';
+export const PRODUCT_NAME = 'TypoDocs';
 export const TAGLINE = 'Write clearly. Write locally.';
 
 export const CURRENT_VERSION = '0.1.2';
 export const CURRENT_VERSION_LABEL = `v${CURRENT_VERSION}`;
-// NOTE: the published installer binaries still carry the legacy LinkDit-Pad
-// filenames (and legacy embedded metadata) until the desktop app is rebuilt.
-// Keep these names so existing download links stay functional.
-export const DOWNLOAD_FILENAME = `LinkDit-Pad-${CURRENT_VERSION}-x64-setup.exe`;
-export const DOWNLOAD_FILE_SIZE = '5.98 MB';
-export const DOWNLOAD_SHA256 = '8AB1B3469814EC7B4FE18FA0D33373949C9B4AF53E6375AAA6A6C2B0D60F299D';
+export const DOWNLOAD_FILENAME = `Typodocs_${CURRENT_VERSION}_x64-setup.exe`;
+export const DOWNLOAD_FILE_SIZE = '5.54 MB';
+export const DOWNLOAD_SHA256 = 'D7DD74829F5F459AB0696FB214F64D797268039555389B2E19AC4E57419220E0';
+export const DOWNLOAD_PATH = `/downloads/${DOWNLOAD_FILENAME}`;
 
 export const BRAND_DESCRIPTION =
-  'Typodocs is a fast, offline-first Markdown and rich-text editor for Windows 10 and 11. Multi-tab editing, live word counts, local files only — no account, no telemetry.';
+  'TypoDocs is a fast, offline-first Markdown and rich-text editor for Windows 10 and 11. Multi-tab editing, live word counts, local files only. Free plan available; Pro coming soon.';
 
 export interface PageMeta {
   id: PageId;
   path: string;
   title: string;
   description: string;
+  /** Private/auth pages are excluded from search indexing. */
+  noindex?: boolean;
 }
 
 export const PAGE_META: Record<PageId, PageMeta> = {
@@ -42,34 +42,41 @@ export const PAGE_META: Record<PageId, PageMeta> = {
     path: '/products',
     title: `About ${PRODUCT_NAME} — The Product`,
     description:
-      'What Typodocs is and why it exists: a fast, offline-first Markdown and rich-text editor for Windows that keeps every document as a plain, local file.',
+      'What TypoDocs is and why it exists: a fast, offline-first Markdown and rich-text editor for Windows that keeps every document as a plain, local file.',
   },
   features: {
     id: 'features',
     path: '/features',
     title: `Features — ${PRODUCT_NAME} for Windows`,
     description:
-      'All Typodocs features: tabbed editing, Markdown and rich text, screenshot capture, light and dark themes, search and replace, and a file system that stays entirely on your PC.',
+      'TypoDocs features: tabbed editing, Markdown and rich text, screenshot capture, themes and accents, search and replace, and a workspace that stays entirely on your PC.',
+  },
+  pricing: {
+    id: 'pricing',
+    path: '/pricing',
+    title: `Pricing — ${PRODUCT_NAME} Free & Pro Plans`,
+    description:
+      'Compare the TypoDocs Free plan with the planned Pro plan. Free is available today; Pro adds advanced print/PDF, imported fonts, and image tools. Pro is coming soon.',
   },
   download: {
     id: 'download',
     path: '/download',
     title: `Download ${PRODUCT_NAME} for Windows (Setup .exe)`,
-    description: `Download ${PRODUCT_NAME} — a free ${DOWNLOAD_FILE_SIZE} Windows installer. No account, no sign-up, fully offline. Legacy MSI and Setup builds are also available.`,
+    description: `Download the ${PRODUCT_NAME} Free plan — a ${DOWNLOAD_FILE_SIZE} Windows installer. No account or payment required. Pro is coming soon.`,
   },
   screenshots: {
     id: 'screenshots',
     path: '/screenshots',
     title: `Interface Gallery — ${PRODUCT_NAME}`,
     description:
-      'A closer look at Typodocs: the tabbed workspace, Markdown and rich-text views, dark theme, sidebar, and live word-count status bar.',
+      'A closer look at TypoDocs: the tabbed workspace, Markdown and rich-text views, dark theme, sidebar, and live word-count status bar.',
   },
   docs: {
     id: 'docs',
     path: '/docs',
     title: `Documentation & Guides — ${PRODUCT_NAME}`,
     description:
-      'Get started with Typodocs: quick-start guide, Markdown and rich-text reference, themes, files, and privacy.',
+      'Get started with TypoDocs: quick-start guide, Markdown and rich-text reference, themes, files, and privacy.',
   },
   changelog: {
     id: 'changelog',
@@ -90,7 +97,7 @@ export const PAGE_META: Record<PageId, PageMeta> = {
     path: '/support',
     title: `Support & FAQ — ${PRODUCT_NAME}`,
     description:
-      'Help for Typodocs: frequently asked questions about installation, features, privacy, and licensing, plus how to contact support.',
+      'Help for TypoDocs: frequently asked questions about installation, features, privacy, pricing, and licensing, plus how to contact support.',
   },
   contact: {
     id: 'contact',
@@ -111,7 +118,7 @@ export const PAGE_META: Record<PageId, PageMeta> = {
     path: '/privacy',
     title: `Privacy Policy — ${PRODUCT_NAME}`,
     description:
-      'Typodocs privacy: the desktop app has no telemetry, no logins, and no cloud — documents stay as local files. This website uses aggregate Google Analytics and Google AdSense advertising.',
+      'TypoDocs privacy: the Free plan needs no account and the desktop app has no telemetry or cloud storage — documents stay as local files. This website uses aggregate Google Analytics and Google AdSense advertising.',
   },
   terms: {
     id: 'terms',
@@ -125,14 +132,14 @@ export const PAGE_META: Record<PageId, PageMeta> = {
     path: '/license',
     title: `Software License — ${PRODUCT_NAME}`,
     description:
-      'The software license for Typodocs: free for personal, academic, and commercial use, with restrictions on redistribution.',
+      'The software license for TypoDocs: a free plan plus a planned Pro subscription, with restrictions on redistribution.',
   },
   eula: {
     id: 'eula',
     path: '/eula',
     title: `End User License Agreement — ${PRODUCT_NAME}`,
     description:
-      'The end-user license agreement for Typodocs for Windows installations.',
+      'The end-user license agreement for TypoDocs for Windows installations, including Free and planned Pro plan terms.',
   },
   copyright: {
     id: 'copyright',
@@ -140,6 +147,55 @@ export const PAGE_META: Record<PageId, PageMeta> = {
     title: `Copyright & Trademarks — ${APP_NAME}`,
     description:
       `Copyright and trademark information for ${APP_NAME} and ${PRODUCT_NAME}.`,
+  },
+  account: {
+    id: 'account',
+    path: '/account',
+    title: `Account — ${PRODUCT_NAME}`,
+    description: 'Manage your TypoDocs account profile, email, password and data.',
+    noindex: true,
+  },
+  billing: {
+    id: 'billing',
+    path: '/billing',
+    title: `Billing & Subscription — ${PRODUCT_NAME}`,
+    description: 'View your TypoDocs plan, subscription status and payment history.',
+    noindex: true,
+  },
+  'sign-in': {
+    id: 'sign-in',
+    path: '/sign-in',
+    title: `Sign in — ${PRODUCT_NAME}`,
+    description: 'Sign in to your TypoDocs account.',
+    noindex: true,
+  },
+  'sign-up': {
+    id: 'sign-up',
+    path: '/sign-up',
+    title: `Create an account — ${PRODUCT_NAME}`,
+    description: 'Create a TypoDocs account for Pro subscription and billing.',
+    noindex: true,
+  },
+  'forgot-password': {
+    id: 'forgot-password',
+    path: '/forgot-password',
+    title: `Reset your password — ${PRODUCT_NAME}`,
+    description: 'Request a secure TypoDocs password reset link.',
+    noindex: true,
+  },
+  'reset-password': {
+    id: 'reset-password',
+    path: '/reset-password',
+    title: `Choose a new password — ${PRODUCT_NAME}`,
+    description: 'Complete a secure TypoDocs password reset.',
+    noindex: true,
+  },
+  'verify-email': {
+    id: 'verify-email',
+    path: '/verify-email',
+    title: `Verify your email — ${PRODUCT_NAME}`,
+    description: 'Confirm your email address to finish setting up your TypoDocs account.',
+    noindex: true,
   },
   '404': {
     id: '404',
@@ -153,6 +209,7 @@ export const SITE_PAGES: PageMeta[] = [
   PAGE_META.home,
   PAGE_META.products,
   PAGE_META.features,
+  PAGE_META.pricing,
   PAGE_META.download,
   PAGE_META.screenshots,
   PAGE_META.docs,
