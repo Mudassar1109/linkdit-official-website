@@ -17,7 +17,6 @@ import { ChangelogPage } from './pages/ChangelogPage';
 import { ReleaseNotesPage } from './pages/ReleaseNotesPage';
 import { SupportPage } from './pages/SupportPage';
 import { ContactPage } from './pages/ContactPage';
-import { ComparePage } from './pages/ComparePage';
 import { LegalPages } from './pages/LegalPages';
 import { NotFoundPage } from './pages/NotFoundPage';
 import {
@@ -44,7 +43,6 @@ const VALID_PAGES: PageId[] = [
   'release-notes',
   'support',
   'contact',
-  'compare',
   'privacy',
   'terms',
   'license',
@@ -123,81 +121,79 @@ function PublicSite() {
           id="public-site"
           className="app-bg min-h-screen bg-paper dark:bg-ink-950 text-ink dark:text-paper flex flex-col justify-between font-sans transition-colors duration-200"
         >
-        <SEOHead pageId={currentPage} />
+          <SEOHead pageId={currentPage} />
 
-        {/* Sticky Global Navigation Bar */}
-        <Header
-          currentPage={currentPage}
-          navigate={navigate}
-          onOpenSearch={() => setSearchModalOpen(true)}
-        />
+          {/* Sticky Global Navigation Bar */}
+          <Header
+            currentPage={currentPage}
+            navigate={navigate}
+            onOpenSearch={() => setSearchModalOpen(true)}
+          />
 
-        {/* Main Route Content Viewport */}
-        <main key={currentPage} className="flex-1 animate-kd-fade-in">
-          {currentPage === 'home' && (
-            <HomePage navigate={navigate} onOpenScreenshot={handleOpenScreenshot} />
-          )}
+          {/* Main Route Content Viewport */}
+          <main key={currentPage} className="flex-1 animate-kd-fade-in">
+            {currentPage === 'home' && (
+              <HomePage navigate={navigate} onOpenScreenshot={handleOpenScreenshot} />
+            )}
 
-          {currentPage === 'products' && <ProductsPage navigate={navigate} />}
+            {currentPage === 'products' && <ProductsPage navigate={navigate} />}
 
-          {currentPage === 'features' && <FeaturesPage navigate={navigate} />}
+            {currentPage === 'features' && <FeaturesPage navigate={navigate} />}
 
-          {currentPage === 'pricing' && <PricingPage navigate={navigate} />}
+            {currentPage === 'pricing' && <PricingPage navigate={navigate} />}
 
-          {currentPage === 'download' && <DownloadPage navigate={navigate} />}
+            {currentPage === 'download' && <DownloadPage navigate={navigate} />}
 
-          {currentPage === 'screenshots' && (
-            <ScreenshotsPage
-              navigate={navigate}
-              selectedIdFromQuery={selectedScreenshotId}
-            />
-          )}
+            {currentPage === 'screenshots' && (
+              <ScreenshotsPage
+                navigate={navigate}
+                selectedIdFromQuery={selectedScreenshotId}
+              />
+            )}
 
-          {currentPage === 'docs' && <DocumentationPage navigate={navigate} />}
+            {currentPage === 'docs' && <DocumentationPage navigate={navigate} />}
 
-          {currentPage === 'changelog' && <ChangelogPage navigate={navigate} />}
+            {currentPage === 'changelog' && <ChangelogPage navigate={navigate} />}
 
-          {currentPage === 'release-notes' && <ReleaseNotesPage navigate={navigate} />}
+            {currentPage === 'release-notes' && <ReleaseNotesPage navigate={navigate} />}
 
-          {currentPage === 'support' && <SupportPage navigate={navigate} />}
+            {currentPage === 'support' && <SupportPage navigate={navigate} />}
 
-          {currentPage === 'contact' && <ContactPage navigate={navigate} />}
+            {currentPage === 'contact' && <ContactPage navigate={navigate} />}
 
-          {currentPage === 'compare' && <ComparePage navigate={navigate} />}
+            {['privacy', 'terms', 'license', 'eula', 'copyright'].includes(currentPage) && (
+              <LegalPages initialTab={currentPage} navigate={navigate} />
+            )}
 
-          {['privacy', 'terms', 'license', 'eula', 'copyright'].includes(currentPage) && (
-            <LegalPages initialTab={currentPage} navigate={navigate} />
-          )}
+            {currentPage === 'account' && <AccountPage navigate={navigate} />}
 
-          {currentPage === 'account' && <AccountPage navigate={navigate} />}
+            {currentPage === 'billing' && <BillingPage navigate={navigate} />}
 
-          {currentPage === 'billing' && <BillingPage navigate={navigate} />}
+            {currentPage === 'sign-in' && <SignInPage navigate={navigate} />}
 
-          {currentPage === 'sign-in' && <SignInPage navigate={navigate} />}
+            {currentPage === 'sign-up' && <SignUpPage navigate={navigate} />}
 
-          {currentPage === 'sign-up' && <SignUpPage navigate={navigate} />}
+            {currentPage === 'forgot-password' && <ForgotPasswordPage navigate={navigate} />}
 
-          {currentPage === 'forgot-password' && <ForgotPasswordPage navigate={navigate} />}
+            {currentPage === 'reset-password' && <ResetPasswordPage navigate={navigate} />}
 
-          {currentPage === 'reset-password' && <ResetPasswordPage navigate={navigate} />}
+            {currentPage === 'verify-email' && <VerifyEmailPage navigate={navigate} />}
 
-          {currentPage === 'verify-email' && <VerifyEmailPage navigate={navigate} />}
+            {currentPage === '404' && (
+              <NotFoundPage navigate={navigate} onOpenSearch={() => setSearchModalOpen(true)} />
+            )}
+          </main>
 
-          {currentPage === '404' && (
-            <NotFoundPage navigate={navigate} onOpenSearch={() => setSearchModalOpen(true)} />
-          )}
-        </main>
+          {/* Global Footer */}
+          <Footer navigate={navigate} currentPage={currentPage} />
 
-        {/* Global Footer */}
-        <Footer navigate={navigate} currentPage={currentPage} />
-
-        {/* Search Modal */}
-        <SearchModal
-          isOpen={searchModalOpen}
-          onClose={() => setSearchModalOpen(false)}
-          navigate={navigate}
-          onSelectScreenshot={(id) => handleOpenScreenshot(id)}
-        />
+          {/* Search Modal */}
+          <SearchModal
+            isOpen={searchModalOpen}
+            onClose={() => setSearchModalOpen(false)}
+            navigate={navigate}
+            onSelectScreenshot={(id) => handleOpenScreenshot(id)}
+          />
         </div>
       </AuthProvider>
     </ThemeProvider>

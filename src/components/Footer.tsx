@@ -15,7 +15,6 @@ export const Footer: React.FC<FooterProps> = ({ navigate, currentPage }) => {
     { id: 'products', label: 'Product' },
     { id: 'features', label: 'Features' },
     { id: 'screenshots', label: 'Interface Gallery' },
-    { id: 'compare', label: 'Compare Editors' },
     { id: 'pricing', label: 'Pricing' },
   ];
 

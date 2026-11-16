@@ -10,7 +10,6 @@ export type PageId =
   | 'release-notes'
   | 'support'
   | 'contact'
-  | 'compare'
   | 'privacy'
   | 'terms'
   | 'license'

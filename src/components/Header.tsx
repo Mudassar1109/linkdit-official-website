@@ -70,7 +70,6 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, navigate, onOpenSea
     { id: 'products', label: 'Products', hint: 'What TypoDocs is' },
     { id: 'features', label: 'Features', hint: 'Everything it does' },
     { id: 'pricing', label: 'Pricing', hint: 'Free & Pro plans' },
-    { id: 'compare', label: 'Compare', hint: 'Vs other editors' },
     { id: 'download', label: 'Download', hint: 'Get the app' },
     { id: 'docs', label: 'Docs', hint: 'Guides & reference' },
     { id: 'support', label: 'Support', hint: 'Help & answers' },
@@ -157,11 +156,10 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, navigate, onOpenSea
                   href={`/${item.id}`}
                   onClick={(e) => handleNavClick(e, item.id)}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`relative whitespace-nowrap rounded-full px-2 py-2 text-[13px] font-medium transition-colors duration-150 focus-ring min-[1536px]:px-2.5 ${
-                    isActive
-                      ? 'bg-accent-soft text-fg-accent dark:bg-accent/20 dark:text-violet-200'
-                      : 'text-ink-soft hover:bg-paper-2 hover:text-ink dark:text-zinc-400 dark:hover:bg-white/[0.06] dark:hover:text-paper'
-                  }`}
+                  className={`relative whitespace-nowrap rounded-full px-2 py-2 text-[13px] font-medium transition-colors duration-150 focus-ring min-[1536px]:px-2.5 ${isActive
+                    ? 'bg-accent-soft text-fg-accent dark:bg-accent/20 dark:text-violet-200'
+                    : 'text-ink-soft hover:bg-paper-2 hover:text-ink dark:text-zinc-400 dark:hover:bg-white/[0.06] dark:hover:text-paper'
+                    }`}
                 >
                   {item.label}
                 </a>
@@ -198,7 +196,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, navigate, onOpenSea
               onClick={onOpenSearch}
               aria-label="Search website"
               title="Search (Ctrl + K)"
-                className="icon-btn hidden h-9 w-9 sm:max-[1279px]:block"
+              className="icon-btn hidden h-9 w-9 sm:max-[1279px]:block"
             >
               <Search className="h-4 w-4" />
             </button>
@@ -358,11 +356,10 @@ export const Header: React.FC<HeaderProps> = ({ currentPage, navigate, onOpenSea
                     href={`/${item.id}`}
                     onClick={(e) => { e.preventDefault(); go(item.id); }}
                     aria-current={isActive ? 'page' : undefined}
-                    className={`flex items-center gap-4 rounded-2xl px-4 py-3 transition-colors ${
-                      isActive
-                        ? 'bg-accent-soft dark:bg-accent/20'
-                        : 'hover:bg-paper-2 dark:hover:bg-white/[0.05]'
-                    }`}
+                    className={`flex items-center gap-4 rounded-2xl px-4 py-3 transition-colors ${isActive
+                      ? 'bg-accent-soft dark:bg-accent/20'
+                      : 'hover:bg-paper-2 dark:hover:bg-white/[0.05]'
+                      }`}
                   >
                     <span className={`font-mono text-[10px] ${isActive ? 'text-fg-accent dark:text-violet-300' : 'text-ink-mute dark:text-zinc-600'}`}>
                       {String(i + 1).padStart(2, '0')}

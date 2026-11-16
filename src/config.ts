@@ -106,13 +106,6 @@ export const PAGE_META: Record<PageId, PageMeta> = {
     description:
       `Contact the ${APP_NAME} team about ${PRODUCT_NAME} — support, feedback, and feature requests via ${DOMAIN_NAME}.`,
   },
-  compare: {
-    id: 'compare',
-    path: '/compare',
-    title: `Compare Markdown Editors — ${PRODUCT_NAME} vs VS Code, Obsidian, Typora & More`,
-    description:
-      `A side-by-side comparison of ${PRODUCT_NAME}, Visual Studio Code, Obsidian, Typora, MarkText, and Zettlr — price, platforms, editing model, privacy, and extensibility, based only on official sources.`,
-  },
   privacy: {
     id: 'privacy',
     path: '/privacy',
@@ -217,7 +210,6 @@ export const SITE_PAGES: PageMeta[] = [
   PAGE_META['release-notes'],
   PAGE_META.support,
   PAGE_META.contact,
-  PAGE_META.compare,
   PAGE_META.privacy,
   PAGE_META.terms,
   PAGE_META.license,
